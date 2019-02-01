@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="MysqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.xiuchu.kkfcc.util.MyMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/graduating_design"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <!-- 对于生成的pojo所在包 -->
+        <javaModelGenerator targetPackage="com.xiuchu.kkfcc.pojo" targetProject="src/main/java"/>
+
+        <!-- 对于生成的mapper所在目录 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources"/>
+
+        <!-- 配置mapper对应的java映射 -->
+        <javaClientGenerator targetPackage="com.xiuchu.kkfcc.mapper" targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+
+
+        <table tableName="kkfcc_category"></table>
+        <table tableName="kkfcc_cbook"></table>
+        <table tableName="kkfcc_cbook_category"></table>
+        <table tableName="kkfcc_material"></table>
+        <table tableName="kkfcc_material_cbook"></table>
+        <table tableName="kkfcc_material_menu"></table>
+        <table tableName="kkfcc_menu"></table>
+        <table tableName="kkfcc_menu_cbook"></table>
+        <table tableName="kkfcc_user"></table>
+        <table tableName="kkfcc_user_friends"></table>
+        <table tableName="kkfcc_works"></table>
+
+    </context>
+</generatorConfiguration>
