@@ -10,7 +10,7 @@ logging:
     root: info
     org: warn
     com.xiuchu.kkfcc: debug
-  file: my.log
+#  file: my.log
   pattern:
     console: '%level %date{HH:mm:ss} %logger{20}.%M %L :%m%n'
     file: '%level %date{ISO8601} [%thread] %logger{20}.%M %L :%m%n'
