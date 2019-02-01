@@ -23,7 +23,8 @@ spring:
       url: jdbc:mysql://127.0.0.1:3306/graduating_design?true&characterEncoding=UTF-8
       data-username: root
       data-password: 123456
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
 
 # mybatis
 mybatis:
