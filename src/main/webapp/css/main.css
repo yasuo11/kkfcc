@@ -102,10 +102,10 @@ body img:hover{opacity:0.8;cursor:pointer;} /*设置所有img图片划过时透�
 .menu .menu5:hover .submenubox{display:block;}
 .menu .menu7:hover .submenubox{display:block;}
 .menu .menu11:hover .submenubox{display:block;}
-/*关于如何制作icon*/
+/*关于如何制作icon*//*
 .menu .qiantu{ display: inline-block; background: none no-repeat 0; background-image: url(../img/index/icon.png); width: 32px; height: 32px; text-indent: 56px; margin-right: 16px; vertical-align: middle; }
 .menu .houtu{ display: inline-block !important; background: none no-repeat 0; background: url(../img/index/indexicon.png); text-indent: -999em; }
-.menu5 .houtu,.menu7 .houtu,.menu11 .houtu{ position: absolute; right: 0; bottom: 8px; background-position: -10px -60px; width: 10px; height: 15px; }
+.menu5 .houtu,.menu7 .houtu,.menu11 .houtu{ position: absolute; right: 0; bottom: 8px; background-position: -10px -60px; width: 10px; height: 15px; }*/
 .menu .menu1 .qiantu{ background-position: 0 0; }
 .menu .menu2 .qiantu{ background-position: 0 -40px; }.menu .menu3 .qiantu{ background-position: 0 -80px; }
 .menu .menu4 .qiantu{ background-position: 0 -120px; }.menu .menu5 .qiantu{ background-position: 0 -160px; }
@@ -190,7 +190,7 @@ body img:hover{opacity:0.8;cursor:pointer;} /*设置所有img图片划过时透�
 .liuxingsousuo ol li a{ font-size: 16px; color: #000; }
 .liuxingsousuo ol li a:hover{ color: #DD3915; }
 .liuxingsousuo ol li span{ color: #909090; }
-.liuxingsousuo ol li i{background:url(../img/index/indexicon.png);display:inline-block;
+/*.liuxingsousuo ol li i{background:url(../img/index/indexicon.png);display:inline-block;*/
 width:10px;height:10px;background-position: 0px 0;position:absolute;left:100px;top:13px;}
 .liuxingsousuo .closeright{ margin: -35px 0px 0px 170px; }//上一行有需要再另行设置背景
 /* 时令食材 */
