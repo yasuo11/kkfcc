@@ -1,0 +1,49 @@
+.page-title{
+    font-size: 34px;
+}
+.main-panel{
+    height: 1072px;
+    width: 620px;
+}
+.white-bg{
+    padding:16px 32px 40px ;
+}
+.title-bar{
+    width: 570px;
+    height: 10px;
+}
+.aligned-form{
+    width: 570px;
+    height: 831px;
+}
+.control-group{
+    width: 570px;
+    font-size: 16px;
+}
+.label{
+    display: inline-block;
+    width: 68px;
+    text-align: right;
+    clear: both;
+    float: left;
+}
+.control{
+    display: inline-block;
+    margin-left:20px ;
+    width: 427px;
+
+}
+.imput1{
+    font-size: 16px;
+}
+.gray-font{
+    color: grey;
+}
+.normal-font{
+    font-size: 12px;
+}
+.text_area{
+    width:100%;/*自动适应父布局宽度*/
+    overflow:auto;
+    word-break:break-all;
+}

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>个人菜谱 - 美拾</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<link rel="stylesheet" type="text/css" href="css/upload_dishes.css">
+	</head>
+
+	<body>
+		<div class="header"><!--------------头部---------------->
+			<div class="conwidth">
+				<h1 class="fl"><a href="">美<span>拾</span></a></h1>
+				<div class="search fl" id="search-box">
+					<form action="#" method="get" target="_blank" >
+						<input type="text" placeholder="搜索菜谱、食材"
+							id="sreach-input" class="search-text fl"/>
+						<input type="button" value="搜菜谱" class="search-btn fl"/>
+					</form>
+				</div>
+				<div class="nav fr">
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li class="menu-class"><a href="menu_class.html">菜谱分类</a>
+                        <div class="topbar-menu">
+                            <ul class="plain">
+                            <li class='topbar-menu-head'>常用主题</li>
+                            <li><a href="menu_class.html" >家常菜</a></li>
+                            <li><a href="menu_class.html" >快手菜</a></li>
+                            <li><a href="menu_class.html" >下饭菜</a></li>
+                            <li><a href="menu_class.html" >早餐</a></li>
+                            <li><a href="menu_class.html" >减肥</a></li>
+                            <li><a href="menu_class.html" >汤羹</a></li>
+                            <li><a href="menu_class.html" >烘焙</a></li>
+                            <li><a href="menu_class.html" >小吃</a></li>
+                            </ul>
+                            <ul class="plain">
+                            <li class='topbar-menu-head'>常见食材</li>
+                            <li><a href="menu_class.html" >猪肉</a></li>
+                            <li><a href="menu_class.html" >鸡肉</a></li>
+                            <li><a href="menu_class.html" >牛肉</a></li>
+                            <li><a href="menu_class.html" >鱼</a></li>
+                            <li><a href="menu_class.html" >鸡蛋</a></li>
+                            <li><a href="menu_class.html" >土豆</a></li>
+                            <li><a href="menu_class.html" >茄子</a></li>
+                            <li><a href="menu_class.html" >豆腐</a></li>
+                            </ul>
+                            <ul class="plain">
+                            <li class='topbar-menu-head'>时令食材</li>
+                            <li><a href="menu_class.html" >春笋</a></li>
+                            <li><a href="menu_class.html" >笋</a></li>
+                            <li><a href="menu_class.html" >豌豆</a></li>
+                            <li><a href="menu_class.html" >草莓</a></li>
+                            <li><a href="menu_class.html" >金桔</a></li>
+                            <li><a href="menu_class.html" >菠菜</a></li>
+                            <li><a href="menu_class.html" >冬笋</a></li>
+                            <li><a href="menu_class.html" >韭菜</a></li>
+                            </ul>
+                            <div class="span">
+                            <span><a href="menu_class.html">查看全部分类</a></span>
+                            </div>
+                        </div>
+                    </li>
+					<li><a href="popular_menu.html">菜单</a></li>
+					<li><a href="">作品动态</a></li>
+				</ul>
+				<div class="dengluzhuce fr">
+					<a href=login.html"">登录</a>
+					<a href="register .html">注册</a>
+				</div>
+				</div>
+			</div>
+            <div class="suggest" id="sreach-suggest"><!---搜索智能提示suggest-->
+                <ul>
+                    <li>搜"  "相关用户</li>
+                    <li>搜"  "相关菜单</li>
+                </ul>
+            </div>
+        </div>
+        <div class="konghang"></div><!--因为头部固定而需要设置高度空行把内容撑下去-->
+
+		<div style="height: 22px"></div>
+
+		<div class="page-container">
+
+
+
+			<div class="pure-g conwidth">
+				<!-- begin of main-panel -->
+				<div class="main-panel">
+					<h1 class="page-title">
+						上传我做的蛋糕卷，肉松蛋糕卷，网红贝贝肉松卷
+					</h1>
+
+					<div class="white-bg">
+						<div class="title-bar"></div>
+						<form enctype="multipart/form-data" method="POST" class="aligned-form" onsubmit="$(&#39;input[type=submit]&#39;, this).attr(&#39;disabled&#39;, true)">
+
+							<!--<input type="hidden" name="xf" value="ooqYM">-->
+
+							<div class="control-group">
+								<label for="img" class="label">在电脑里面查找</label>
+								<div class="control">
+									<input class="imput1" type="file" name="img" id="img">
+									<p class="gray-font normal-font">请选择不超过4M的图片</p>
+								</div>
+							</div>
+
+							<div class="control-group">
+								<label class="label">
+									心得
+								</label>
+								<div class="control">
+									<input type="hidden" id="sharpCandiates" value="[]">
+									<input type="hidden" id="atCandiates" value="[]">
+									<textarea name="desc" id="desc" rows="20" maxlength="1000"></textarea>
+								</div>
+							</div>
+							<div class="control-group">
+								<div class="label">分享到：</div>
+								<div class="control">
+
+
+									<div class="share-to">
+
+										<div class="to-bind sync-douban">
+											<label class="gray-font">
+												<input type="checkbox" name="sync" value="douban">
+												豆瓣网<span class="state normal-font float-right red-font">点击绑定</span>
+											</label>
+											<input type="hidden" name="connect_url" value="/account/bind_oauth/douban/?return_url=%2Faccount%2Fbind_succeeded%2F">
+										</div>
+
+
+										<div class="to-bind sync-qzone">
+											<label class="gray-font">
+												<input type="checkbox" name="sync" value="qzone">
+												QQ空间<span class="state normal-font float-right red-font">点击绑定</span>
+											</label>
+											<input type="hidden" name="connect_url" value="/account/bind_oauth/qzone/?return_url=%2Faccount%2Fbind_succeeded%2F">
+										</div>
+
+
+										<div class="to-bind sync-weibo">
+											<label class="gray-font">
+												<input type="checkbox" name="sync" value="weibo">
+												新浪微博<span class="state normal-font float-right red-font">点击绑定</span>
+											</label>
+											<input type="hidden" name="connect_url" value="/account/bind_oauth/weibo/?return_url=%2Faccount%2Fbind_succeeded%2F">
+										</div>
+
+
+									</div>
+
+								</div>
+							</div>
+							<div class="control-group">&nbsp;</div>
+
+							<div class="control-group">
+								<div class="label">&nbsp;</div>
+								<div class="control">
+									<input type="submit" value="上传作品" class="button">
+								</div>
+							</div>
+						</form>
+
+					</div>
+
+
+
+					<div id="main-panel-bottom"></div>
+				</div>
+				<!-- end of main-panel -->
+
+				<!-- begin of right-panel -->
+				<!--<div class="pure-u-1-3 right-panel">
+
+					<div class="page-title">&nbsp;</div>
+					<div class="gray-font normal-font">
+						请尊重创作者的劳动，上传自己原创的作品信息。
+					</div>
+
+				</div>-->
+				<!-- end of right-panel -->
+			</div>
+
+		</div>
+		</div>
+
+
+
+  	<div class="conwidth footer"><!----------------页脚---------------->
+		<ul>
+			<li><a href="#">美食生活杂志</a></li>
+			<li><a href="#">厨房工作</a></li>
+			<li><a href="#">社区指导原则</a></li>
+			<li><a href="#">美拾出版的书</a></li>
+			<li><a href="#">帮助中心</a></li>
+			<li><a href="#">联系我们</a></li>
+			<li><a href="#">意见反馈</a></li>
+			<li><a href="#">隐私声明</a></li>
+		</ul><br />
+		<p>Peng Xiaofen production, copy writenot "下厨房" ,for commercial use.</p>
+  	</div>
+
+
+
+
+
+        <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/main.js"></script>
+	</body>
+</html>
