@@ -105,17 +105,18 @@
 									<p class="gray-font normal-font">请选择不超过4M的图片</p>
 								</div>
 							</div>
-
+							<div class="control-group"></div>
 							<div class="control-group">
 								<label class="label">
 									心得
 								</label>
 								<div class="control">
-									<input type="hidden" id="sharpCandiates" value="[]">
-									<input type="hidden" id="atCandiates" value="[]">
-									<textarea name="desc" id="desc" rows="20" maxlength="1000"></textarea>
+									<!--<input type="hidden" id="sharpCandiates" value="[]">
+									<input type="hidden" id="atCandiates" value="[]">-->
+									<textarea class="text_area" name="desc" id="desc" rows="20" maxlength="1000"></textarea>
 								</div>
 							</div>
+							<div class="control-group"></div>
 							<div class="control-group">
 								<div class="label">分享到：</div>
 								<div class="control">
@@ -126,7 +127,7 @@
 										<div class="to-bind sync-douban">
 											<label class="gray-font">
 												<input type="checkbox" name="sync" value="douban">
-												豆瓣网<span class="state normal-font float-right red-font">点击绑定</span>
+												豆瓣网<span class="normal-font fr font_red">点击绑定</span>
 											</label>
 											<input type="hidden" name="connect_url" value="/account/bind_oauth/douban/?return_url=%2Faccount%2Fbind_succeeded%2F">
 										</div>
@@ -135,7 +136,7 @@
 										<div class="to-bind sync-qzone">
 											<label class="gray-font">
 												<input type="checkbox" name="sync" value="qzone">
-												QQ空间<span class="state normal-font float-right red-font">点击绑定</span>
+												QQ空间<span class="normal-font fr font_red">点击绑定</span>
 											</label>
 											<input type="hidden" name="connect_url" value="/account/bind_oauth/qzone/?return_url=%2Faccount%2Fbind_succeeded%2F">
 										</div>
@@ -144,7 +145,7 @@
 										<div class="to-bind sync-weibo">
 											<label class="gray-font">
 												<input type="checkbox" name="sync" value="weibo">
-												新浪微博<span class="state normal-font float-right red-font">点击绑定</span>
+												新浪微博<span class="normal-font fr font_red">点击绑定</span>
 											</label>
 											<input type="hidden" name="connect_url" value="/account/bind_oauth/weibo/?return_url=%2Faccount%2Fbind_succeeded%2F">
 										</div>

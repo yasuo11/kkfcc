@@ -18,6 +18,7 @@
 }
 .control-group{
     width: 570px;
+    min-height: 20px;
     font-size: 16px;
 }
 .label{
@@ -43,7 +44,17 @@
     font-size: 12px;
 }
 .text_area{
-    width:100%;/*自动适应父布局宽度*/
-    overflow:auto;
-    word-break:break-all;
+    width: 427px;
+    height: 594px;
+    border: 1px #f3f3f3 solid;
+}
+.font_red{
+    color: #dd3915;
+}
+.button{
+    width: 122px;
+    height: 37px;
+    color: #fff;
+    background-color: #DD3915;
+    border: 0;
 }
