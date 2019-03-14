@@ -18,7 +18,11 @@ body img:hover{opacity:0.8;cursor:pointer;} /*设置所有img图片划过时透�
 .kh20{height: 20px;} /* 没有//这种注释写法,所有这种写法后紧随的css都会失效.*/
 .kh30{height: 30px;}
 .kh40{height: 40px;}
+<<<<<<< HEAD
 .kh50{height: 50px;}
+=======
+.kh50{height: :50px;}
+>>>>>>> wx
 
 .fl{ float: left; }
 .fr{ float: right; }
@@ -45,7 +49,11 @@ body img:hover{opacity:0.8;cursor:pointer;} /*设置所有img图片划过时透�
 .bdbt{border-bottom:1px solid #f3f3f3;}
 /*副标题*/
 .fubiaoti{ height:50px; line-height:50px; color: #d3c5a1; font-size: 20px;  display: inline; }
+<<<<<<< HEAD
 .quanbu{ font-size: 14px; color: #dd3915; font-weight:normal; display: inline; margin-left: 30px; }
+=======
+.quanbu{ font-size: 14px; color: #dd3915; font-weight: none; display: inline; margin-left: 30px; }
+>>>>>>> wx
 .quanbu:hover{ background-color: #DD3915; color: #FFFFFF; }
 
 
@@ -102,10 +110,17 @@ body img:hover{opacity:0.8;cursor:pointer;} /*设置所有img图片划过时透�
 .menu .menu5:hover .submenubox{display:block;}
 .menu .menu7:hover .submenubox{display:block;}
 .menu .menu11:hover .submenubox{display:block;}
+<<<<<<< HEAD
 /*关于如何制作icon*/
 .menu .qiantu{ display: inline-block; background: none no-repeat 0; background-image: url(../img/index/icon.png); width: 32px; height: 32px; text-indent: 56px; margin-right: 16px; vertical-align: middle; }
 .menu .houtu{ display: inline-block !important; background: none no-repeat 0; background: url(../img/index/indexicon.png); text-indent: -999em; }
 .menu5 .houtu,.menu7 .houtu,.menu11 .houtu{ position: absolute; right: 0; bottom: 8px; background-position: -10px -60px; width: 10px; height: 15px; }
+=======
+/*关于如何制作icon*//*
+.menu .qiantu{ display: inline-block; background: none no-repeat 0; background-image: url(../img/index/icon.png); width: 32px; height: 32px; text-indent: 56px; margin-right: 16px; vertical-align: middle; }
+.menu .houtu{ display: inline-block !important; background: none no-repeat 0; background: url(../img/index/indexicon.png); text-indent: -999em; }
+.menu5 .houtu,.menu7 .houtu,.menu11 .houtu{ position: absolute; right: 0; bottom: 8px; background-position: -10px -60px; width: 10px; height: 15px; }*/
+>>>>>>> wx
 .menu .menu1 .qiantu{ background-position: 0 0; }
 .menu .menu2 .qiantu{ background-position: 0 -40px; }.menu .menu3 .qiantu{ background-position: 0 -80px; }
 .menu .menu4 .qiantu{ background-position: 0 -120px; }.menu .menu5 .qiantu{ background-position: 0 -160px; }
@@ -161,7 +176,11 @@ body img:hover{opacity:0.8;cursor:pointer;} /*设置所有img图片划过时透�
 .wenda span{ float: right; color: #999; font-size: 13px; }
 /*时令食材*/
 .shilingshicai{ width: 490px; }
+<<<<<<< HEAD
 .shicai{ width: 490px; height:230px; background: #f5f6f5; }
+=======
+.shicai{ width: 490; height:230px; background: #f5f6f5; }
+>>>>>>> wx
 .shicaiimg{ width: 60px; padding-left: 18.57px; float: left; padding-top: 25px; }
 .shicaiimg a{color:#000;cursor: pointer;display: block; text-align: center;}
 .shicaiimg a:hover{color:#dd3915;}
@@ -190,12 +209,21 @@ body img:hover{opacity:0.8;cursor:pointer;} /*设置所有img图片划过时透�
 .liuxingsousuo ol li a{ font-size: 16px; color: #000; }
 .liuxingsousuo ol li a:hover{ color: #DD3915; }
 .liuxingsousuo ol li span{ color: #909090; }
+<<<<<<< HEAD
 .liuxingsousuo ol li i{background:url(../img/index/indexicon.png);display:inline-block;
 width:10px;height:10px;background-position: 0px 0;position:absolute;left:100px;top:13px;}
 .liuxingsousuo .closeright{ margin: -35px 0px 0px 170px; }
 /* 时令食材 */
 .shilingshicai{ width: 490px; }
 .shicai{ width: 490px; height:230px; background: #f5f6f5; }
+=======
+/*.liuxingsousuo ol li i{background:url(../img/index/indexicon.png);display:inline-block;*/
+width:10px;height:10px;background-position: 0px 0;position:absolute;left:100px;top:13px;}
+.liuxingsousuo .closeright{ margin: -35px 0px 0px 170px; }//上一行有需要再另行设置背景
+/* 时令食材 */
+.shilingshicai{ width: 490px; }
+.shicai{ width: 490; height:230px; background: #f5f6f5; }
+>>>>>>> wx
 .shicaiimg{ width: 60px; padding-left: 18.57px; float: left; padding-top: 25px; }
 .shicaiimg a{color:#000;cursor: pointer;display: block; text-align: center;}
 .shicaiimg a:hover{color:#dd3915;opacity:0.8;}
@@ -226,5 +254,8 @@ bottom: 20px;
 right: 20px;
 margin: 0px;
 cursor: pointer;}
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> wx
