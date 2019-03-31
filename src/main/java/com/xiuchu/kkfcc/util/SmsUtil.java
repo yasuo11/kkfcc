@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class SmsUtil {
 
-    private static String generateRandom() {
+    public static String generateRandom() {
         StringBuilder sb = new StringBuilder();
         Random ra = new Random();
         for(int i = 0; i <= 5; i++)
@@ -21,13 +21,12 @@ public class SmsUtil {
         return sb.toString();
     }
 
-    public static void sendSms(String phoneNumber) {
+    public static void sendSms(String phoneNumber, String random) {
         DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", PropertiesUtil.getProperty("aliyun.accessKeyId"), PropertiesUtil.getProperty("aliyun.secret"));
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();
-        String randomString = generateRandom();
-        randomString = "{\"code\":"  + randomString + "}";
+        String randomString = "{\"code\":"  + random + "}";
         request.setMethod(MethodType.POST);
         request.setDomain("dysmsapi.aliyuncs.com");
         request.setVersion("2017-05-25");
@@ -47,7 +46,4 @@ public class SmsUtil {
         }
     }
 
-    public static void main(String[] args) {
-        sendSms("18379525422");
-    }
 }
