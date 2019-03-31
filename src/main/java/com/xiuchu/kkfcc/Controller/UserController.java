@@ -97,7 +97,7 @@ public class UserController {
     @ResponseBody
     public ServerResponse sendSms(String phoneNumber) {
         String random = SmsUtil.generateRandom();
-        RedisPoolUtil.setEx(phoneNumber, random, 600); //设600S有效期
+        RedisPoolUtil.setEx(phoneNumber, random, 300); //设300S有效期
         SmsUtil.sendSms(phoneNumber, random);
         return ServerResponse.createBySuccessMessage("发送成功！");
     }
