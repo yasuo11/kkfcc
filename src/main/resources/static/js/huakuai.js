@@ -48,9 +48,9 @@ $.fn.drag = function(options) {
     }
 };
 
-function ff(event) {
+function ff(event, phoneNumber) {
     event.preventDefault();
-    sendSms();
+    sendSms(phoneNumber);
     time($('#send_ms'));
 }
 
@@ -69,11 +69,11 @@ function time(o) {
     }
 }
 
-function sendSms() {
+function sendSms(phoneNumber) {
     $.ajax({
         url: '/user/sendsms.do',
         data:{
-            phoneNumber: $(".bb").val()
+            phoneNumber: phoneNumber
         },
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         type: 'GET',
@@ -98,8 +98,33 @@ function login() {
         success: function(result) {
             if(!result.success)
                 alert(result.msg);
-            else
-                window.location.href("/index");
+            else {
+                alert("登录成功！！");
+                window.location.href = "/index";
+            }
+        },
+        error: function () {
+            alert("异常错误！")
+        }
+    })
+}
+
+function register() {
+    $.ajax({
+        url: '/user/register.do',
+        data:{
+            phoneNumber: $("#phone").val(),
+            sms: $(".ff").val()
+        },
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        type: 'GET',
+        success: function(result) {
+            if(!result.success)
+                alert(result.msg);
+            else {
+                alert("注册成功！！");
+                window.location.href = "/index";
+            }
         },
         error: function () {
             alert("异常错误！")
