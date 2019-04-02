@@ -35,19 +35,18 @@ public class UserController {
     IFileService iFileService;
 
 
-
     @ResponseBody
     @RequestMapping("/register.do")
     public ServerResponse<String> register(String phoneNumber, String sms) {
         KkfccUser user = new KkfccUser();
         user.setLoginName(phoneNumber);
         KkfccUser curUser = iUserService.findUser(user);
-        if(curUser != null)
+        if (curUser != null)
             return ServerResponse.createByErrorMessage("该手机号已被注册！！");
         String curSms = RedisPoolUtil.get(phoneNumber);
-        if(curSms == null || !curSms.equals(sms))
+        if (curSms == null || !curSms.equals(sms))
             return ServerResponse.createByErrorMessage("验证码错误！！");
-        if(iUserService.insertUser(user) > 0)
+        if (iUserService.insertUser(user) > 0)
             return ServerResponse.createBySuccessMessage("注册成功！");
 
         return ServerResponse.createByErrorMessage("注册失败！");
@@ -58,8 +57,8 @@ public class UserController {
     @ResponseBody
     @RequestMapping("/basic.do")
     public ServerResponse<KkfccUser> basic(HttpSession session) {
-        KkfccUser curUser = (KkfccUser)session.getAttribute("curUser");
-        if(curUser == null)
+        KkfccUser curUser = (KkfccUser) session.getAttribute("curUser");
+        if (curUser == null)
             return ServerResponse.createByErrorMessage("账号异常，请重新登录");
 
         return ServerResponse.createBySuccess(curUser);
@@ -69,11 +68,11 @@ public class UserController {
     @ResponseBody
     @RequestMapping("/update.do")
     public ServerResponse<String> update(KkfccUser user, HttpSession session) {
-        KkfccUser curUser = (KkfccUser)session.getAttribute("curUser");
+        KkfccUser curUser = (KkfccUser) session.getAttribute("curUser");
         curUser.setNickName(user.getNickName());
         curUser.setSelfIntroduction(user.getSelfIntroduction());
         curUser.setSex(user.getSex());
-        if(iUserService.updateUserInfo(curUser) > 0)
+        if (iUserService.updateUserInfo(curUser) > 0)
             return ServerResponse.createBySuccessMessage("更新成功！");
         return ServerResponse.createBySuccessMessage("更新失败！");
     }
@@ -81,15 +80,15 @@ public class UserController {
     // 上传图片到FTP服务器，并返回图片的url地址
     @RequestMapping("upload.do")
     @ResponseBody
-    public ServerResponse upload(HttpSession session, @RequestParam(value = "upload_file",required = false) MultipartFile file, HttpServletRequest request){
-        KkfccUser user = (KkfccUser)session.getAttribute("curUser");
+    public ServerResponse upload(HttpSession session, @RequestParam(value = "upload_file", required = false) MultipartFile file, HttpServletRequest request) {
+        KkfccUser user = (KkfccUser) session.getAttribute("curUser");
         String path = request.getSession().getServletContext().getRealPath("upload");
-        String targetFileName = iFileService.upload(file,path);
-        String url = PropertiesUtil.getProperty("ftp.server.http.prefix")+targetFileName;
+        String targetFileName = iFileService.upload(file, path);
+        String url = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
 
         Map fileMap = Maps.newHashMap();
-        fileMap.put("uri",targetFileName);
-        fileMap.put("url",url);
+        fileMap.put("uri", targetFileName);
+        fileMap.put("url", url);
         return ServerResponse.createBySuccess(fileMap);
     }
 
@@ -106,7 +105,7 @@ public class UserController {
     @ResponseBody
     public ServerResponse<String> login(String phoneNumber, String sms, HttpSession session) {
         String curSms = RedisPoolUtil.get(phoneNumber);
-        if(curSms == null || !curSms.equals(sms))
+        if (curSms == null || !curSms.equals(sms))
             return ServerResponse.createByErrorMessage("验证码错误！！");
         KkfccUser user = new KkfccUser();
         user.setLoginName(phoneNumber);

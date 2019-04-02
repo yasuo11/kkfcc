@@ -16,7 +16,7 @@ public class SmsUtil {
     public static String generateRandom() {
         StringBuilder sb = new StringBuilder();
         Random ra = new Random();
-        for(int i = 0; i <= 5; i++)
+        for (int i = 0; i <= 5; i++)
             sb.append(ra.nextInt(10));
         return sb.toString();
     }
@@ -26,7 +26,7 @@ public class SmsUtil {
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();
-        String randomString = "{\"code\":"  + random + "}";
+        String randomString = "{\"code\":" + random + "}";
         request.setMethod(MethodType.POST);
         request.setDomain("dysmsapi.aliyuncs.com");
         request.setVersion("2017-05-25");
