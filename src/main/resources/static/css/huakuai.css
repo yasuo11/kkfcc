@@ -1,14 +1,23 @@
 
-.slidetounlock{
-                          font-size: 12px;
-                          background:-webkit-gradient(linear,left top,right top,color-stop(0,#4d4d4d),color-stop(.4,#4d4d4d),color-stop(.5,#fff),color-stop(.6,#4d4d4d),color-stop(1,#4d4d4d));
-                          -webkit-background-clip:text;
-                          -webkit-text-fill-color:transparent;
-                          -webkit-animation:slidetounlock 3s infinite;
-                          -webkit-text-size-adjust:none
-                      }
-@-webkit-keyframes slidetounlock{0%{background-position:-200px 0} 100%{background-position:200px 0}}
-#drag{
+.slidetounlock {
+    font-size: 12px;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(.4, #4d4d4d), color-stop(.5, #fff), color-stop(.6, #4d4d4d), color-stop(1, #4d4d4d));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: slidetounlock 3s infinite;
+    -webkit-text-size-adjust: none
+}
+
+@-webkit-keyframes slidetounlock {
+    0% {
+        background-position: -200px 0
+    }
+    100% {
+        background-position: 200px 0
+    }
+}
+
+#drag {
     position: relative;
     background-color: #e8e8e8;
     width: 300px;
@@ -16,31 +25,32 @@
     line-height: 34px;
     text-align: center;
 }
-#drag .handler{
+
+#drag .handler {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 40px;
     height: 32px;
     border: 1px solid #ccc;
     cursor: move;
 }
 
-#drag .drag_bg{
+#drag .drag_bg {
     background-color: #7ac23c;
     height: 34px;
-    width: 0px;
+    width: 0;
 }
-#drag .drag_text{
+
+#drag .drag_text {
     position: absolute;
-    top: 0px;
+    top: 0;
     width: 300px;
-    color:#9c9c9c;
+    color: #9c9c9c;
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-    -o-user-select:none;
-    -ms-user-select:none;
-
-    font-size: 12px;        //  add
+    -o-user-select: none;/*说是找不到这个  -o-user-select: none;*/
+    -ms-user-select: none;
+    font-size: 12px;
 }
