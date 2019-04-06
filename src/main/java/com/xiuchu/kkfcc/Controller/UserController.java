@@ -1,16 +1,14 @@
 package com.xiuchu.kkfcc.Controller;
 
 import com.google.common.collect.Maps;
+import com.xiuchu.kkfcc.common.Const;
 import com.xiuchu.kkfcc.common.RedisPool;
 import com.xiuchu.kkfcc.common.ResponseCode;
 import com.xiuchu.kkfcc.common.ServerResponse;
 import com.xiuchu.kkfcc.pojo.KkfccUser;
 import com.xiuchu.kkfcc.service.IFileService;
 import com.xiuchu.kkfcc.service.IUserService;
-import com.xiuchu.kkfcc.util.MD5Util;
-import com.xiuchu.kkfcc.util.PropertiesUtil;
-import com.xiuchu.kkfcc.util.RedisPoolUtil;
-import com.xiuchu.kkfcc.util.SmsUtil;
+import com.xiuchu.kkfcc.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,7 +80,7 @@ public class UserController {
     @RequestMapping("upload.do")
     @ResponseBody
     public ServerResponse upload(HttpSession session, @RequestParam(value = "upload_file",required = false) MultipartFile file, HttpServletRequest request){
-        KkfccUser user = (KkfccUser)session.getAttribute("curUser");
+        KkfccUser user = (KkfccUser)session.getAttribute(Const.CURRENT_USER);
         String path = request.getSession().getServletContext().getRealPath("upload");
         String targetFileName = iFileService.upload(file,path);
         String url = PropertiesUtil.getProperty("ftp.server.http.prefix")+targetFileName;
@@ -97,7 +95,7 @@ public class UserController {
     @ResponseBody
     public ServerResponse sendSms(String phoneNumber) {
         String random = SmsUtil.generateRandom();
-        RedisPoolUtil.setEx(phoneNumber, random, 300); //设300S有效期
+        RedisPoolUtil.setEx(phoneNumber, random, Const.RedisCacheExtime.REDIS_SMS_EXTIME); //设300S有效期
         SmsUtil.sendSms(phoneNumber, random);
         return ServerResponse.createBySuccessMessage("发送成功！");
     }
@@ -111,13 +109,12 @@ public class UserController {
         KkfccUser user = new KkfccUser();
         user.setLoginName(phoneNumber);
         user = iUserService.findUser(user);
-        session.setAttribute("curUser", user);
+        //session.setAttribute(Const.CURRENT_USER, user);
+        RedisPoolUtil.setEx(session.getId(), JsonUtil.obj2String(user), Const.RedisCacheExtime.REDIS_SESSION_EXTIME);
         return ServerResponse.createBySuccessMessage("登录成功！！");
     }
 
 
-    public static void main(String[] args) {
 
-    }
 
 }
