@@ -51,4 +51,8 @@ public class ForwardController {
         return "cook_question";
     }
 
+    @RequestMapping("user_count")
+    public String userCount() {
+        return "user_count";
+    }
 }

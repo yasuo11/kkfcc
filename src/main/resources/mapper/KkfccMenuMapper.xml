@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xiuchu.kkfcc.mapper.KkfccMenuMapper" >
-  <resultMap id="BaseResultMap" type="com.xiuchu.kkfcc.pojo.KkfccMenu" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <result column="id" property="id" jdbcType="INTEGER" />
-    <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="introduction" property="introduction" jdbcType="LONGVARCHAR" />
-  </resultMap>
+<mapper namespace="com.xiuchu.kkfcc.mapper.KkfccMenuMapper">
+    <resultMap id="BaseResultMap" type="com.xiuchu.kkfcc.pojo.KkfccMenu">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="introduction" property="introduction" jdbcType="LONGVARCHAR"/>
+    </resultMap>
 </mapper>

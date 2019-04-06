@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xiuchu.kkfcc.mapper.KkfccCbookMapper" >
-  <resultMap id="BaseResultMap" type="com.xiuchu.kkfcc.pojo.KkfccCbook" >
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <result column="id" property="id" jdbcType="INTEGER" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="score" property="score" jdbcType="DECIMAL" />
-    <result column="collection_sum" property="collectionSum" jdbcType="INTEGER" />
-    <result column="image" property="image" jdbcType="LONGVARCHAR" />
-    <result column="introduction" property="introduction" jdbcType="LONGVARCHAR" />
-    <result column="stuff" property="stuff" jdbcType="LONGVARCHAR" />
-  </resultMap>
+<mapper namespace="com.xiuchu.kkfcc.mapper.KkfccCbookMapper">
+    <resultMap id="BaseResultMap" type="com.xiuchu.kkfcc.pojo.KkfccCbook">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="score" property="score" jdbcType="DECIMAL"/>
+        <result column="collection_sum" property="collectionSum" jdbcType="INTEGER"/>
+        <result column="image" property="image" jdbcType="LONGVARCHAR"/>
+        <result column="introduction" property="introduction" jdbcType="LONGVARCHAR"/>
+        <result column="stuff" property="stuff" jdbcType="LONGVARCHAR"/>
+    </resultMap>
 </mapper>
