@@ -55,4 +55,9 @@ public class ForwardController {
     public String userCount() {
         return "user_count";
     }
+
+    @RequestMapping("user_pur")
+    public String userpur() {
+        return "user_pur";
+    }
 }
