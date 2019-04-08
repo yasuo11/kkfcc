@@ -9,6 +9,7 @@ import com.xiuchu.kkfcc.pojo.KkfccUser;
 import com.xiuchu.kkfcc.service.IFileService;
 import com.xiuchu.kkfcc.service.IUserService;
 import com.xiuchu.kkfcc.util.*;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import redis.clients.jedis.Jedis;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
@@ -54,11 +56,14 @@ public class UserController {
     // 展示个人信息
     @ResponseBody
     @RequestMapping("/basic.do")
-    public ServerResponse<KkfccUser> basic(HttpSession session) {
-        KkfccUser curUser = (KkfccUser) session.getAttribute("curUser");
+    public ServerResponse<KkfccUser> basic(HttpServletRequest request) {
+        String sessonId = CookieUtil.readLoginToken(request);
+        if(StringUtils.isEmpty(sessonId))
+            return ServerResponse.createByErrorMessage("账号异常，请重新登录");
+        String userString = RedisPoolUtil.get(sessonId);
+        KkfccUser curUser = JsonUtil.string2Obj(userString, KkfccUser.class);
         if (curUser == null)
             return ServerResponse.createByErrorMessage("账号异常，请重新登录");
-
         return ServerResponse.createBySuccess(curUser);
     }
 
@@ -78,17 +83,11 @@ public class UserController {
     // 上传图片到FTP服务器，并返回图片的url地址
     @RequestMapping("upload.do")
     @ResponseBody
-<<<<<<< HEAD
     public ServerResponse upload(HttpSession session, @RequestParam(value = "upload_file",required = false) MultipartFile file, HttpServletRequest request){
         KkfccUser user = (KkfccUser)session.getAttribute(Const.CURRENT_USER);
-=======
-    public ServerResponse upload(HttpSession session, @RequestParam(value = "upload_file", required = false) MultipartFile file, HttpServletRequest request) {
-        KkfccUser user = (KkfccUser) session.getAttribute("curUser");
->>>>>>> cb9afa3b1613602be44a18df6052b0cefd9e1c48
         String path = request.getSession().getServletContext().getRealPath("upload");
         String targetFileName = iFileService.upload(file, path);
         String url = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
-
         Map fileMap = Maps.newHashMap();
         fileMap.put("uri", targetFileName);
         fileMap.put("url", url);
@@ -106,17 +105,22 @@ public class UserController {
 
     @RequestMapping("login.do")
     @ResponseBody
-    public ServerResponse<String> login(String phoneNumber, String sms, HttpSession session) {
+    public ServerResponse<String> login(String phoneNumber, String sms, HttpServletResponse response, HttpSession session) {
         String curSms = RedisPoolUtil.get(phoneNumber);
         if (curSms == null || !curSms.equals(sms))
             return ServerResponse.createByErrorMessage("验证码错误！！");
         KkfccUser user = new KkfccUser();
         user.setLoginName(phoneNumber);
+
         user = iUserService.findUser(user);
-        //session.setAttribute(Const.CURRENT_USER, user);
-        RedisPoolUtil.setEx(session.getId(), JsonUtil.obj2String(user), Const.RedisCacheExtime.REDIS_SESSION_EXTIME);
+        String jsonString = JsonUtil.obj2String(user);      //将对象转为json
+        RedisPoolUtil.setEx(session.getId(), jsonString, Const.RedisCacheExtime.REDIS_SESSION_EXTIME);
+        CookieUtil.writeLoginToken(response, session.getId());
+
         return ServerResponse.createBySuccessMessage("登录成功！！");
     }
+
+
 
 
 
