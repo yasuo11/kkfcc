@@ -25,6 +25,10 @@ infoHtml = "<div class=\"user-info\">\n" +
 
 $(document).ready(function () {
     hasLogin();
+    //recommand();    //轮播图
+    //newRecipe();    //新秀菜谱
+    //newMenu();      //新秀菜单
+    //popularRecipe();  //最近流行
 });
 
 function hasLogin() {
@@ -38,6 +42,26 @@ function hasLogin() {
         success: function(result) {
             if(result.success) {
                 $("#login-info").html(infoHtml);
+            }
+        },
+        error: function () {
+            alert("异常错误！")
+        }
+    })
+}
+
+function recommand() {
+
+    $.ajax({
+        url: '/recipe/recommand.do',
+        data:{
+
+        },
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        type: 'GET',
+        success: function (result) {
+            if(result.success) {
+
             }
         },
         error: function () {

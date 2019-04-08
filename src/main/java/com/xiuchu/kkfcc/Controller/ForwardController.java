@@ -26,6 +26,9 @@ public class ForwardController {
         return "popular_menu";
     }
 
+    @RequestMapping("menu_book")
+    public String menuBook(){return "menu_book";}
+
     @RequestMapping("menu_class")
     public String menuClass() {
         return "menu_class";
