@@ -272,7 +272,7 @@ body img:hover {
 .plain {
     width: 100px;
     padding-top: 30px;
-    padding-left: 28px;
+    padding-left: 26px;
     float: left;
 }
 
@@ -747,7 +747,7 @@ body img:hover {
 .dengluimg {
     display: block;
     padding-left: 75px;
-    padding-top: 80px;
+    padding-top: 40px;
 }
 
 .dengluimg2 {
@@ -1007,4 +1007,26 @@ body img:hover {
     font-size: 13px;
     bottom: 16px;
     left: 0;
+}
+/*banner的右边*/
+.user-ch{
+    float: left;
+}
+.user-nav{
+    float: left;
+    display: block;
+    height: 1px;
+    width: 127px;
+}
+.user-nav ul{
+   display: none;
+}
+.cect{
+    float: left;
+    margin-top: -30px;
+    border-left:1px solid #00F;
+}
+
+.hav:hover .user-nav ul{
+    display: block;
 }
