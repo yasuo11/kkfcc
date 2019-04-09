@@ -1,4 +1,4 @@
-package com.xiuchu.kkfcc.Controller;
+package com.xiuchu.kkfcc.controller;
 
 import com.xiuchu.kkfcc.common.ServerResponse;
 import com.xiuchu.kkfcc.pojo.KkfccCbook;

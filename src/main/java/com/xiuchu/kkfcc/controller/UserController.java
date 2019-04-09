@@ -1,9 +1,7 @@
-package com.xiuchu.kkfcc.Controller;
+package com.xiuchu.kkfcc.controller;
 
 import com.google.common.collect.Maps;
 import com.xiuchu.kkfcc.common.Const;
-import com.xiuchu.kkfcc.common.RedisPool;
-import com.xiuchu.kkfcc.common.ResponseCode;
 import com.xiuchu.kkfcc.common.ServerResponse;
 import com.xiuchu.kkfcc.pojo.KkfccUser;
 import com.xiuchu.kkfcc.service.IFileService;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import redis.clients.jedis.Jedis;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -86,7 +83,7 @@ public class UserController {
     public ServerResponse upload(HttpSession session, @RequestParam(value = "upload_file",required = false) MultipartFile file, HttpServletRequest request){
         KkfccUser user = (KkfccUser)session.getAttribute(Const.CURRENT_USER);
         String path = request.getSession().getServletContext().getRealPath("upload");
-        String targetFileName = iFileService.upload(file, path);
+        String targetFileName = iFileService.upload(file, path, user.getId());
         String url = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
         Map fileMap = Maps.newHashMap();
         fileMap.put("uri", targetFileName);
@@ -116,8 +113,17 @@ public class UserController {
         String jsonString = JsonUtil.obj2String(user);      //将对象转为json
         RedisPoolUtil.setEx(session.getId(), jsonString, Const.RedisCacheExtime.REDIS_SESSION_EXTIME);
         CookieUtil.writeLoginToken(response, session.getId());
-
+        session.setAttribute(Const.CURRENT_USER, user);
         return ServerResponse.createBySuccessMessage("登录成功！！");
+    }
+
+
+    @RequestMapping("userPhoto.do")
+    @ResponseBody
+    public ServerResponse<String> userPhoto(HttpSession session) {
+
+        return iUserService.userPhoto(session);
+
     }
 
 
