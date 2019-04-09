@@ -13,10 +13,15 @@
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://119.23.189.150:3306/KKFCC"
+                        connectionURL="jdbc:mysql://119.23.189.150:3306/kkfcc"
                         userId="root"
                         password="7777777">
         </jdbcConnection>
+        <!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/graduation_project"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>-->
 
         <!-- 对于生成的pojo所在包 -->
         <javaModelGenerator targetPackage="com.xiuchu.kkfcc.pojo" targetProject="src/main/java"/>

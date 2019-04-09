@@ -1009,24 +1009,29 @@ body img:hover {
     left: 0;
 }
 /*banner的右边*/
-.user-ch{
-    float: left;
+.afterlogin{
+    float:left;
+    margin-top:20px;
 }
-.user-nav{
-    float: left;
-    display: block;
-    height: 1px;
-    width: 127px;
+.afterlogin a img:hover{
+    color:black;
 }
-.user-nav ul{
-   display: none;
-}
-.cect{
-    float: left;
-    margin-top: -30px;
-    border-left:1px solid #00F;
+.afterlogin a img{
+    width: 30px;
 }
 
-.hav:hover .user-nav ul{
+.afrloginlist{
+    position:absolute;
+    background-color:#f5f6f5
+}
+
+.cao{
+    margin:5px;
+    line-height:20px;
+    float: none!important;
+    display:none;
+}
+
+.afterlogin:hover .cao{
     display: block;
 }
