@@ -65,10 +65,11 @@ function recommand() {
                 for(var i = 0; i < data.length; i++) {
                     var href = "/recipe/" + data[i].id;
                     var url = data[i].imageUrl;
-                    $("#ul01").append("<li id=li" + i + ">" + "<a href=href" + href + "></a>" + "<img id=img" + i + ">");
+                    // $("#ul01").append("<li id=li" + i + ">" + "<a href=" + href + ">" + "<img id=img" + i + "></a>" + "</li>");
                     $("#img" + i).attr("width", '490');
                     $("#img" + i).attr("height", '260');
                     $("#img" + i).attr("src", url);
+                    $("#a" + i).attr("href", href);
                 }
             }
         },
