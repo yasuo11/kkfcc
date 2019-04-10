@@ -77,18 +77,18 @@ public class UserController {
         return ServerResponse.createBySuccessMessage("更新失败！");
     }
 
-    // 上传图片到FTP服务器，并返回图片的url地址
-    @RequestMapping("upload.do")
+    // 更新个人头像
+    @RequestMapping("updatePhoto.do")
     @ResponseBody
     public ServerResponse upload(HttpSession session, @RequestParam(value = "upload_file",required = false) MultipartFile file, HttpServletRequest request){
         KkfccUser user = (KkfccUser)session.getAttribute(Const.CURRENT_USER);
         String path = request.getSession().getServletContext().getRealPath("upload");
         String targetFileName = iFileService.upload(file, path, user.getId());
-        String url = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
-        Map fileMap = Maps.newHashMap();
-        fileMap.put("uri", targetFileName);
-        fileMap.put("url", url);
-        return ServerResponse.createBySuccess(fileMap);
+        user.setImage(targetFileName);
+        iUserService.updateUserInfo(user);
+        session.setAttribute(Const.CURRENT_USER, user);
+        RedisPoolUtil.setEx(session.getId(), JsonUtil.obj2String(user), Const.RedisCacheExtime.REDIS_SESSION_EXTIME);
+        return ServerResponse.createBySuccess();
     }
 
     @RequestMapping("sendsms.do")
@@ -112,6 +112,7 @@ public class UserController {
         user = iUserService.findUser(user);
         String jsonString = JsonUtil.obj2String(user);      //将对象转为json
         RedisPoolUtil.setEx(session.getId(), jsonString, Const.RedisCacheExtime.REDIS_SESSION_EXTIME);
+
         CookieUtil.writeLoginToken(response, session.getId());
         session.setAttribute(Const.CURRENT_USER, user);
         return ServerResponse.createBySuccessMessage("登录成功！！");
@@ -120,10 +121,18 @@ public class UserController {
 
     @RequestMapping("userPhoto.do")
     @ResponseBody
-    public ServerResponse<String> userPhoto(HttpSession session) {
+    public ServerResponse<String> userPhoto(HttpSession session, HttpServletRequest request) {
 
-        return iUserService.userPhoto(session);
+        return iUserService.userPhoto(session, request);
 
+    }
+
+    @RequestMapping("logout")
+    public String logout(HttpSession session, HttpServletRequest request,
+                         HttpServletResponse response) {
+        session.removeAttribute(Const.CURRENT_USER);
+        CookieUtil.delLoginToken(request, response);
+        return "redirect:/index";
     }
 
 

@@ -26,7 +26,7 @@ public class IRecipeServiceImpl implements IRecipeService {
             RecipeVO recipeVo = new RecipeVO();
             recipeVo.setId(list.get(i).getId());
             String suffix = list.get(i).getImage();
-            recipeVo.setImageUrl(PropertiesUtil.getProperty("ftp.server.http.prefix") + suffix);
+            recipeVo.setImageUrl(PropertiesUtil.getProperty("local.server.http.prefix") + suffix);
             res.add(recipeVo);
         }
 

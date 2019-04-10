@@ -6,10 +6,15 @@ import com.xiuchu.kkfcc.common.ServerResponse;
 import com.xiuchu.kkfcc.mapper.KkfccUserMapper;
 import com.xiuchu.kkfcc.pojo.KkfccUser;
 import com.xiuchu.kkfcc.service.IUserService;
+import com.xiuchu.kkfcc.util.CookieUtil;
+import com.xiuchu.kkfcc.util.JsonUtil;
 import com.xiuchu.kkfcc.util.PropertiesUtil;
+import com.xiuchu.kkfcc.util.RedisPoolUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Service("iUserServiceImpl")
@@ -32,15 +37,19 @@ public class IUserServiceImpl implements IUserService {
 
     @Override
     public int updateUserInfo(KkfccUser user) {
-        return userMapper.updateByPrimaryKey(user);
+        return userMapper.updateByPrimaryKeySelective(user);
     }
 
     @Override
-    public ServerResponse<String> userPhoto(HttpSession session) {
-        KkfccUser user = (KkfccUser) session.getAttribute(Const.CURRENT_USER);
-        if(user == null)
+    public ServerResponse<String> userPhoto(HttpSession session, HttpServletRequest request) {
+        String sessonId = CookieUtil.readLoginToken(request);
+        if(StringUtils.isEmpty(sessonId))
             return ServerResponse.createByError();
-        String suffix = "user" + "/" + user.getImage();
+        String userString = RedisPoolUtil.get(sessonId);
+        KkfccUser curUser = JsonUtil.string2Obj(userString, KkfccUser.class);
+        if(curUser == null)
+            return ServerResponse.createByError();
+        String suffix = curUser.getImage();
         String imageUrl = PropertiesUtil.getProperty("ftp.server.http.prefix") + suffix;
         return ServerResponse.createBySuccess(imageUrl);
 
