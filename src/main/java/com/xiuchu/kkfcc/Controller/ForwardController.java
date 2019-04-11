@@ -63,4 +63,12 @@ public class ForwardController {
     public String userpur() {
         return "user_pur";
     }
+
+    @RequestMapping("recipe_list")
+    public  String userRecipelist() {return "recipe_list";}
+
+    @RequestMapping("recipe")
+    public  String userRecipe() {return "recipe";}
+    @RequestMapping("recipe1")
+    public  String userRecipe1() {return "recipe";}
 }
