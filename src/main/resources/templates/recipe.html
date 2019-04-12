@@ -1,24 +1,29 @@
 <html class=""><!--<![endif]-->
 <head>
-    <style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}</style>
+    <style type="text/css">@charset "UTF-8";
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+        display: none !important;
+    }
+
+    ng\:form {
+        display: block;
+    }</style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>基本信息_秀厨网</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="x-dns-prefetch-control" content="on">
-    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
-    <!--顺序不可变-->
-    <script src="js/recipe6.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/recipe1.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/recipe2.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/recipe3.js" type="text/javascript" charset="utf-8"></script>
-    <!--<script src="js/recipe4.js" type="text/javascript" charset="utf-8"></script>-->
-    <!--<script src="js/recipe5.js" type="text/javascript" charset="utf-8"></script>-->
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/recipe.css">
-    <link rel="stylesheet" type="text/css" href="css/recipe2.css">
-    <link rel="stylesheet" type="text/css" href="css/recipe3.css">
-
+    <script src="../static/js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+    <!--草，我自己试试-->
+    <!--    <script src="../static/js/recipe6.js" type="text/javascript" charset="utf-8"></script>-->
+    <!--    <script src="../static/js/recipe1.js" type="text/javascript" charset="utf-8"></script>-->
+    <!--    <script src="../static/js/recipe2.js" type="text/javascript" charset="utf-8"></script>-->
+    <!--    <script src="../static/js/recipe3.js" type="text/javascript" charset="ustf-8"></script>-->
+    <!--    <script src="js/recipe4.js" type="text/javascript" charset="utf-8"></script>-->
+    <!--    <script src="js/recipe5.js" type="text/javascript" charset="utf-8"></script>-->
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/recipe.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/recipe2.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/recipe3.css">
 </head>
 <body style="padding-top: 0px;">
 <div class="header">
@@ -91,21 +96,21 @@
 </div>
 <div class="konghang"></div><!--因为头部固定而需要设置高度空行把内容撑下去-->
 
-<div class="page-container">
+<div class="page-container" ng-app="app">
 
     <div class="pure-g">
         <!-- begin of main-panel -->
         <div class="pure-u-2-3 main-panel">
 
             <h1 class="page-title">
-                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" ng-model="recipe.name"
-                     ng-placeholder="添加菜谱名称" on-blur="updateIngsRecommend()"><input ng-model="input"
-                                                                                    class="input text ng-pristine ng-valid invisible"
-                                                                                    ng-class="visibility"
-                                                                                    ng-blur="blur()"
-                                                                                    style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 62px;"
-                                                                                    type="text"><span
-                        class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint" ng-click="focus($event)">添加菜谱名称</span>
+                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" ng-model="recipe.name" ng-placeholder="添加菜谱名称" on-blur="updateIngsRecommend()">
+                    <input ng-model="input"
+                           class="input text ng-pristine ng-valid invisible"
+                           ng-class="visibility"
+                           ng-blur="blur()"
+                           style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 62px;"
+                           type="text">
+                    <span class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint" ng-click="focus($event)">添加菜谱名称</span>
                 </div>
 
             </h1>
@@ -516,6 +521,6 @@
     </div>
 
 </div>
-
+<script src="../static/js/recipe5.js" type="text/javascript" charset="ustf-8"></script>
 </body>
 </html>
