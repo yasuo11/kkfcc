@@ -1,29 +1,15 @@
 <html class=""><!--<![endif]-->
 <head>
-    <style type="text/css">@charset "UTF-8";
-    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
-        display: none !important;
-    }
-
-    ng\:form {
-        display: block;
-    }</style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>基本信息_秀厨网</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="x-dns-prefetch-control" content="on">
-    <script src="../static/js/angular.min.js" type="text/javascript" charset="utf-8"></script>
-    <!--草，我自己试试-->
-    <!--    <script src="../static/js/recipe6.js" type="text/javascript" charset="utf-8"></script>-->
-    <!--    <script src="../static/js/recipe1.js" type="text/javascript" charset="utf-8"></script>-->
-    <!--    <script src="../static/js/recipe2.js" type="text/javascript" charset="utf-8"></script>-->
-    <!--    <script src="../static/js/recipe3.js" type="text/javascript" charset="ustf-8"></script>-->
-    <!--    <script src="js/recipe4.js" type="text/javascript" charset="utf-8"></script>-->
-    <!--    <script src="js/recipe5.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="../static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="../static/css/main.css">
     <link rel="stylesheet" type="text/css" href="../static/css/recipe.css">
     <link rel="stylesheet" type="text/css" href="../static/css/recipe2.css">
     <link rel="stylesheet" type="text/css" href="../static/css/recipe3.css">
+
 </head>
 <body style="padding-top: 0px;">
 <div class="header">
@@ -96,21 +82,21 @@
 </div>
 <div class="konghang"></div><!--因为头部固定而需要设置高度空行把内容撑下去-->
 
-<div class="page-container" ng-app="app">
+<div class="page-container">
 
     <div class="pure-g">
         <!-- begin of main-panel -->
         <div class="pure-u-2-3 main-panel">
 
             <h1 class="page-title">
-                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" ng-model="recipe.name" ng-placeholder="添加菜谱名称" on-blur="updateIngsRecommend()">
-                    <input ng-model="input"
-                           class="input text ng-pristine ng-valid invisible"
-                           ng-class="visibility"
-                           ng-blur="blur()"
+                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" id="rp1" onclick="rpName()">
+                    <input class="input text ng-pristine ng-valid invisible"
                            style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 62px;"
-                           type="text">
-                    <span class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint" ng-click="focus($event)">添加菜谱名称</span>
+                           type="text"
+                           id="rp_1"
+                           onblur="rpName_lose()"
+                    >
+                    <span class="text hint ng-binding" id="rpn_1">添加菜谱名称</span>
                 </div>
 
             </h1>
@@ -125,8 +111,8 @@
                         <span class="sub-title">最佳尺寸：1280 × 1024</span>
                       </span>
                             </div>
-                            <input name="ident" class="hidden ng-pristine ng-valid" ng-model="recipe.cover_ident">
-                            <input name="picurl" class="hidden ng-pristine ng-valid" ng-model="recipe.picurl">
+                            <input name="ident" class="hidden ng-pristine ng-valid" >
+                            <input name="picurl" class="hidden ng-pristine ng-valid" >
                             <div class="upload-widget-autogen">
                                 <input name="file" class="upload-widget-file" tabindex="-1" type="file">
 
@@ -145,7 +131,7 @@
 
 
                 <div class="author mt30">
-                    <a href="/cook/134540291/" title="测试_001的厨房" class="avatar-link avatar" tabindex="-1"
+                    <a href="#" title="测试_001的厨房" class="avatar-link avatar" tabindex="-1"
                        target="_blank">
                         <img src="http://i2.chuimg.com/a3db29e405ff4d119cd215735ce35b3e_321w_321h.jpg?imageView2/1/w/60/h/60/interlace/1/q/90"
                              alt="测试_001的厨房" width="60" height="60">
@@ -154,187 +140,60 @@
                 </div>
 
                 <div class="desc mt30">
-                    <div class="placeholder ng-isolate-scope ng-pristine ng-valid" ng-placeholder="点击添加菜谱描述"
-                         ng-model="recipe.desc" type="textarea"><textarea ng-model="input"
+                    <div class="placeholder ng-isolate-scope ng-pristine ng-valid"  type="textarea"><textarea
                                                                           class="input text ng-pristine ng-valid invisible"
-                                                                          ng-class="visibility" ng-blur="blur()"
                                                                           style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 100px;"></textarea><span
-                            class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                            ng-click="focus($event)">点击添加菜谱描述</span></div>
+                            class="text hint ng-binding" >点击添加菜谱描述</span></div>
                 </div>
 
                 <h2>用料<!-- ngIf: ingsRecommend.length --></h2>
                 <!-- ngIf: ingsRecommend.length -->
                 <div class="ings">
                     <table>
-                        <tbody ng-class="{sorting: isSortingIngs}" ng-model="recipe.ings"
-                               ng-sortable="recipeIngsSortableConfig" class="ng-isolate-scope ng-pristine ng-valid">
+                        <tbody  class="ng-isolate-scope ng-pristine ng-valid">
                         <!-- ngRepeat: (i, ing) in recipe.ings -->
-                        <tr ng-repeat="(i, ing) in recipe.ings" ng-class="{delimiter:(ing.name.charAt(0) === '#')}"
+                        <tr
                             class="ng-scope">
                             <td class="name has-border">
                                 <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text"
-                                     ng-placeholder="食材：如鸡蛋" ng-model="ing.name"><input ng-model="input"
+                                     ><input ng-model="input"
                                                                                         class="input text ng-pristine ng-valid invisible"
-                                                                                        ng-class="visibility"
-                                                                                        ng-blur="blur()"
+
                                                                                         style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;"
                                                                                         type="text"><span
-                                        class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                                        ng-click="focus($event)">食材：如鸡蛋</span></div>
+                                        class="text hint ng-binding" >食材：如鸡蛋</span></div>
                             </td>
                             <td class="unit has-border">
                                 <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text"
-                                     ng-placeholder="用量：如1只" ng-model="ing.unit"><input ng-model="input"
+                                     ><input
                                                                                         class="input text ng-pristine ng-valid invisible"
-                                                                                        ng-class="visibility"
-                                                                                        ng-blur="blur()"
                                                                                         style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;"
                                                                                         type="text"><span
-                                        class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                                        ng-click="focus($event)">用量：如1只</span></div>
+                                        class="text hint ng-binding" >用量：如1只</span></div>
                             </td>
-                            <td class="drag" title="拖动可调整用料位置" ng-show="recipe.ings.length > 1">
-                                <img src="https://s.chuimg.com/pic/drag.png">
-                            </td>
-                            <td class="remove" title="删除用料" ng-show="recipe.ings.length > 1" ng-click="removeIng(ing)">
+                            <td class="remove" title="删除用料" >
                                 <img src="https://s.chuimg.com/pic/close.png">
                             </td>
                         </tr><!-- end ngRepeat: (i, ing) in recipe.ings -->
-                        <tr ng-repeat="(i, ing) in recipe.ings" ng-class="{delimiter:(ing.name.charAt(0) === '#')}"
-                            class="ng-scope">
-                            <td class="name has-border">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text"
-                                     ng-placeholder="食材：如鸡蛋" ng-model="ing.name"><input ng-model="input"
-                                                                                        class="input text ng-pristine ng-valid invisible"
-                                                                                        ng-class="visibility"
-                                                                                        ng-blur="blur()"
-                                                                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;"
-                                                                                        type="text"><span
-                                        class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                                        ng-click="focus($event)">食材：如鸡蛋</span></div>
-                            </td>
-                            <td class="unit has-border">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text"
-                                     ng-placeholder="用量：如1只" ng-model="ing.unit"><input ng-model="input"
-                                                                                        class="input text ng-pristine ng-valid invisible"
-                                                                                        ng-class="visibility"
-                                                                                        ng-blur="blur()"
-                                                                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;"
-                                                                                        type="text"><span
-                                        class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                                        ng-click="focus($event)">用量：如1只</span></div>
-                            </td>
-                            <td class="drag" title="拖动可调整用料位置" ng-show="recipe.ings.length > 1">
-                                <img src="https://s.chuimg.com/pic/drag.png">
-                            </td>
-                            <td class="remove" title="删除用料" ng-show="recipe.ings.length > 1" ng-click="removeIng(ing)">
-                                <img src="https://s.chuimg.com/pic/close.png">
-                            </td>
-                        </tr><!-- end ngRepeat: (i, ing) in recipe.ings -->
-                        <tr ng-repeat="(i, ing) in recipe.ings" ng-class="{delimiter:(ing.name.charAt(0) === '#')}"
-                            class="ng-scope">
-                            <td class="name has-border">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text"
-                                     ng-placeholder="食材：如鸡蛋" ng-model="ing.name"><input ng-model="input"
-                                                                                        class="input text ng-pristine ng-valid invisible"
-                                                                                        ng-class="visibility"
-                                                                                        ng-blur="blur()"
-                                                                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;"
-                                                                                        type="text"><span
-                                        class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                                        ng-click="focus($event)">食材：如鸡蛋</span></div>
-                            </td>
-                            <td class="unit has-border">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text"
-                                     ng-placeholder="用量：如1只" ng-model="ing.unit"><input ng-model="input"
-                                                                                        class="input text ng-pristine ng-valid invisible"
-                                                                                        ng-class="visibility"
-                                                                                        ng-blur="blur()"
-                                                                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;"
-                                                                                        type="text"><span
-                                        class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                                        ng-click="focus($event)">用量：如1只</span></div>
-                            </td>
-                            <td class="drag" title="拖动可调整用料位置" ng-show="recipe.ings.length > 1">
-                                <img src="https://s.chuimg.com/pic/drag.png">
-                            </td>
-                            <td class="remove" title="删除用料" ng-show="recipe.ings.length > 1" ng-click="removeIng(ing)">
-                                <img src="https://s.chuimg.com/pic/close.png">
-                            </td>
-                        </tr><!-- end ngRepeat: (i, ing) in recipe.ings -->
-                        <tr ng-repeat="(i, ing) in recipe.ings" ng-class="{delimiter:(ing.name.charAt(0) === '#')}"
-                            class="ng-scope">
-                            <td class="name has-border">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text"
-                                     ng-placeholder="食材：如鸡蛋" ng-model="ing.name"><input ng-model="input"
-                                                                                        class="input text ng-pristine ng-valid invisible"
-                                                                                        ng-class="visibility"
-                                                                                        ng-blur="blur()"
-                                                                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;"
-                                                                                        type="text"><span
-                                        class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                                        ng-click="focus($event)">食材：如鸡蛋</span></div>
-                            </td>
-                            <td class="unit has-border">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text"
-                                     ng-placeholder="用量：如1只" ng-model="ing.unit"><input ng-model="input"
-                                                                                        class="input text ng-pristine ng-valid invisible"
-                                                                                        ng-class="visibility"
-                                                                                        ng-blur="blur()"
-                                                                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;"
-                                                                                        type="text"><span
-                                        class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                                        ng-click="focus($event)">用量：如1只</span></div>
-                            </td>
-                            <td class="drag" title="拖动可调整用料位置" ng-show="recipe.ings.length > 1">
-                                <img src="https://s.chuimg.com/pic/drag.png">
-                            </td>
-                            <td class="remove" title="删除用料" ng-show="recipe.ings.length > 1" ng-click="removeIng(ing)">
-                                <img src="https://s.chuimg.com/pic/close.png">
-                            </td>
-                        </tr><!-- end ngRepeat: (i, ing) in recipe.ings -->
+                        <!-- end ngRepeat: (i, ing) in recipe.ings -->
                         </tbody>
                     </table>
-                    <div class="clearfix">
-                        <a href="javascript:void(0)" class="button gray-button2 small-button" ng-click="addEmptyIng()">追加一行用料</a>
-                        <div class="float-right normal-font gray-font mt10">
-                            用料以<span class="bold-font"> # </span>开头可以分组
-                        </div>
-                    </div>
                 </div>
 
                 <h2>做法</h2>
                 <!-- ngIf: isMultipleUploadSupported -->
-                <div class="multip-upload-steps-pics ng-scope" ng-if="isMultipleUploadSupported">
-                    <!-- ngIf: multipleUploading -->
-                    <!-- ngIf: !multipleUploading --><span ng-if="!multipleUploading" class="ng-scope">批量上传步骤图 <span
-                        class="gray-font normal-font ng-binding">按住“Ctrl”批量选择文件</span> <input multiple=""
-                                                                                              file-change="multipleUploadStepsPics(event)"
-                                                                                              type="file"></span>
-                    <!-- end ngIf: !multipleUploading -->
-                </div><!-- end ngIf: isMultipleUploadSupported -->
                 <div class="steps">
-                    <ol ng-model="recipe.steps" ng-sortable="recipeStepsSortableConfig"
-                        class="ng-isolate-scope ng-pristine ng-valid">
+                    <ol  class="ng-isolate-scope ng-pristine ng-valid">
                         <!-- ngRepeat: step in recipe.steps -->
-                        <li class="step container ng-scope" ng-repeat="step in recipe.steps">
+                        <li class="step container ng-scope">
                             <div class="text ml0">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" ng-placeholder="点击添加菜谱步骤"
-                                     ng-model="step.text" type="textarea"><textarea ng-model="input"
+                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="textarea"><textarea ng-model="input"
                                                                                     class="input text ng-pristine ng-valid invisible"
-                                                                                    ng-class="visibility"
-                                                                                    ng-blur="blur()"
                                                                                     style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 240px;"></textarea><span
-                                        class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                                        ng-click="focus($event)">点击添加菜谱步骤</span></div>
+                                        class="text hint ng-binding">点击添加菜谱步骤</span></div>
                             </div>
-                            <div class="remove float-right" title="删除步骤" ng-show="recipe.steps.length > 1"
-                                 ng-click="removeStep(step)">
+                            <div class="remove float-right" title="删除步骤" >
                                 <img src="https://s.chuimg.com/pic/close.png">
-                            </div>
-                            <div class="drag float-right" title="拖动可调整步骤位置" ng-show="recipe.steps.length > 1">
-                                <img src="https://s.chuimg.com/pic/drag.png">
                             </div>
                             <div class="upload-box">
                                 <div class="upload-widget" data-upload-url="/action/upload_pic/" data-kind="1011"
@@ -345,140 +204,8 @@
                                 <span class="sub-title">最佳尺寸：1280 × 1024</span>
                               </span>
                                     </div>
-                                    <input class="hidden ng-pristine ng-valid" name="ident" ng-model="step.pic_ident">
-                                    <input name="picurl" class="hidden ng-pristine ng-valid" ng-model="step.picurl">
-                                    <div class="upload-widget-autogen">
-                                        <input name="file" class="upload-widget-file" tabindex="-1" type="file">
-
-                                        <div class="upload-widget-progress">
-                                            <div class="upload-widget-stop">
-                                            </div>
-                                            <div class="upload-widget-progress-text">
-                                                <span>上传中•••</span>
-                                            </div>
-                                            <img src="" class="upload-widget-preview">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li><!-- end ngRepeat: step in recipe.steps -->
-                        <li class="step container ng-scope" ng-repeat="step in recipe.steps">
-                            <div class="text ml0">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" ng-placeholder="点击添加菜谱步骤"
-                                     ng-model="step.text" type="textarea"><textarea ng-model="input"
-                                                                                    class="input text ng-pristine ng-valid invisible"
-                                                                                    ng-class="visibility"
-                                                                                    ng-blur="blur()"
-                                                                                    style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 240px;"></textarea><span
-                                        class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                                        ng-click="focus($event)">点击添加菜谱步骤</span></div>
-                            </div>
-                            <div class="remove float-right" title="删除步骤" ng-show="recipe.steps.length > 1"
-                                 ng-click="removeStep(step)">
-                                <img src="https://s.chuimg.com/pic/close.png">
-                            </div>
-                            <div class="drag float-right" title="拖动可调整步骤位置" ng-show="recipe.steps.length > 1">
-                                <img src="https://s.chuimg.com/pic/drag.png">
-                            </div>
-                            <div class="upload-box">
-                                <div class="upload-widget" data-upload-url="/action/upload_pic/" data-kind="1011"
-                                     data-width="200" data-xf="bPtb0" data-default-image="">
-                                    <div class="upload">
-                              <span class="upload-text">
-                                <span class="main-title">+ 上传步骤图</span><br>
-                                <span class="sub-title">最佳尺寸：1280 × 1024</span>
-                              </span>
-                                    </div>
-                                    <input class="hidden ng-pristine ng-valid" name="ident" ng-model="step.pic_ident">
-                                    <input name="picurl" class="hidden ng-pristine ng-valid" ng-model="step.picurl">
-                                    <div class="upload-widget-autogen">
-                                        <input name="file" class="upload-widget-file" tabindex="-1" type="file">
-
-                                        <div class="upload-widget-progress">
-                                            <div class="upload-widget-stop">
-                                            </div>
-                                            <div class="upload-widget-progress-text">
-                                                <span>上传中•••</span>
-                                            </div>
-                                            <img src="" class="upload-widget-preview">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li><!-- end ngRepeat: step in recipe.steps -->
-                        <li class="step container ng-scope" ng-repeat="step in recipe.steps">
-                            <div class="text ml0">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" ng-placeholder="点击添加菜谱步骤"
-                                     ng-model="step.text" type="textarea"><textarea ng-model="input"
-                                                                                    class="input text ng-pristine ng-valid invisible"
-                                                                                    ng-class="visibility"
-                                                                                    ng-blur="blur()"
-                                                                                    style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 240px;"></textarea><span
-                                        class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                                        ng-click="focus($event)">点击添加菜谱步骤</span></div>
-                            </div>
-                            <div class="remove float-right" title="删除步骤" ng-show="recipe.steps.length > 1"
-                                 ng-click="removeStep(step)">
-                                <img src="https://s.chuimg.com/pic/close.png">
-                            </div>
-                            <div class="drag float-right" title="拖动可调整步骤位置" ng-show="recipe.steps.length > 1">
-                                <img src="https://s.chuimg.com/pic/drag.png">
-                            </div>
-                            <div class="upload-box">
-                                <div class="upload-widget" data-upload-url="/action/upload_pic/" data-kind="1011"
-                                     data-width="200" data-xf="bPtb0" data-default-image="">
-                                    <div class="upload">
-                              <span class="upload-text">
-                                <span class="main-title">+ 上传步骤图</span><br>
-                                <span class="sub-title">最佳尺寸：1280 × 1024</span>
-                              </span>
-                                    </div>
-                                    <input class="hidden ng-pristine ng-valid" name="ident" ng-model="step.pic_ident">
-                                    <input name="picurl" class="hidden ng-pristine ng-valid" ng-model="step.picurl">
-                                    <div class="upload-widget-autogen">
-                                        <input name="file" class="upload-widget-file" tabindex="-1" type="file">
-
-                                        <div class="upload-widget-progress">
-                                            <div class="upload-widget-stop">
-                                            </div>
-                                            <div class="upload-widget-progress-text">
-                                                <span>上传中•••</span>
-                                            </div>
-                                            <img src="" class="upload-widget-preview">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li><!-- end ngRepeat: step in recipe.steps -->
-                        <li class="step container ng-scope" ng-repeat="step in recipe.steps">
-                            <div class="text ml0">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" ng-placeholder="点击添加菜谱步骤"
-                                     ng-model="step.text" type="textarea"><textarea ng-model="input"
-                                                                                    class="input text ng-pristine ng-valid invisible"
-                                                                                    ng-class="visibility"
-                                                                                    ng-blur="blur()"
-                                                                                    style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 240px;"></textarea><span
-                                        class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                                        ng-click="focus($event)">点击添加菜谱步骤</span></div>
-                            </div>
-                            <div class="remove float-right" title="删除步骤" ng-show="recipe.steps.length > 1"
-                                 ng-click="removeStep(step)">
-                                <img src="https://s.chuimg.com/pic/close.png">
-                            </div>
-                            <div class="drag float-right" title="拖动可调整步骤位置" ng-show="recipe.steps.length > 1">
-                                <img src="https://s.chuimg.com/pic/drag.png">
-                            </div>
-                            <div class="upload-box">
-                                <div class="upload-widget" data-upload-url="/action/upload_pic/" data-kind="1011"
-                                     data-width="200" data-xf="bPtb0" data-default-image="">
-                                    <div class="upload">
-                              <span class="upload-text">
-                                <span class="main-title">+ 上传步骤图</span><br>
-                                <span class="sub-title">最佳尺寸：1280 × 1024</span>
-                              </span>
-                                    </div>
-                                    <input class="hidden ng-pristine ng-valid" name="ident" ng-model="step.pic_ident">
-                                    <input name="picurl" class="hidden ng-pristine ng-valid" ng-model="step.picurl">
+                                    <input class="hidden ng-pristine ng-valid" name="ident" >
+                                    <input name="picurl" class="hidden ng-pristine ng-valid">
                                     <div class="upload-widget-autogen">
                                         <input name="file" class="upload-widget-file" tabindex="-1" type="file">
 
@@ -495,32 +222,30 @@
                             </div>
                         </li><!-- end ngRepeat: step in recipe.steps -->
                     </ol>
-                    <a href="javascript:void(0)" class="button gray-button2 small-button" ng-click="addEmptyStep()">追加一个步骤</a>
-                </div>
-
-                <div class="tip-container">
-                    <h2>小贴士</h2>
-                    <div class="tip">
-                        <div class="placeholder ng-isolate-scope ng-pristine ng-valid" ng-placeholder="点击添加小贴士"
-                             ng-model="recipe.tips" type="textarea"><textarea ng-model="input"
-                                                                              class="input text ng-pristine ng-valid invisible"
-                                                                              ng-class="visibility" ng-blur="blur()"
-                                                                              style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 83px;"></textarea><span
-                                class="text hint ng-binding" ng-bind="placeholder" ng-hide="hideHint"
-                                ng-click="focus($event)">点击添加小贴士</span></div>
-                    </div>
+                    <a href="javascript:void(0)" class="button gray-button2 small-button" id="addBuzhou">追加一个步骤</a>
                 </div>
             </div>
-            <div id="createRecipeEnd"></div>
+
             <div class="transparent-bg recipe-edit-actions">
-                <input value="发布菜谱" class="button" ng-disabled="publishPending" ng-click="publish(false, $event)">
+                <button>发布菜谱</button>
             </div>
-
-            <div id="main-panel-bottom"></div>
         </div>
     </div>
-
 </div>
-<script src="../static/js/recipe5.js" type="text/javascript" charset="ustf-8"></script>
+<div class="conwidth footer"><!----------------页脚---------------->
+    <ul>
+        <li><a href="#">美食生活杂志</a></li>
+        <li><a href="#">厨房工作</a></li>
+        <li><a href="#">社区指导原则</a></li>
+        <li><a href="#">秀厨出版的书</a></li>
+        <li><a href="#">帮助中心</a></li>
+        <li><a href="#">联系我们</a></li>
+        <li><a href="#">意见反馈</a></li>
+        <li><a href="#">隐私声明</a></li>
+    </ul>
+    <br/>
+    <p>Zed,the Master of Shadows product "秀厨网" ,for commercial use.</p>
+</div>
+<script src="../static/js/recipe.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

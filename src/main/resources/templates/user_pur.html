@@ -100,13 +100,14 @@
 ">
 
 
-                <form enctype="multipart/form-data" method="POST">
+
+                <form enctype="multipart/form-data" method="POST" action="/user/updatePhoto.do">
 
                     <div style="
     margin-top: 40px;
     margin-bottom: 5px;
 ">
-                        <img src="http://i2.chuimg.com/a3db29e405ff4d119cd215735ce35b3e_321w_321h.jpg?imageView2/1/w/160/h/160/interlace/1/q/90"
+                        <img src="" id="photo"
                              width="160">
                     </div>
 
@@ -115,7 +116,7 @@
                     <div style="
     margin-top: 40px;
 ">
-                        <input type="file" name="img">
+                        <input type="file" name="upload_file">
                     </div>
 
                     <div style="
@@ -159,7 +160,7 @@
 
 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-
+<script src="js/userImg.js" type="text/javascript" charset="utf-8"></script>
 
 </body>
 </html>

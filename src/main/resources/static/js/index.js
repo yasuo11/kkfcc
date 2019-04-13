@@ -1,9 +1,9 @@
 infoHtml = "<div class=\"user-info\">\n" +
     "                    <div class=\"avatar\">\n" +
-    "                    <a href=\"#\" class=\"image-link\"><img src=\"http://freefuck-no5.oss-cn-shanghai.aliyuncs.com/DoubleHappy.jpg?Expires=1554194853&OSSAccessKeyId=TMP.AQFA3eY9FoZiH_T_n3igBt-bXf-TexxlaP8j3LiDCXUfsZ7A9RuigKVZPX9VADAtAhUAuptvBTEfGNBHF15fr936qgCB5SYCFBUXaTq8piXBEoQAxEWqCfsxyZPg&Signature=W5E17J%2B0wukjm2LLOZietT2eMaA%3D\" alt=\"测试_001的厨房\" width=\"80\" height=\"80\"></a>\n" +
+    "                    <a href=\"#\" class=\"image-link\"><img src=\"\" alt=\"测试_001的厨房\" width=\"100\" height=\"60\" id='bphoto'></a>\n" +
     "                    </div>\n" +
     "                    <div class=\"name\">\n" +
-    "                    <a href=\"#\">用户名</a>\n" +
+    "                    <a href=\"#\" id='userName'>用户名</a>\n" +
     "                    </div>\n" +
     "                    <div class=\"stats\">\n" +
     "                    <span id='collects'>0</span> 收藏\n" +
@@ -22,6 +22,24 @@ infoHtml = "<div class=\"user-info\">\n" +
     "                    </div>\n" +
     "                    </div>";
 
+userPart = "<div class=\"fr\">\n" +
+    "                    <div class=\"afterlogin\">\n" +
+    "                        <a href=\"/user_count\">\n" +
+    "                            <img id=\"user_img\" src=\"\">\n" +
+    "                        </a>\n" +
+    "                        <ul class=\"afrloginlist\">\n" +
+    "                            <li class=\"cao\"><a href=\"#\">我的厨房</a></li>\n" +
+    "                            <li class=\"cao\"><a href=\"#\">账号设置</a></li>\n" +
+    "                            <li class=\"cao\"><a href=\"#\">我的菜单</a></li>\n" +
+    "                            <li class=\"cao\"><a href=\"/user/logout\">退出</a></li>\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"afterlogin\" style=\"border-left:1px solid #00F;\">\n" +
+    "                        <a href=\"/user_kitchen\">\n" +
+    "                            <img src=\"http://image.xiuchu.com:8888/door.png\">\n" +
+    "                        </a>\n" +
+    "                    </div>\n" +
+    "                </div>";
 
 $(document).ready(function () {
     hasLogin();
@@ -42,6 +60,11 @@ function hasLogin() {
         success: function(result) {
             if(result.success) {
                 $("#login-info").html(infoHtml);
+                $("#login_change").html(userPart);
+                var url = 'http://img.shengtongcf.com/' + result.data.image;
+                $("#bphoto").attr("src", url);
+                $("#user_img").attr("src", url);
+                $("#userName").val(result.data.loginName);
             }
         },
         error: function () {
@@ -65,7 +88,7 @@ function recommand() {
                 for(var i = 0; i < data.length; i++) {
                     var href = "/recipe/" + data[i].id;
                     var url = data[i].imageUrl;
-                    // $("#ul01").append("<li id=li" + i + ">" + "<a href=" + href + ">" + "<img id=img" + i + "></a>" + "</li>");
+                    //$("#ul01").append("<li id=li" + i + ">" + "<a href=" + href + ">" + "<img id=img" + i + "></a>" + "</li>");
                     $("#img" + i).attr("width", '490');
                     $("#img" + i).attr("height", '260');
                     $("#img" + i).attr("src", url);
