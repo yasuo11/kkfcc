@@ -1,6 +1,6 @@
 infoHtml = "<div class=\"user-info\">\n" +
     "                    <div class=\"avatar\">\n" +
-    "                    <a href=\"#\" class=\"image-link\"><img src=\"\" alt=\"测试_001的厨房\" width=\"100\" height=\"60\" id='bphoto'></a>\n" +
+    "                    <a href=\"/user_kitchen\" class=\"image-link\"><img src=\"\" alt=\"测试_001的厨房\" width=\"100\" height=\"60\" id='bphoto'></a>\n" +
     "                    </div>\n" +
     "                    <div class=\"name\">\n" +
     "                    <a href=\"#\" id='userName'>用户名</a>\n" +
@@ -15,7 +15,7 @@ infoHtml = "<div class=\"user-info\">\n" +
     "                    <a href=\"#\">草稿箱</a>\n" +
     "                    </div>\n" +
     "                    <div class=\"action\">\n" +
-    "                    <a href=\"#\" class=\"button\">创建菜谱</a>\n" +
+    "                    <a href=\"/recipe\" class=\"button\">创建菜谱</a>\n" +
     "                    </div>\n" +
     "                    <div class=\"report-link\">\n" +
     "                    <a href=\"#\" rel=\"nofollow\" target=\"_blank\">网上不良信息举报专区</a>\n" +
@@ -24,13 +24,13 @@ infoHtml = "<div class=\"user-info\">\n" +
 
 userPart = "<div class=\"fr\">\n" +
     "                    <div class=\"afterlogin\">\n" +
-    "                        <a href=\"/user_count\">\n" +
+    "                        <a href=\"/user_kitchen\">\n" +
     "                            <img id=\"user_img\" src=\"\">\n" +
     "                        </a>\n" +
     "                        <ul class=\"afrloginlist\">\n" +
-    "                            <li class=\"cao\"><a href=\"#\">我的厨房</a></li>\n" +
-    "                            <li class=\"cao\"><a href=\"#\">账号设置</a></li>\n" +
-    "                            <li class=\"cao\"><a href=\"#\">我的菜单</a></li>\n" +
+    "                            <li class=\"cao\"><a  href=\"/user_kitchen\">我的厨房</a></li>\n" +
+    "                            <li class=\"cao\"><a href=\"/user_count\">账号设置</a></li>\n" +
+    "                            <li class=\"cao\"><a href=\"/user_kitchen\">我的菜单</a></li>\n" +
     "                            <li class=\"cao\"><a href=\"/user/logout\">退出</a></li>\n" +
     "                        </ul>\n" +
     "                    </div>\n" +
