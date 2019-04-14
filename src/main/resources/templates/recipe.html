@@ -89,14 +89,13 @@
         <div class="pure-u-2-3 main-panel">
 
             <h1 class="page-title">
-                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" id="rp1" onclick="rpName()">
+                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" onclick="rp_get(this)" >
                     <input class="input text ng-pristine ng-valid invisible"
                            style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 62px;"
                            type="text"
-                           id="rp_1"
-                           onblur="rpName_lose()"
+                           onblur="rp_lose(this)"
                     >
-                    <span class="text hint ng-binding" id="rpn_1">添加菜谱名称</span>
+                    <span class="text hint ng-binding">添加菜谱名称</span>
                 </div>
 
             </h1>
@@ -111,8 +110,8 @@
                         <span class="sub-title">最佳尺寸：1280 × 1024</span>
                       </span>
                             </div>
-                            <input name="ident" class="hidden ng-pristine ng-valid" >
-                            <input name="picurl" class="hidden ng-pristine ng-valid" >
+                            <input name="ident" class="hidden ng-pristine ng-valid">
+                            <input name="picurl" class="hidden ng-pristine ng-valid">
                             <div class="upload-widget-autogen">
                                 <input name="file" class="upload-widget-file" tabindex="-1" type="file">
 
@@ -140,60 +139,59 @@
                 </div>
 
                 <div class="desc mt30">
-                    <div class="placeholder ng-isolate-scope ng-pristine ng-valid"  type="textarea"><textarea
-                                                                          class="input text ng-pristine ng-valid invisible"
-                                                                          style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 100px;"></textarea><span
-                            class="text hint ng-binding" >点击添加菜谱描述</span></div>
+                    <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="textarea"  onclick="rp_get(this)"><textarea
+                            class="input text ng-pristine ng-valid invisible"
+                            style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 100px;"  onblur="rp_lose(this)"></textarea><span
+                            class="text hint ng-binding">点击添加菜谱描述</span></div>
                 </div>
 
                 <h2>用料<!-- ngIf: ingsRecommend.length --></h2>
                 <!-- ngIf: ingsRecommend.length -->
                 <div class="ings">
                     <table>
-                        <tbody  class="ng-isolate-scope ng-pristine ng-valid">
+                        <tbody class="ng-isolate-scope ng-pristine ng-valid" onclick="eventget()" id="tb">
                         <!-- ngRepeat: (i, ing) in recipe.ings -->
-                        <tr
-                            class="ng-scope">
+                        <tr class="ng-scope" id="yongliao">
                             <td class="name has-border">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text"
-                                     ><input ng-model="input"
-                                                                                        class="input text ng-pristine ng-valid invisible"
-
-                                                                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;"
-                                                                                        type="text"><span
-                                        class="text hint ng-binding" >食材：如鸡蛋</span></div>
+                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text" onclick="rp_get(this)"
+                                ><input class="input text ng-pristine ng-valid invisible"
+                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;" onblur="rp_lose(this)"
+                                        type="text"><span
+                                        class="text hint ng-binding">食材：如鸡蛋</span></div>
                             </td>
                             <td class="unit has-border">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text"
-                                     ><input
-                                                                                        class="input text ng-pristine ng-valid invisible"
-                                                                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;"
-                                                                                        type="text"><span
-                                        class="text hint ng-binding" >用量：如1只</span></div>
+                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text" onclick="rp_get(this)"
+                                ><input
+                                        class="input text ng-pristine ng-valid invisible"
+                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;" onblur="rp_lose(this)"
+                                        type="text"><span
+                                        class="text hint ng-binding">用量：如1只</span></div>
                             </td>
-                            <td class="remove" title="删除用料" >
-                                <img src="https://s.chuimg.com/pic/close.png">
+                            <td class="remove" title="删除用料">
+                                <img src="https://s.chuimg.com/pic/close.png" onclick="del_liao(this)">
                             </td>
                         </tr><!-- end ngRepeat: (i, ing) in recipe.ings -->
                         <!-- end ngRepeat: (i, ing) in recipe.ings -->
                         </tbody>
                     </table>
+                    <a href="javascript:void(0)" class="button gray-button2 small-button" onclick="add_liao()">追加用料</a>
                 </div>
 
                 <h2>做法</h2>
                 <!-- ngIf: isMultipleUploadSupported -->
                 <div class="steps">
-                    <ol  class="ng-isolate-scope ng-pristine ng-valid">
+                    <ol class="ng-isolate-scope ng-pristine ng-valid">
                         <!-- ngRepeat: step in recipe.steps -->
-                        <li class="step container ng-scope">
+                        <li class="step container ng-scope" id="buzhou">
                             <div class="text ml0">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="textarea"><textarea ng-model="input"
-                                                                                    class="input text ng-pristine ng-valid invisible"
-                                                                                    style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 240px;"></textarea><span
+                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="textarea" onclick="rp_get(this)"><textarea
+                                        ng-model="input" onblur="rp_lose(this)"
+                                        class="input text ng-pristine ng-valid invisible"
+                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 240px;"></textarea><span
                                         class="text hint ng-binding">点击添加菜谱步骤</span></div>
                             </div>
-                            <div class="remove float-right" title="删除步骤" >
-                                <img src="https://s.chuimg.com/pic/close.png">
+                            <div class="remove float-right" title="删除步骤">
+                                <img src="https://s.chuimg.com/pic/close.png" onclick="del_bz(this)">
                             </div>
                             <div class="upload-box">
                                 <div class="upload-widget" data-upload-url="/action/upload_pic/" data-kind="1011"
@@ -204,7 +202,7 @@
                                 <span class="sub-title">最佳尺寸：1280 × 1024</span>
                               </span>
                                     </div>
-                                    <input class="hidden ng-pristine ng-valid" name="ident" >
+                                    <input class="hidden ng-pristine ng-valid" name="ident">
                                     <input name="picurl" class="hidden ng-pristine ng-valid">
                                     <div class="upload-widget-autogen">
                                         <input name="file" class="upload-widget-file" tabindex="-1" type="file">
@@ -222,13 +220,11 @@
                             </div>
                         </li><!-- end ngRepeat: step in recipe.steps -->
                     </ol>
-                    <a href="javascript:void(0)" class="button gray-button2 small-button" id="addBuzhou">追加一个步骤</a>
+                    <a href="javascript:void(0)" class="button gray-button2 small-button" onclick="add_bz()">追加一个步骤</a>
                 </div>
             </div>
 
-            <div class="transparent-bg recipe-edit-actions">
-                <button>发布菜谱</button>
-            </div>
+            <a href="javascript:void(0)" class="button gray-button2 small-button" id="">发布菜谱</a>
         </div>
     </div>
 </div>
