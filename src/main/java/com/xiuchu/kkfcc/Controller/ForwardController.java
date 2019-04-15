@@ -75,4 +75,7 @@ public class ForwardController {
 
     @RequestMapping("activity")
     public  String useractivity() {return "activity";}
+
+    @RequestMapping("work_show")
+    public String workshow(){return "work_show";}
 }

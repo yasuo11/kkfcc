@@ -292,4 +292,13 @@
     width: 235px;
 }
 
+.ings{
+    padding-bottom: 15px;
+}
 
+.name{
+    width: 280px;
+    text-align: left;
+    padding: 0 8px;
+    height:50px;
+}
