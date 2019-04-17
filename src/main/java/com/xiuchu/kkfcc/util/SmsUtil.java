@@ -18,8 +18,8 @@ public class SmsUtil {
         Random ra = new Random();
         for (int i = 0; i <= 5; i++)
             sb.append(ra.nextInt(10));
+
         return "123456";
-//        return sb.toString();
     }
 
     public static void sendSms(String phoneNumber, String random) {

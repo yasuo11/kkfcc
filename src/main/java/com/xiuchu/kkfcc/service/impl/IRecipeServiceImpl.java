@@ -1,14 +1,22 @@
 package com.xiuchu.kkfcc.service.impl;
 
+import com.xiuchu.kkfcc.common.Const;
 import com.xiuchu.kkfcc.common.ServerResponse;
 import com.xiuchu.kkfcc.mapper.KkfccCbookMapper;
+import com.xiuchu.kkfcc.mapper.KkfccCbookStepMapper;
+import com.xiuchu.kkfcc.mapper.KkfccUserMapper;
 import com.xiuchu.kkfcc.pojo.KkfccCbook;
+import com.xiuchu.kkfcc.pojo.KkfccCbookStep;
+import com.xiuchu.kkfcc.pojo.KkfccUser;
 import com.xiuchu.kkfcc.service.IRecipeService;
 import com.xiuchu.kkfcc.util.PropertiesUtil;
+import com.xiuchu.kkfcc.vo.RecipeDetailVO;
 import com.xiuchu.kkfcc.vo.RecipeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +24,10 @@ import java.util.List;
 public class IRecipeServiceImpl implements IRecipeService {
     @Autowired
     private KkfccCbookMapper cbookMapper;
+    @Autowired
+    private KkfccCbookStepMapper stepMapper;
+    @Autowired
+    private KkfccUserMapper userMapper;
 
     // 得到推荐菜谱，因为数据少暂时先不筛选，后续需要改进
     // TODO
@@ -56,14 +68,34 @@ public class IRecipeServiceImpl implements IRecipeService {
 
     // 根据id查询具体菜谱
 
-    public ServerResponse<KkfccCbook> queryRecipe(String id) {
+    public RecipeDetailVO queryRecipe(String id) {
         Integer curId = Integer.parseInt(id);
         KkfccCbook cbook = new KkfccCbook();
         cbook.setId(curId);
         cbook = cbookMapper.selectOne(cbook);
-        String suffix = cbook.getImage();
-        cbook.setImage(PropertiesUtil.getProperty("ftp.server.http.prefix") + suffix);
-        return ServerResponse.createBySuccess(cbook);
+        KkfccUser user = new KkfccUser();
+        user.setId(cbook.getUserId());
+        KkfccUser curUser = userMapper.selectOne(user);
+        String prefix = PropertiesUtil.getProperty("ftp.server.http.prefix");
+        cbook.setImage(prefix + cbook.getImage());
+
+        RecipeDetailVO recipeDetailVO = new RecipeDetailVO();
+        recipeDetailVO.setRecipe(cbook);
+        if(curUser.getNickName() == null)
+            recipeDetailVO.setUserName(curUser.getLoginName());
+        else
+            recipeDetailVO.setUserName(curUser.getNickName());
+        recipeDetailVO.setUserImage(prefix + curUser.getImage());
+
+        KkfccCbookStep step = new KkfccCbookStep();
+        step.setCbookId(cbook.getId());
+
+        List<KkfccCbookStep> steps = stepMapper.select(step);
+        recipeDetailVO.setSteps(steps);
+        for(KkfccCbookStep cur : steps)
+            cur.setImage(prefix + cur.getImage());
+
+        return recipeDetailVO;
     }
 
 

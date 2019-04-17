@@ -10,6 +10,7 @@ import com.xiuchu.kkfcc.util.CookieUtil;
 import com.xiuchu.kkfcc.util.JsonUtil;
 import com.xiuchu.kkfcc.util.PropertiesUtil;
 import com.xiuchu.kkfcc.util.RedisPoolUtil;
+import com.xiuchu.kkfcc.vo.UserVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,5 +57,24 @@ public class IUserServiceImpl implements IUserService {
     }
 
 
+    @Override
+    public ServerResponse<UserVO> basic(HttpServletRequest request, KkfccUser user) {
+        UserVO userVO = new UserVO();
+        userVO.setUserName(user.getLoginName());
+        userVO.setImage(user.getImage());
+
+        int recipe_collects = userMapper.selectRecipeCollects(user);
+        int menu_collects = userMapper.selectMenuCollects(user);
+        int recipes = userMapper.selectRecipes(user);
+        int works = userMapper.selectWorks(user);
+
+        userVO.setMenu_collects(recipe_collects);
+        userVO.setRecipe_collects(menu_collects);
+        userVO.setWorks(works);
+        userVO.setRecipes(recipes);
+
+        return ServerResponse.createBySuccess(userVO);
+
+    }
 
 }

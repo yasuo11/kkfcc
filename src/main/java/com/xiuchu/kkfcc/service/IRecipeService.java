@@ -2,6 +2,7 @@ package com.xiuchu.kkfcc.service;
 
 import com.xiuchu.kkfcc.common.ServerResponse;
 import com.xiuchu.kkfcc.pojo.KkfccCbook;
+import com.xiuchu.kkfcc.vo.RecipeDetailVO;
 import com.xiuchu.kkfcc.vo.RecipeVO;
 
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ public interface IRecipeService {
     ServerResponse<List<RecipeVO>> newRecipe();
 
 
-    ServerResponse<KkfccCbook> queryRecipe(String id);
+    RecipeDetailVO queryRecipe(String id);
+
+
 
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiuchu.kkfcc.mapper.KkfccCbookStepMapper">
+  <resultMap id="BaseResultMap" type="com.xiuchu.kkfcc.pojo.KkfccCbookStep">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="cbook_id" jdbcType="INTEGER" property="cbookId" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="sindex" jdbcType="INTEGER" property="sindex" />
+    <result column="details" jdbcType="LONGVARCHAR" property="details" />
+  </resultMap>
+
+
+
+
+</mapper>

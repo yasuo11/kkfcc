@@ -27,7 +27,7 @@
                 password = #{password,jdbcType=VARCHAR},
             </if>
             <if test="selfIntroduction != null" >
-                self_introduction = #{self_introduction,jdbcType=VARCHAR},
+                self_introduction = #{selfIntroduction,jdbcType=VARCHAR},
             </if>
             <if test="image != null" >
                 image = #{image,jdbcType=VARCHAR},
@@ -36,9 +36,30 @@
                 sex = #{sex, jdbcType=INTEGER},
             </if>
             <if test="nickName != null" >
-                nick_name = #{nick_name,jdbcType=VARCHAR},
+                nick_name = #{nickName,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
+    
+    <select id="selectRecipeCollects" parameterType="com.xiuchu.kkfcc.pojo.KkfccUser" resultType="int">
+        select count(*) from kkfcc_cbook_collect
+        where user_id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectMenuCollects" parameterType="com.xiuchu.kkfcc.pojo.KkfccUser" resultType="int">
+        select count(*) from kkfcc_cmenu_collect
+        where user_id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectWorks" parameterType="com.xiuchu.kkfcc.pojo.KkfccUser" resultType="int">
+        select count(*) from kkfcc_works
+        where user_id = #{id,jdbcType=INTEGER}
+    </select>
+    
+    <select id="selectRecipes" parameterType="com.xiuchu.kkfcc.pojo.KkfccUser" resultType="int">
+        select count(*) from kkfcc_cbook
+        where user_id = #{id,jdbcType=INTEGER}
+    </select>
+
 </mapper>

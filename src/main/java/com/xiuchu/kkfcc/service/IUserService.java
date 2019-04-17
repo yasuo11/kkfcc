@@ -3,6 +3,7 @@ package com.xiuchu.kkfcc.service;
 import com.xiuchu.kkfcc.common.ServerResponse;
 import com.xiuchu.kkfcc.mapper.KkfccUserMapper;
 import com.xiuchu.kkfcc.pojo.KkfccUser;
+import com.xiuchu.kkfcc.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,8 @@ public interface IUserService {
     int updateUserInfo(KkfccUser user);
 
     ServerResponse<String> userPhoto(HttpSession session, HttpServletRequest request);
+
+    ServerResponse<UserVO> basic(HttpServletRequest request, KkfccUser user);
 
 
 }

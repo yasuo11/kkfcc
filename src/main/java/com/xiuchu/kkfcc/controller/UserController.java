@@ -7,6 +7,7 @@ import com.xiuchu.kkfcc.pojo.KkfccUser;
 import com.xiuchu.kkfcc.service.IFileService;
 import com.xiuchu.kkfcc.service.IUserService;
 import com.xiuchu.kkfcc.util.*;
+import com.xiuchu.kkfcc.vo.UserVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,7 @@ public class UserController {
     IFileService iFileService;
 
 
+
     @ResponseBody
     @RequestMapping("/register.do")
     public ServerResponse<String> register(String phoneNumber, String sms) {
@@ -53,7 +55,7 @@ public class UserController {
     // 展示个人信息
     @ResponseBody
     @RequestMapping("/basic.do")
-    public ServerResponse<KkfccUser> basic(HttpServletRequest request) {
+    public ServerResponse<UserVO> basic(HttpServletRequest request) {
         String sessonId = CookieUtil.readLoginToken(request);
         if(StringUtils.isEmpty(sessonId))
             return ServerResponse.createByErrorMessage("账号异常，请重新登录");
@@ -61,7 +63,8 @@ public class UserController {
         KkfccUser curUser = JsonUtil.string2Obj(userString, KkfccUser.class);
         if (curUser == null)
             return ServerResponse.createByErrorMessage("账号异常，请重新登录");
-        return ServerResponse.createBySuccess(curUser);
+
+        return iUserService.basic(request, curUser);
     }
 
     // 更新个人信息
@@ -103,7 +106,8 @@ public class UserController {
     @RequestMapping("login.do")
     @ResponseBody
     public ServerResponse<String> login(String phoneNumber, String sms, HttpServletResponse response, HttpSession session) {
-        String curSms = RedisPoolUtil.get(phoneNumber);
+//        String curSms = RedisPoolUtil.get(phoneNumber);
+        String curSms = "123456";
         if (curSms == null || !curSms.equals(sms))
             return ServerResponse.createByErrorMessage("验证码错误！！");
         KkfccUser user = new KkfccUser();
@@ -131,6 +135,7 @@ public class UserController {
     public String logout(HttpSession session, HttpServletRequest request,
                          HttpServletResponse response) {
         session.removeAttribute(Const.CURRENT_USER);
+
         CookieUtil.delLoginToken(request, response);
         return "redirect:/index";
     }
