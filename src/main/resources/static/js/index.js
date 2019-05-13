@@ -1,5 +1,4 @@
 
-
 $(document).ready(function () {
     recommand();    //轮播图
     //newRecipe();    //新秀菜谱
@@ -24,7 +23,7 @@ function recommand() {
                 for(var i = 0; i < data.length; i++) {
                     var href = "/recipe/" + data[i].id;
                     var url = data[i].imageUrl;
-                    // $("#ul01").append("<li id=li" + i + ">" + "<a href=" + href + ">" + "<img id=img" + i + "></a>" + "</li>");
+                    //$("#ul01").append("<li id=li" + i + ">" + "<a href=" + href + ">" + "<img id=img" + i + "></a>" + "</li>");
                     $("#img" + i).attr("width", '490');
                     $("#img" + i).attr("height", '260');
                     $("#img" + i).attr("src", url);

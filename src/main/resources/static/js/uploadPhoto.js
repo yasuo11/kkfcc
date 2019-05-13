@@ -19,7 +19,9 @@ function user_photo() {
             }
         },
         error: function () {
+
             alert("异常错误！")
+
         }
     })
 }

@@ -12,6 +12,8 @@ public class KkfccMaterialCbook {
     @Column(name = "cbook_id")
     private Integer cbookId;
 
+    private String usages;
+
     /**
      * @return id
      */
@@ -52,5 +54,19 @@ public class KkfccMaterialCbook {
      */
     public void setCbookId(Integer cbookId) {
         this.cbookId = cbookId;
+    }
+
+    /**
+     * @return usages
+     */
+    public String getUsages() {
+        return usages;
+    }
+
+    /**
+     * @param usages
+     */
+    public void setUsages(String usages) {
+        this.usages = usages;
     }
 }

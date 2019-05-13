@@ -1,0 +1,243 @@
+<html class=""><!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本信息_秀厨网</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <script src=" js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href=" css/main.css">
+    <link rel="stylesheet" type="text/css" href=" css/recipe.css">
+    <link rel="stylesheet" type="text/css" href=" css/recipe2.css">
+    <link rel="stylesheet" type="text/css" href=" css/recipe3.css">
+
+</head>
+<body style="padding-top: 0px;">
+<div class="header">
+    <div class="conwidth">
+        <h1 class="fl" style="margin-top: -2px;"><a href="">秀<span>厨</span></a></h1>
+        <div class="search fl" id="search-box">
+            <form action="#" method="get" target="_blank">
+                <input type="text" placeholder="搜索菜谱、食材" id="sreach-input" class="search-text fl">
+                <input type="button" value="搜菜谱" class="search-btn fl">
+            </form>
+        </div>
+        <div class="nav fr">
+            <ul>
+                <li><a href="index">首页</a></li>
+                <li class="menu-class"><a href="/menu_class">菜谱分类</a>
+                    <div class="topbar-menu">
+                        <ul class="plain">
+                            <li class="topbar-menu-head">常用主题</li>
+                            <li><a href="/menu_class">家常菜</a></li>
+                            <li><a href="/menu_class">快手菜</a></li>
+                            <li><a href="/menu_class">下饭菜</a></li>
+                            <li><a href="/menu_class">早餐</a></li>
+                            <li><a href="/menu_class">减肥</a></li>
+                            <li><a href="/menu_class">汤羹</a></li>
+                            <li><a href="/menu_class">烘焙</a></li>
+                            <li><a href="/menu_class">小吃</a></li>
+                        </ul>
+                        <ul class="plain">
+                            <li class="topbar-menu-head">常见食材</li>
+                            <li><a href="/menu_class">猪肉</a></li>
+                            <li><a href="/menu_class">鸡肉</a></li>
+                            <li><a href="/menu_class">牛肉</a></li>
+                            <li><a href="/menu_class">鱼</a></li>
+                            <li><a href="/menu_class">鸡蛋</a></li>
+                            <li><a href="/menu_class">土豆</a></li>
+                            <li><a href="/menu_class">茄子</a></li>
+                            <li><a href="/menu_class">豆腐</a></li>
+                        </ul>
+                        <ul class="plain">
+                            <li class="topbar-menu-head">时令食材</li>
+                            <li><a href="/menu_class">春笋</a></li>
+                            <li><a href="/menu_class">笋</a></li>
+                            <li><a href="/menu_class">豌豆</a></li>
+                            <li><a href="/menu_class">草莓</a></li>
+                            <li><a href="/menu_class">金桔</a></li>
+                            <li><a href="/menu_class">菠菜</a></li>
+                            <li><a href="/menu_class">冬笋</a></li>
+                            <li><a href="/menu_class">韭菜</a></li>
+                        </ul>
+                        <div class="span">
+                            <span><a href="/menu_class">查看全部分类</a></span>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="/popular_menu">菜单</a></li>
+                <li><a href="">作品动态</a></li>
+            </ul>
+            <div id="login_change">
+                <div class="dengluzhuce fr">
+                    <a href="/login">登录</a>
+                    <a href="/register">注册</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="suggest" id="sreach-suggest"><!---搜索智能提示suggest-->
+        <ul>
+            <li>搜" "相关用户</li>
+            <li>搜" "相关菜单</li>
+        </ul>
+    </div>
+</div>
+<div class="konghang"></div><!--因为头部固定而需要设置高度空行把内容撑下去-->
+
+<div class="page-container">
+
+    <div class="pure-g">
+        <!-- begin of main-panel -->
+        <div class="pure-u-2-3 main-panel">
+
+            <h1 class="page-title">
+                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" onclick="rp_get(this)" >
+                    <input class="input text ng-pristine ng-valid invisible"
+                           style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 62px;"
+                           type="text"
+                           onblur="rp_lose(this)"
+                    >
+                    <span class="text hint ng-binding">添加菜谱名称</span>
+                </div>
+
+            </h1>
+            <div class="block recipe-edit">
+                <div class="cover image block-negative-margin">
+                    <div class="upload-box">
+                        <div class="upload-widget" data-upload-url="/action/upload_pic/" data-kind="1001"
+                             data-width="620" data-xf="bPtb0" data-default-image="">
+                            <div class="upload">
+                      <span class="upload-text">
+                        <span class="main-title">+ 菜谱封面</span><br>
+                        <span class="sub-title">最佳尺寸：1280 × 1024</span>
+                      </span>
+                            </div>
+                            <input name="ident" class="hidden ng-pristine ng-valid">
+                            <input name="picurl" class="hidden ng-pristine ng-valid">
+                            <div class="upload-widget-autogen">
+                                <input name="file" class="upload-widget-file" tabindex="-1" type="file">
+
+                                <div class="upload-widget-progress">
+                                    <div class="upload-widget-stop">
+                                    </div>
+                                    <div class="upload-widget-progress-text">
+                                        <span>上传中•••</span>
+                                    </div>
+                                    <img src="" class="upload-widget-preview">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="desc mt30">
+                    <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="textarea"  onclick="rp_get(this)"><textarea
+                            class="input text ng-pristine ng-valid invisible"
+                            style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 100px;"  onblur="rp_lose(this)"></textarea><span
+                            class="text hint ng-binding">点击添加菜谱描述</span></div>
+                </div>
+
+                <h2>用料<!-- ngIf: ingsRecommend.length --></h2>
+                <!-- ngIf: ingsRecommend.length -->
+                <div class="ings">
+                    <table>
+                        <tbody class="ng-isolate-scope ng-pristine ng-valid" onclick="eventget()" id="tb">
+                        <!-- ngRepeat: (i, ing) in recipe.ings -->
+                        <tr class="ng-scope" id="yongliao">
+                            <td class="name has-border">
+                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text" onclick="rp_get(this)"
+                                ><input class="input text ng-pristine ng-valid invisible"
+                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;" onblur="rp_lose(this)"
+                                        type="text"><span
+                                        class="text hint ng-binding">食材：如鸡蛋</span></div>
+                            </td>
+                            <td class="unit has-border">
+                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="text" onclick="rp_get(this)"
+                                ><input
+                                        class="input text ng-pristine ng-valid invisible"
+                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 50px;" onblur="rp_lose(this)"
+                                        type="text"><span
+                                        class="text hint ng-binding">用量：如1只</span></div>
+                            </td>
+                            <td class="remove" title="删除用料">
+                                <img src="https://s.chuimg.com/pic/close.png" onclick="del_liao(this)">
+                            </td>
+                        </tr><!-- end ngRepeat: (i, ing) in recipe.ings -->
+                        <!-- end ngRepeat: (i, ing) in recipe.ings -->
+                        </tbody>
+                    </table>
+                    <a href="javascript:void(0)" class="button gray-button2 small-button" onclick="add_liao()">追加用料</a>
+                </div>
+
+                <h2>做法</h2>
+                <!-- ngIf: isMultipleUploadSupported -->
+                <div class="steps">
+                    <ol class="ng-isolate-scope ng-pristine ng-valid">
+                        <!-- ngRepeat: step in recipe.steps -->
+                        <li class="step container ng-scope" id="buzhou">
+                            <div class="text ml0">
+                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="textarea" onclick="rp_get(this)"><textarea
+                                        ng-model="input" onblur="rp_lose(this)"
+                                        class="input text ng-pristine ng-valid invisible"
+                                        style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 240px;"></textarea><span
+                                        class="text hint ng-binding">点击添加菜谱步骤</span></div>
+                            </div>
+                            <div class="remove float-right" title="删除步骤">
+                                <img src="https://s.chuimg.com/pic/close.png" onclick="del_bz(this)">
+                            </div>
+                            <div class="upload-box">
+                                <div class="upload-widget" data-upload-url="/user/updatePhoto.do/" data-kind="1011"
+                                     data-width="200" data-xf="bPtb0" data-default-image="">
+                                    <div class="upload">
+                              <span class="upload-text">
+                                <span class="main-title">+ 上传步骤图</span><br>
+                                <span class="sub-title">最佳尺寸：1280 × 1024</span>
+                              </span>
+                                    </div>
+                                    <input class="hidden ng-pristine ng-valid" name="ident">
+                                    <input name="picurl" class="hidden ng-pristine ng-valid">
+                                    <div class="upload-widget-autogen">
+                                        <input name="file" class="upload-widget-file" tabindex="-1" type="file">
+
+                                        <div class="upload-widget-progress">
+                                            <div class="upload-widget-stop">
+                                            </div>
+                                            <div class="upload-widget-progress-text">
+                                                <span>上传中•••</span>
+                                            </div>
+                                            <img src="" class="upload-widget-preview">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li><!-- end ngRepeat: step in recipe.steps -->
+                    </ol>
+                    <a href="javascript:void(0)" class="button gray-button2 small-button" onclick="add_bz()">追加一个步骤</a>
+                </div>
+            </div>
+
+            <a href="javascript:void(0)" class="button gray-button2 small-button" id="">发布菜谱</a>
+        </div>
+    </div>
+</div>
+<div class="conwidth footer"><!----------------页脚---------------->
+    <ul>
+        <li><a href="#">美食生活杂志</a></li>
+        <li><a href="#">厨房工作</a></li>
+        <li><a href="#">社区指导原则</a></li>
+        <li><a href="#">秀厨出版的书</a></li>
+        <li><a href="#">帮助中心</a></li>
+        <li><a href="#">联系我们</a></li>
+        <li><a href="#">意见反馈</a></li>
+        <li><a href="#">隐私声明</a></li>
+    </ul>
+    <br/>
+    <p>Zed,the Master of Shadows product "秀厨网" ,for commercial use.</p>
+</div>
+<script src=" js/recipe.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

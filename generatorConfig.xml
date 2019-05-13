@@ -18,7 +18,7 @@
                         <!--password="7777777">-->
         <!--</jdbcConnection>-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/graduating_design"
+                        connectionURL="jdbc:mysql://120.79.73.232:3306/graduating_design"
                         userId="root"
                         password="123456">
         </jdbcConnection>
@@ -38,7 +38,7 @@
         <!--<table tableName="kkfcc_cbook"></table>-->
         <!--<table tableName="kkfcc_cbook_category"></table>-->
         <!--<table tableName="kkfcc_material"></table>-->
-        <!--<table tableName="kkfcc_material_cbook"></table>-->
+        <table tableName="kkfcc_material_cbook"></table>
         <!--<table tableName="kkfcc_material_menu"></table>-->
         <!--<table tableName="kkfcc_menu"></table>-->
         <!--<table tableName="kkfcc_menu_cbook"></table>-->
@@ -47,7 +47,7 @@
         <!--<table tableName="kkfcc_works"></table>-->
         <!--<table tableName="kkfcc_cbook_collect"></table>-->
         <!--<table tableName="kkfcc_menu_collect"></table>-->
-        <table tableName="kkfcc_cbook_step"></table>
+        <!--<table tableName="kkfcc_cbook_step"></table>-->
 
 
     </context>

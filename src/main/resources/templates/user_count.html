@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/user_count.css">
 </head>
+
 <body>
 <div class="header">
     <div class="conwidth">
@@ -62,9 +63,11 @@
                 <li><a href="/popular_menu">菜单</a></li>
                 <li><a href="">作品动态</a></li>
             </ul>
-            <div class="dengluzhuce fr">
-                <a href="/login">登录</a>
-                <a href="/register">注册</a>
+            <div id="login_change">
+                <div class="dengluzhuce fr">
+                    <a href="/login">登录</a>
+                    <a href="/register">注册</a>
+                </div>
             </div>
         </div>
     </div>
@@ -116,7 +119,7 @@
     height: 60px;
     margin-top: 0px;
 ">
-                            <div class="zi">昵称</div>
+                            <div class="zi" id="nickName">昵称</div>
                             <div class="rua">
                                 <input type="text" name="name" placeholder="输入你的昵称">
 
@@ -124,8 +127,8 @@
                         </div>
 
                         <div class="da">
-                            <div class="zi">自我介绍</div>
-                            <div class="rua">
+                            <div class="zi" >自我介绍</div>
+                            <div class="rua" id="introdution">
                                 <textarea name="desc" rows="3" placeholder="自我介绍"></textarea>
                             </div>
                         </div>
@@ -502,5 +505,5 @@
 
 <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/main.js" type="text/javascript" charset="utf-8"></script>
-
+<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
 </body></html>

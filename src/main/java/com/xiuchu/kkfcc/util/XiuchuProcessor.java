@@ -18,7 +18,6 @@ public class XiuchuProcessor implements PageProcessor {
 
     public static final String URL_RECIPE = "http://www\\.xiachufang\\.com/recipe/\\d*/";
     public static final String URL_CATEGORY = "http://www\\.xiachufang\\.com/category/";
-    public static final String URL_CATEGORY_LIST = "http://www\\.xiachufang\\.com/category/\\d+";
     public static final String URL_CATEGORY_PAGE = "http://www\\.xiachufang\\.com/category/\\d+/\\?page=\\d+";
     private Site site = Site
             .me()

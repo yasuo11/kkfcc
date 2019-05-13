@@ -37,8 +37,7 @@ public class IRecipeServiceImpl implements IRecipeService {
         for(int i = 0; i < 5 && i < list.size(); i++) {
             RecipeVO recipeVo = new RecipeVO();
             recipeVo.setId(list.get(i).getId());
-            String suffix = list.get(i).getImage();
-            recipeVo.setImageUrl(PropertiesUtil.getProperty("local.server.http.prefix") + suffix);
+            recipeVo.setImageUrl(list.get(i).getImage());
             res.add(recipeVo);
         }
 
@@ -57,8 +56,7 @@ public class IRecipeServiceImpl implements IRecipeService {
         for(int i = 0; i < 5 && i < list.size(); i++) {
             RecipeVO recipeVo = new RecipeVO();
             recipeVo.setId(list.get(i).getId());
-            String suffix = list.get(i).getImage();
-            recipeVo.setImageUrl(PropertiesUtil.getProperty("ftp.server.http.prefix") + suffix);
+            recipeVo.setImageUrl(list.get(i).getImage());
             res.add(recipeVo);
         }
 
@@ -76,8 +74,7 @@ public class IRecipeServiceImpl implements IRecipeService {
         KkfccUser user = new KkfccUser();
         user.setId(cbook.getUserId());
         KkfccUser curUser = userMapper.selectOne(user);
-        String prefix = PropertiesUtil.getProperty("ftp.server.http.prefix");
-        cbook.setImage(prefix + cbook.getImage());
+        cbook.setImage(cbook.getImage());
 
         RecipeDetailVO recipeDetailVO = new RecipeDetailVO();
         recipeDetailVO.setRecipe(cbook);
@@ -85,7 +82,7 @@ public class IRecipeServiceImpl implements IRecipeService {
             recipeDetailVO.setUserName(curUser.getLoginName());
         else
             recipeDetailVO.setUserName(curUser.getNickName());
-        recipeDetailVO.setUserImage(prefix + curUser.getImage());
+        recipeDetailVO.setUserImage(curUser.getImage());
 
         KkfccCbookStep step = new KkfccCbookStep();
         step.setCbookId(cbook.getId());
@@ -93,7 +90,7 @@ public class IRecipeServiceImpl implements IRecipeService {
         List<KkfccCbookStep> steps = stepMapper.select(step);
         recipeDetailVO.setSteps(steps);
         for(KkfccCbookStep cur : steps)
-            cur.setImage(prefix + cur.getImage());
+            cur.setImage(cur.getImage());
 
         return recipeDetailVO;
     }

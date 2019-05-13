@@ -50,9 +50,7 @@ public class IUserServiceImpl implements IUserService {
         KkfccUser curUser = JsonUtil.string2Obj(userString, KkfccUser.class);
         if(curUser == null)
             return ServerResponse.createByError();
-        String suffix = curUser.getImage();
-        String imageUrl = PropertiesUtil.getProperty("ftp.server.http.prefix") + suffix;
-        return ServerResponse.createBySuccess(imageUrl);
+        return ServerResponse.createBySuccess(curUser.getImage());
 
     }
 

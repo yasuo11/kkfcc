@@ -16,6 +16,17 @@ public class RecipeDetailVO {
 
     private String userImage;
 
+
+    private List<MaterialVO> materials;
+
+    public List<MaterialVO> getMaterials() {
+        return materials;
+    }
+
+    public void setMaterials(List<MaterialVO> materials) {
+        this.materials = materials;
+    }
+
     public String getUserName() {
         return userName;
     }

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class CookieUtil {
 
-    private final static String COOKIE_DOMAIN = "www.xiuchu.com";
+    private final static String COOKIE_DOMAIN = "localhost";
     private final static String COOKIE_NAME = "xiuchu_login_token";
 
 

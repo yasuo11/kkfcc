@@ -59,8 +59,23 @@ public class ForwardController {
         return "user_count";
     }
 
-    @RequestMapping("user_pur")
+    @RequestMapping("user_photo")
     public String userpur() {
-        return "user_pur";
+        return "user_photo";
     }
+
+    @RequestMapping("recipe_list")
+    public  String userRecipelist() {return "create_menu";}
+
+    @RequestMapping("create_recipe")
+    public  String createRecipe() {return "create_recipe";}
+
+    @RequestMapping("create_dish")
+    public  String createdish() {return "create_dish";}
+
+    @RequestMapping("activity")
+    public  String useractivity() {return "activity";}
+
+    @RequestMapping("work_show")
+    public String workshow(){return "work_show";}
 }

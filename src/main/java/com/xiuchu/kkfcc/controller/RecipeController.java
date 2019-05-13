@@ -2,6 +2,7 @@ package com.xiuchu.kkfcc.controller;
 
 import com.xiuchu.kkfcc.common.ServerResponse;
 import com.xiuchu.kkfcc.pojo.KkfccCbook;
+import com.xiuchu.kkfcc.service.IMaterialService;
 import com.xiuchu.kkfcc.service.IRecipeService;
 import com.xiuchu.kkfcc.util.JsonUtil;
 import com.xiuchu.kkfcc.vo.RecipeDetailVO;
@@ -26,23 +27,18 @@ public class RecipeController {
     @Autowired
     IRecipeService iRecipeService;
 
+    @Autowired
+    IMaterialService iMaterialService;
+
     @RequestMapping("/{id}")
     public String queryRecipe(@PathVariable("id") String id, Model model) {
         RecipeDetailVO recipeDetailVO = iRecipeService.queryRecipe(id);
+        recipeDetailVO.setMaterials(iMaterialService.queryMaterialByRecipeId(id));
         model.addAttribute("recipeDetailVO", recipeDetailVO);
-        model.addAttribute("name", "darling");
         return "forward:/menu_book";
     }
 
-//    @RequestMapping("/queryrecipe.do")
-//    @ResponseBody
-//    public ServerResponse<RecipeDetailVO> queryRecipe(HttpSession session) {
-//        String recipeId = (String)session.getAttribute("recipeId");
-//        ServerResponse<RecipeDetailVO> serverResponse = iRecipeService.queryRecipe(recipeId);
-//        session.removeAttribute("recipeId");
-//
-//        return serverResponse;
-//    }
+
 
     @RequestMapping("/recommand.do")
     @ResponseBody

@@ -37,7 +37,7 @@ logging:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/graduating_design?true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://120.79.73.232:3306/graduating_design?true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver

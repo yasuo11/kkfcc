@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiuchu.kkfcc.mapper.KkfccMaterialCbookMapper">
-    <resultMap id="BaseResultMap" type="com.xiuchu.kkfcc.pojo.KkfccMaterialCbook">
-        <!--
-          WARNING - @mbg.generated
-        -->
-        <result column="id" property="id" jdbcType="INTEGER"/>
-        <result column="material_id" property="materialId" jdbcType="INTEGER"/>
-        <result column="cbook_id" property="cbookId" jdbcType="INTEGER"/>
-    </resultMap>
+  <resultMap id="BaseResultMap" type="com.xiuchu.kkfcc.pojo.KkfccMaterialCbook">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="material_id" jdbcType="INTEGER" property="materialId" />
+    <result column="cbook_id" jdbcType="INTEGER" property="cbookId" />
+    <result column="usages" jdbcType="VARCHAR" property="usages" />
+  </resultMap>
+
+
 </mapper>

@@ -82,16 +82,17 @@ public class UserController {
 
     // 更新个人头像
     @RequestMapping("updatePhoto.do")
-    @ResponseBody
-    public ServerResponse upload(HttpSession session, @RequestParam(value = "upload_file",required = false) MultipartFile file, HttpServletRequest request){
-        KkfccUser user = (KkfccUser)session.getAttribute(Const.CURRENT_USER);
+    public String upload(HttpSession session, @RequestParam(value = "upload_file",required = false) MultipartFile file, HttpServletRequest request){
+        String sessonId = CookieUtil.readLoginToken(request);
+        String userString = RedisPoolUtil.get(sessonId);
+        KkfccUser user = JsonUtil.string2Obj(userString, KkfccUser.class);
         String path = request.getSession().getServletContext().getRealPath("upload");
         String targetFileName = iFileService.upload(file, path, user.getId());
-        user.setImage(targetFileName);
+        user.setImage(PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName);
         iUserService.updateUserInfo(user);
         session.setAttribute(Const.CURRENT_USER, user);
         RedisPoolUtil.setEx(session.getId(), JsonUtil.obj2String(user), Const.RedisCacheExtime.REDIS_SESSION_EXTIME);
-        return ServerResponse.createBySuccess();
+        return "redirect:/index";
     }
 
     @RequestMapping("sendsms.do")
@@ -106,8 +107,7 @@ public class UserController {
     @RequestMapping("login.do")
     @ResponseBody
     public ServerResponse<String> login(String phoneNumber, String sms, HttpServletResponse response, HttpSession session) {
-//        String curSms = RedisPoolUtil.get(phoneNumber);
-        String curSms = "123456";
+        String curSms = RedisPoolUtil.get(phoneNumber);
         if (curSms == null || !curSms.equals(sms))
             return ServerResponse.createByErrorMessage("验证码错误！！");
         KkfccUser user = new KkfccUser();
@@ -126,9 +126,7 @@ public class UserController {
     @RequestMapping("userPhoto.do")
     @ResponseBody
     public ServerResponse<String> userPhoto(HttpSession session, HttpServletRequest request) {
-
         return iUserService.userPhoto(session, request);
-
     }
 
     @RequestMapping("logout")

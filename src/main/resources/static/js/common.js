@@ -15,7 +15,7 @@ infoHtml = "<div class=\"user-info\">\n" +
     "                    <span id='cates'>0</span> 菜谱\n" +
     "                    &nbsp;|&nbsp;\n" +
     "                    <div class=\"action\">\n" +
-    "                    <a href=\"#\" class=\"button\">创建菜谱</a>\n" +
+    "                    <a href=\"/create_recipe\" class=\"button\">创建菜谱</a>\n" +
     "                    </div>\n" +
     "                    <div class=\"report-link\">\n" +
     "                    <a href=\"#\" rel=\"nofollow\" target=\"_blank\">网上不良信息举报专区</a>\n" +
@@ -36,7 +36,7 @@ userPart = "<div class=\"fr\">\n" +
     "                    </div>\n" +
     "                    <div class=\"afterlogin\" style=\"border-left:1px solid #00F;\">\n" +
     "                        <a href=\"/user_kitchen\">\n" +
-    "                            <img src=\"http://image.xiuchu.com:8888/door.png\">\n" +
+    "                            <img src=\"../img/index/door.png\">\n" +
     "                        </a>\n" +
     "                    </div>\n" +
     "                </div>";
@@ -57,7 +57,7 @@ function hasLogin() {
             if(result.success) {
                 $("#login-info").html(infoHtml);
                 $("#login_change").html(userPart);
-                var url = 'http://img.shengtongcf.com/' + result.data.image;
+                var url =  result.data.image;
                 $("#bphoto").attr("src", url);
                 $("#user_img").attr("src", url);
                 $("#userName").text(result.data.userName + "用户");
