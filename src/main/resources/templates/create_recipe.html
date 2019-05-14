@@ -4,7 +4,7 @@
     <title>基本信息_秀厨网</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="x-dns-prefetch-control" content="on">
-    <script src=" js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href=" css/main.css">
     <link rel="stylesheet" type="text/css" href=" css/recipe.css">
     <link rel="stylesheet" type="text/css" href=" css/recipe2.css">
@@ -106,25 +106,19 @@
                 <div class="cover image block-negative-margin">
                     <div class="upload-box">
                         <div class="upload-widget" data-upload-url="/action/upload_pic/" data-kind="1001"
-                             data-width="620" data-xf="bPtb0" data-default-image="">
+                             data-width="620" data-xf="bPtb0" >
                             <div class="upload">
-                      <span class="upload-text">
-                        <span class="main-title">+ 菜谱封面</span><br>
-                        <span class="sub-title">最佳尺寸：1280 × 1024</span>
-                      </span>
+                              <span class="upload-text">
+                                <span class="main-title">+ 菜谱封面</span><br>
+                                <span class="sub-title">最佳尺寸：1280 × 1024</span>
+                              </span>
                             </div>
                             <input name="ident" class="hidden ng-pristine ng-valid">
                             <input name="picurl" class="hidden ng-pristine ng-valid">
                             <div class="upload-widget-autogen">
-                                <input name="file" class="upload-widget-file" tabindex="-1" type="file">
-
+                                <input name="file" class="upload-widget-file" tabindex="-1" type="file" onchange="upLoad(this)">
                                 <div class="upload-widget-progress">
-                                    <div class="upload-widget-stop">
-                                    </div>
-                                    <div class="upload-widget-progress-text">
-                                        <span>上传中•••</span>
-                                    </div>
-                                    <img src="" class="upload-widget-preview">
+                                    <img  src="" class="upload-widget-preview">
                                 </div>
                             </div>
                         </div>
@@ -175,11 +169,12 @@
                 <h2>做法</h2>
                 <!-- ngIf: isMultipleUploadSupported -->
                 <div class="steps">
-                    <ol class="ng-isolate-scope ng-pristine ng-valid">
+                    <ol class="ng-isolate-scope ng-pristine ng-valid" id="buzoulist">
                         <!-- ngRepeat: step in recipe.steps -->
                         <li class="step container ng-scope" id="buzhou">
                             <div class="text ml0">
-                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="textarea" onclick="rp_get(this)"><textarea
+                                <div class="placeholder ng-isolate-scope ng-pristine ng-valid" type="textarea"
+                                     onclick="rp_get(this)"><textarea
                                         ng-model="input" onblur="rp_lose(this)"
                                         class="input text ng-pristine ng-valid invisible"
                                         style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 240px;"></textarea><span
@@ -200,14 +195,9 @@
                                     <input class="hidden ng-pristine ng-valid" name="ident">
                                     <input name="picurl" class="hidden ng-pristine ng-valid">
                                     <div class="upload-widget-autogen">
-                                        <input name="file" class="upload-widget-file" tabindex="-1" type="file">
-
+                                        <input name="file" class="upload-widget-file" tabindex="-1" type="file"
+                                               onchange="upLoad(this)">
                                         <div class="upload-widget-progress">
-                                            <div class="upload-widget-stop">
-                                            </div>
-                                            <div class="upload-widget-progress-text">
-                                                <span>上传中•••</span>
-                                            </div>
                                             <img src="" class="upload-widget-preview">
                                         </div>
                                     </div>
@@ -237,7 +227,7 @@
     <br/>
     <p>Zed,the Master of Shadows product "秀厨网" ,for commercial use.</p>
 </div>
-<script src=" js/recipe.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/recipe.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/common.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

@@ -53,7 +53,7 @@ function del_liao(obj) {
 
 //增加步骤
 function add_bz() {
-    $("#buzhou").after("                        <li class=\"step container ng-scope\" id=\"buzhou\">\n" +
+    $("#buzoulist").children(":last-child").after("<li class=\"step container ng-scope\" id=\"buzhou\">\n" +
         "                            <div class=\"text ml0\">\n" +
         "                                <div class=\"placeholder ng-isolate-scope ng-pristine ng-valid\" type=\"textarea\" onclick=\"rp_get(this)\"><textarea\n" +
         "                                        ng-model=\"input\" onblur=\"rp_lose(this)\"\n" +
@@ -65,7 +65,7 @@ function add_bz() {
         "                                <img src=\"https://s.chuimg.com/pic/close.png\" onclick=\"del_bz(this)\">\n" +
         "                            </div>\n" +
         "                            <div class=\"upload-box\">\n" +
-        "                                <div class=\"upload-widget\" data-upload-url=\"/action/upload_pic/\" data-kind=\"1011\"\n" +
+        "                                <div class=\"upload-widget\" data-upload-url=\"/user/updatePhoto.do/\" data-kind=\"1011\"\n" +
         "                                     data-width=\"200\" data-xf=\"bPtb0\" data-default-image=\"\">\n" +
         "                                    <div class=\"upload\">\n" +
         "                              <span class=\"upload-text\">\n" +
@@ -76,19 +76,13 @@ function add_bz() {
         "                                    <input class=\"hidden ng-pristine ng-valid\" name=\"ident\">\n" +
         "                                    <input name=\"picurl\" class=\"hidden ng-pristine ng-valid\">\n" +
         "                                    <div class=\"upload-widget-autogen\">\n" +
-        "                                        <input name=\"file\" class=\"upload-widget-file\" tabindex=\"-1\" type=\"file\">\n" +
-        "\n" +
+        "                                        <input name=\"file\" class=\"upload-widget-file\" tabindex=\"-1\" type=\"file\" onchange=\"upLoad(this)\">\n" +
         "                                        <div class=\"upload-widget-progress\">\n" +
-        "                                            <div class=\"upload-widget-stop\">\n" +
-        "                                            </div>\n" +
-        "                                            <div class=\"upload-widget-progress-text\">\n" +
-        "                                                <span>上传中•••</span>\n" +
-        "                                            </div>\n" +
         "                                            <img src=\"\" class=\"upload-widget-preview\">\n" +
+        "                                        </div>\n" +
         "                                        </div>\n" +
         "                                    </div>\n" +
         "                                </div>\n" +
-        "                            </div>\n" +
         "                        </li>");
 }
 //删除步骤
@@ -99,4 +93,33 @@ function del_bz(obj) {
         $(obj).parent().parent().remove();
     }
 
+}
+
+//上传图片并且显示
+// $("#picture").change(function(){
+//     var objUrl = getObjectURL(this.files[0]) ;//获取文件信息
+//     console.log("objUrl = "+objUrl);
+//     if (objUrl) {
+//         $("#img").attr("src", objUrl);
+//         $("#img").parent(".upload-widget-progress").attr("class","upload-widget-progress-text")
+//     }
+// }) ;
+function upLoad(obj){
+    var objUrl = getObjectURL(obj.files[0]) ;//获取文件信息
+    console.log("objUrl = "+objUrl);
+    if (objUrl) {
+        $(obj).next().children(":first").attr("src", objUrl);
+        $(obj).next().attr("class","upload-widget-progress-text")
+    }
+}
+function getObjectURL(file) {
+    var url = null;
+    if (window.createObjectURL != undefined) {
+        url = window.createObjectURL(file);
+    } else if (window.URL != undefined) { // mozilla(firefox)
+        url = window.URL.createObjectURL(file);
+    } else if (window.webkitURL != undefined) { // webkit or chrome
+        url = window.webkitURL.createObjectURL(file);
+    }
+    return url;
 }
