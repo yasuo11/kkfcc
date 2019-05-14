@@ -111,6 +111,24 @@ function upLoad(obj){
         $(obj).next().children(":first").attr("src", objUrl);
         $(obj).next().attr("class","upload-widget-progress-text")
     }
+    var picture=new FormData();
+    picture=picture.append("files",obj.files[0]);
+    $.ajax({
+        type:'POST',
+        url:"ooooooooooooooooooooooooo.oo",
+        data:picture,
+        contentType:false,
+        processData:false,//这个很有必要，不然不行
+        dataType:"json",
+        mimeType:"multipart/form-data",
+        success:function(){
+            console.log("图片到后台了而且还回来了东西");
+        },
+        error:function(){
+            console.log("无事发生");
+        }
+
+    });
 }
 function getObjectURL(file) {
     var url = null;
@@ -122,4 +140,8 @@ function getObjectURL(file) {
         url = window.webkitURL.createObjectURL(file);
     }
     return url;
+}
+
+function issue() {
+    alert("有用！");
 }
