@@ -95,34 +95,25 @@ function del_bz(obj) {
 
 }
 
-//上传图片并且显示
-// $("#picture").change(function(){
-//     var objUrl = getObjectURL(this.files[0]) ;//获取文件信息
-//     console.log("objUrl = "+objUrl);
-//     if (objUrl) {
-//         $("#img").attr("src", objUrl);
-//         $("#img").parent(".upload-widget-progress").attr("class","upload-widget-progress-text")
-//     }
-// }) ;
+
 function upLoad(obj){
-    var objUrl = getObjectURL(obj.files[0]) ;//获取文件信息
-    console.log("objUrl = "+objUrl);
-    if (objUrl) {
-        $(obj).next().children(":first").attr("src", objUrl);
-        $(obj).next().attr("class","upload-widget-progress-text")
-    }
     var picture=new FormData();
-    picture=picture.append("files",obj.files[0]);
+    picture.append("files",obj.files[0]);
     $.ajax({
         type:'POST',
-        url:"ooooooooooooooooooooooooo.oo",
+        url:"/recipe/upload.do",
         data:picture,
         contentType:false,
         processData:false,//这个很有必要，不然不行
         dataType:"json",
-        mimeType:"multipart/form-data",
-        success:function(){
-            console.log("图片到后台了而且还回来了东西");
+        success:function(result){
+            if(result.success) {
+                var objUrl = getObjectURL(obj.files[0]) ;//获取文件信息
+                if (objUrl) {
+                    $(obj).next().children(":first").attr("src", result.data);
+                    $(obj).next().attr("class","upload-widget-progress-text")
+                }
+            }
         },
         error:function(){
             console.log("无事发生");
@@ -143,5 +134,53 @@ function getObjectURL(file) {
 }
 
 function issue() {
-    alert("有用！");
+    var recipe = {};
+    recipe.name = $("#recipe_name").text();
+    recipe.desc = $("#recipe_desc").text();
+    var photoList = $(".upload-widget-preview");
+    var materialNameList = $(".name.has-border span");
+    var materialUsageList = $(".unit.has-border span");
+    var stepDescList = $(".text.ml0 span");
+    var materialList = [];
+    var stepImgList = [];
+    var stepList = [];
+    for(var m = 0; m < stepDescList.length; m++) {
+        var step = {};
+        step.desc = $(stepDescList[m]).html();
+        step.imgUrl = photoList[m+1].src;
+        stepList.push(step);
+    }
+    for(var i = 1; i < photoList.length; i++)
+        stepImgList.push(photoList[i].src);
+    for(var j = 0; j < materialNameList.length; j++) {
+        var material = {};
+        material.name = $(materialNameList[j]).html();
+        material.usage = $(materialUsageList[j]).html();
+        materialList.push(material);
+    }
+    recipe.materialVOList = materialList;
+    recipe.imgUrl = photoList[0].src;
+    recipe.stepVOList = stepList;
+    console.log(recipe);
+    $.ajax({
+        type:'POST',
+        url:"/recipe/createrecipe.do",
+        data:JSON.stringify(recipe),
+        dataType:"json",
+        contentType: 'application/json',
+        success:function(result){
+            if(result.success) {
+                alert("上传菜谱成功");
+                window.location.href = "/index";
+            }
+            else {
+                alert("请先登录");
+                window.location.href = "/login";
+            }
+        },
+        error:function(){
+            console.log("无事发生");
+        }
+
+    });
 }

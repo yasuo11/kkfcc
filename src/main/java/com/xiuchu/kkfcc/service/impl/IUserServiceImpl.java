@@ -75,4 +75,14 @@ public class IUserServiceImpl implements IUserService {
 
     }
 
+    @Override
+    public KkfccUser getCurUser(HttpServletRequest request) {
+        String sessonId = CookieUtil.readLoginToken(request);
+        if(StringUtils.isEmpty(sessonId))
+            return null;
+        String userString = RedisPoolUtil.get(sessonId);
+        return JsonUtil.string2Obj(userString, KkfccUser.class);
+    }
+
+
 }

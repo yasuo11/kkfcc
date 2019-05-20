@@ -11,6 +11,9 @@ public class KkfccMenu {
     @Column(name = "user_id")
     private Integer userId;
 
+    @Column(name = "collect_sum")
+    private Integer collectSum;
+
     /**
      * 菜单描述
      */
@@ -56,6 +59,20 @@ public class KkfccMenu {
      */
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    /**
+     * @return collect_sum
+     */
+    public Integer getCollectSum() {
+        return collectSum;
+    }
+
+    /**
+     * @param collectSum
+     */
+    public void setCollectSum(Integer collectSum) {
+        this.collectSum = collectSum;
     }
 
     /**

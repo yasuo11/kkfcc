@@ -65,17 +65,21 @@ public class ForwardController {
     }
 
     @RequestMapping("recipe_list")
-    public  String userRecipelist() {return "create_menu";}
+    public String userRecipelist() {return "create_menu";}
 
     @RequestMapping("create_recipe")
-    public  String createRecipe() {return "create_recipe";}
+    public String createRecipe() {return "create_recipe";}
 
     @RequestMapping("create_dish")
-    public  String createdish() {return "create_dish";}
+    public String createdish() {return "create_dish";}
+
+    @RequestMapping("create_menu")
+    public String createMenu(){return "create_menu";}
 
     @RequestMapping("activity")
     public  String useractivity() {return "activity";}
 
     @RequestMapping("work_show")
     public String workshow(){return "work_show";}
+
 }

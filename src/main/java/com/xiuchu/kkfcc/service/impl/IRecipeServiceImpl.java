@@ -2,16 +2,11 @@ package com.xiuchu.kkfcc.service.impl;
 
 import com.xiuchu.kkfcc.common.Const;
 import com.xiuchu.kkfcc.common.ServerResponse;
-import com.xiuchu.kkfcc.mapper.KkfccCbookMapper;
-import com.xiuchu.kkfcc.mapper.KkfccCbookStepMapper;
-import com.xiuchu.kkfcc.mapper.KkfccUserMapper;
-import com.xiuchu.kkfcc.pojo.KkfccCbook;
-import com.xiuchu.kkfcc.pojo.KkfccCbookStep;
-import com.xiuchu.kkfcc.pojo.KkfccUser;
+import com.xiuchu.kkfcc.mapper.*;
+import com.xiuchu.kkfcc.pojo.*;
 import com.xiuchu.kkfcc.service.IRecipeService;
 import com.xiuchu.kkfcc.util.PropertiesUtil;
-import com.xiuchu.kkfcc.vo.RecipeDetailVO;
-import com.xiuchu.kkfcc.vo.RecipeVO;
+import com.xiuchu.kkfcc.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,6 +23,10 @@ public class IRecipeServiceImpl implements IRecipeService {
     private KkfccCbookStepMapper stepMapper;
     @Autowired
     private KkfccUserMapper userMapper;
+    @Autowired
+    private KkfccMaterialMapper materialMapper;
+    @Autowired
+    private KkfccMaterialCbookMapper materialCbookMapper;
 
     // 得到推荐菜谱，因为数据少暂时先不筛选，后续需要改进
     // TODO
@@ -95,6 +94,40 @@ public class IRecipeServiceImpl implements IRecipeService {
         return recipeDetailVO;
     }
 
+
+    public ServerResponse<String> createRecipe(RecipeSimpleVO recipeSimpleVO) {
+        KkfccCbook recipe = new KkfccCbook();
+        recipe.setImage(recipeSimpleVO.getImgUrl());
+        recipe.setName(recipeSimpleVO.getName());
+        recipe.setUserId(recipeSimpleVO.getUserId());
+        recipe.setIntroduction(recipeSimpleVO.getDesc());
+        cbookMapper.insertUseGeneratedKeys(recipe);
+        Integer recipeId = recipe.getId();
+        List<StepVO> stepVOList = recipeSimpleVO.getStepVOList();
+        for(StepVO stepVO : stepVOList) {
+            KkfccCbookStep step = new KkfccCbookStep();
+            step.setCbookId(recipeId);
+            step.setDetails(stepVO.getDesc());
+            step.setImage(stepVO.getImgUrl());
+            stepMapper.insert(step);
+        }
+        List<MaterialVO> materialVOList = recipeSimpleVO.getMaterialVOList();
+        for(MaterialVO materialVO : materialVOList) {
+            KkfccMaterial material = new KkfccMaterial();
+            material.setName(materialVO.getName());
+            KkfccMaterial cur = materialMapper.selectOne(material);
+            if(cur == null)
+                materialMapper.insert(material);
+            cur = materialMapper.selectOne(material);
+            KkfccMaterialCbook materialCbook = new KkfccMaterialCbook();
+            materialCbook.setCbookId(recipeId);
+            materialCbook.setMaterialId(cur.getId());
+            materialCbook.setUsages(materialVO.getUsage());
+            materialCbookMapper.insert(materialCbook);
+        }
+
+        return ServerResponse.createBySuccess();
+    }
 
 
 }

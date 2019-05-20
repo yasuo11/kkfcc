@@ -87,7 +87,7 @@ public class UserController {
         String userString = RedisPoolUtil.get(sessonId);
         KkfccUser user = JsonUtil.string2Obj(userString, KkfccUser.class);
         String path = request.getSession().getServletContext().getRealPath("upload");
-        String targetFileName = iFileService.upload(file, path, user.getId());
+        String targetFileName = iFileService.upload(file, path);
         user.setImage(PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName);
         iUserService.updateUserInfo(user);
         session.setAttribute(Const.CURRENT_USER, user);

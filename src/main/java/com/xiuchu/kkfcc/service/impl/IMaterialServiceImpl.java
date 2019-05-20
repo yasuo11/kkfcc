@@ -37,7 +37,7 @@ public class IMaterialServiceImpl implements IMaterialService {
             kkfccMaterial.setId(materialCbook1.getMaterialId());
             KkfccMaterial material = materialMapper.selectOne(kkfccMaterial);
             if(material != null)
-               materialVO.setMaterial(material);
+               materialVO.setName(material.getName());
             materialVO.setUsage(materialCbook1.getUsages());
             res.add(materialVO);
         }

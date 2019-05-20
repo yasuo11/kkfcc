@@ -14,4 +14,8 @@
         <result column="introduction" property="introduction" jdbcType="LONGVARCHAR"/>
         <result column="stuff" property="stuff" jdbcType="LONGVARCHAR"/>
     </resultMap>
+    
+    <insert id="insertRecipeReturnId" parameterType="com.xiuchu.kkfcc.pojo.KkfccCbook" useGeneratedKeys="true" keyProperty="id">
+        insert into kkfcc_cbook(user_id, name, image, introduction, score, collection_sum, stuff) values (#{userId}, #{name}, #{image}, #{introduction}, #{score}, #{collectionSum}, #{stuff})
+    </insert>
 </mapper>
