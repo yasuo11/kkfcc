@@ -1,0 +1,111 @@
+<html class=""><!--<![endif]--><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>基本信息_秀厨网</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/recipe_list.css">
+    <link rel="stylesheet" type="text/css" href="css/amazeui.min.css">
+</head>
+<body>
+<div class="header">
+    <div class="conwidth">
+        <h1 class="fl"><a href="">秀<span>厨</span></a></h1>
+        <div class="search fl" id="search-box">
+            <form action="#" method="get" target="_blank">
+                <input type="text" placeholder="搜索菜谱、食材" id="sreach-input" class="search-text fl">
+                <input type="button" value="搜菜谱" class="search-btn fl">
+            </form>
+        </div>
+        <div class="nav fr">
+            <ul>
+                <li><a href="index">首页</a></li>
+                <li class="menu-class"><a href="/menu_class">菜谱分类</a>
+                    <div class="topbar-menu">
+                        <ul class="plain">
+                            <li class="topbar-menu-head">常用主题</li>
+                            <li><a href="/menu_class">家常菜</a></li>
+                            <li><a href="/menu_class">快手菜</a></li>
+                            <li><a href="/menu_class">下饭菜</a></li>
+                            <li><a href="/menu_class">早餐</a></li>
+                            <li><a href="/menu_class">减肥</a></li>
+                            <li><a href="/menu_class">汤羹</a></li>
+                            <li><a href="/menu_class">烘焙</a></li>
+                            <li><a href="/menu_class">小吃</a></li>
+                        </ul>
+                        <ul class="plain">
+                            <li class="topbar-menu-head">常见食材</li>
+                            <li><a href="/menu_class">猪肉</a></li>
+                            <li><a href="/menu_class">鸡肉</a></li>
+                            <li><a href="/menu_class">牛肉</a></li>
+                            <li><a href="/menu_class">鱼</a></li>
+                            <li><a href="/menu_class">鸡蛋</a></li>
+                            <li><a href="/menu_class">土豆</a></li>
+                            <li><a href="/menu_class">茄子</a></li>
+                            <li><a href="/menu_class">豆腐</a></li>
+                        </ul>
+                        <ul class="plain">
+                            <li class="topbar-menu-head">时令食材</li>
+                            <li><a href="/menu_class">春笋</a></li>
+                            <li><a href="/menu_class">笋</a></li>
+                            <li><a href="/menu_class">豌豆</a></li>
+                            <li><a href="/menu_class">草莓</a></li>
+                            <li><a href="/menu_class">金桔</a></li>
+                            <li><a href="/menu_class">菠菜</a></li>
+                            <li><a href="/menu_class">冬笋</a></li>
+                            <li><a href="/menu_class">韭菜</a></li>
+                        </ul>
+                        <div class="span">
+                            <span><a href="/menu_class">查看全部分类</a></span>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="/popular_menu">菜单</a></li>
+                <li><a href="">作品动态</a></li>
+            </ul>
+            <div class="dengluzhuce fr" style=" margin-top: -20px; ">
+                <a href="/login">登录</a>
+                <a href="/register">注册</a>
+            </div>
+        </div>
+    </div>
+    <div class="suggest" id="sreach-suggest"><!---搜索智能提示suggest-->
+        <ul>
+            <li>搜"  "相关用户</li>
+            <li>搜"  "相关菜单</li>
+        </ul>
+    </div>
+</div>
+<div class="konghang"></div><!--因为头部固定而需要设置高度空行把内容撑下去-->
+
+<div class="mmmm">
+
+    <h1 class="page-title">更改菜单</h1>
+
+    <div>
+        <form enctype="multipart/form-data" method="POST" class="am-form">
+            <div class="control-group">
+                <label class="label" for="title">菜单标题</label>
+                <input id="title" maxlength="32" type="text" class="am-form-field am-radius">
+            </div>
+            <div class="control-group">
+                <div>
+                    <label class="label" for="description">描述</label>
+                </div>
+                <textarea name="description" id="description" rows="15" cols="33">内容后台传</textarea>
+            </div>
+
+            <div class="control-group">
+                <div class="label">&nbsp;</div>
+                <div class="control">
+                    <input class="am-btn am-btn-danger" value="更改菜单" type="submit">
+                </div>
+                <a href="javascript:history.back(-1)">取消修改</a>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
