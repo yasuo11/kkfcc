@@ -65,7 +65,7 @@ public class ForwardController {
     }
 
     @RequestMapping("recipe_list")
-    public String userRecipelist() {return "create_menu";}
+    public String userRecipelist() {return "recipe_list";}
 
     @RequestMapping("create_recipe")
     public String createRecipe() {return "create_recipe";}
@@ -75,6 +75,9 @@ public class ForwardController {
 
     @RequestMapping("create_menu")
     public String createMenu(){return "create_menu";}
+
+    @RequestMapping("edit_menu")
+    public String editMenu(){return "edit_menu";}
 
     @RequestMapping("activity")
     public  String useractivity() {return "activity";}

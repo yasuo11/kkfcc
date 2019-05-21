@@ -9,6 +9,16 @@ public class MenuVO {
     private String userImg;
     private Integer collectSum;
     private List<RecipeVO> recipeVOList;
+    private Integer menuId;
+
+    public Integer getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(Integer menuId) {
+        this.menuId = menuId;
+    }
+
 
     public List<RecipeVO> getRecipeVOList() {
         return recipeVOList;

@@ -13,10 +13,8 @@ import com.xiuchu.kkfcc.vo.RecipeDetailVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,9 +32,11 @@ public class MenuController {
     @Autowired
     private IRecipeService iRecipeService;
 
-    @RequestMapping("/delete")
+
+
+    @RequestMapping("/deleteMenu/{menuId}")
     @ResponseBody
-    public ServerResponse<String> deleteMenu(@RequestParam("Id") Integer menuId, HttpServletRequest request) {
+    public ServerResponse<String> deleteMenu(@PathVariable("menuId") Integer menuId, HttpServletRequest request) {
         KkfccUser curUser = iUserService.getCurUser(request);
         if(curUser == null)
             return ServerResponse.createByError();
@@ -44,55 +44,72 @@ public class MenuController {
         return iMenuService.deleteMenu(menuId);
     }
 
-    @RequestMapping("/update")
+    @RequestMapping("/delete/{menuId}/{recipeId}")
+    public String deleteRecipeFromMenu(@PathVariable("menuId") Integer menuId, @PathVariable("recipeId") Integer recipeId) {
+        iMenuService.deleteRecipeFromMenu(menuId, recipeId);
+        return "redirect:/menu/" + menuId;
+    }
+    @RequestMapping("/init.do")
     @ResponseBody
-    public ServerResponse<String> updateMenu(KkfccMenu menu, HttpServletRequest request) {
+    public ServerResponse<KkfccMenu> init(Integer menuId, HttpServletRequest request) {
         KkfccUser curUser = iUserService.getCurUser(request);
         if(curUser == null)
             return ServerResponse.createByError();
+        return iMenuService.menuInfo(menuId);
+    }
 
+    @RequestMapping("/update.do")
+    @ResponseBody
+    public ServerResponse<String> updateMenu(@RequestBody KkfccMenu menu, HttpServletRequest request) {
+        KkfccUser curUser = iUserService.getCurUser(request);
+        if(curUser == null)
+            return ServerResponse.createByError();
+        menu.setUserId(curUser.getId());
         return iMenuService.updateMenu(menu);
     }
 
-    @RequestMapping("/create")
+    @RequestMapping("/createmenu.do")
     @ResponseBody
-    public ServerResponse<String> createMenu(KkfccMenu menu, HttpServletRequest request) {
+    public ServerResponse<String> createMenu(@RequestBody KkfccMenu menu, HttpServletRequest request) {
         KkfccUser curUser = iUserService.getCurUser(request);
         if(curUser == null)
             return ServerResponse.createByError();
-
+        menu.setUserId(curUser.getId());
         return iMenuService.createMenu(menu);
     }
 
 
     @RequestMapping("/{id}")
-    @ResponseBody
-    public ServerResponse<MenuVO> queryMenu(@PathVariable("id") String id, HttpSession session, HttpServletRequest request) {
-        if(id == null || id.equals(""))
-            return ServerResponse.createByError();
-        KkfccUser curUser = iUserService.getCurUser(request);
-        return iMenuService.queryMenu(id, curUser, session);
+    public String queryDetailMenu(@PathVariable("id") Integer id, Model model) {
+        MenuVO menuVO = iMenuService.queryDetailMenu(id);
+        menuVO.setMenuId(id);
+        model.addAttribute("menuVO", menuVO);
+        return "forward:/recipe_list";
     }
 
-
-    @RequestMapping("/add")
+    @RequestMapping("/aa/{id}")
     @ResponseBody
-    public ServerResponse<String> addRecipeToMenu(String recipeUrl, HttpServletRequest request, HttpSession session) {
+    public ServerResponse<MenuVO> queryMenu(@PathVariable("id") Integer id) {
+        MenuVO menuVO = iMenuService.queryDetailMenu(id);
+        return ServerResponse.createBySuccess(menuVO);
+    }
+
+    @RequestMapping("/addRecipe.do")
+    @ResponseBody
+    public ServerResponse<String> addRecipeToMenu(String recipeUrl, Integer menuId, HttpServletRequest request) {
         KkfccUser curUser = iUserService.getCurUser(request);
         if(curUser == null)
-            return ServerResponse.createByError();
+            return ServerResponse.createByErrorMessage("请重新登录");
         String URL_RECIPE = "http://www\\.xiachufang\\.com/recipe/\\d*/";
         if(!recipeUrl.matches(URL_RECIPE))
-            return ServerResponse.createBySuccess("链接不合法，请重新输入！");
+            return ServerResponse.createByErrorMessage("链接不合法，请重新输入！");
         Pattern pattern = Pattern.compile("\\D+");
         String[] strings = pattern.split(recipeUrl);
         RecipeDetailVO recipeDetailVO = iRecipeService.queryRecipe(strings[1]);
         if(recipeDetailVO == null)
-            return ServerResponse.createBySuccess("未找到该菜谱");
+            return ServerResponse.createByErrorMessage("未找到该菜谱");
         KkfccCbook recipe = recipeDetailVO.getRecipe();
-        KkfccMenu menu = (KkfccMenu)session.getAttribute(Const.CURRENT_MENU);
-        iMenuService.addRecipeToMenu(menu, recipe);
-        return ServerResponse.createBySuccess("添加成功");
+        return iMenuService.addRecipeToMenu(menuId, recipe);
     }
 
 //    @RequestMapping("/collect")

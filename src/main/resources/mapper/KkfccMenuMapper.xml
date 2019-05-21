@@ -11,4 +11,16 @@
     <result column="collect_sum" jdbcType="INTEGER" property="collectSum" />
     <result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
   </resultMap>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiuchu.kkfcc.pojo.KkfccMenu">
+    update kkfcc_menu
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

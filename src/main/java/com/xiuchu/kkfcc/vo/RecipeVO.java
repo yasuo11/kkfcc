@@ -9,6 +9,7 @@ public class RecipeVO {
     private String authorName;
     private Integer collectSum;
 
+
     public String getRecipeName() {
         return recipeName;
     }

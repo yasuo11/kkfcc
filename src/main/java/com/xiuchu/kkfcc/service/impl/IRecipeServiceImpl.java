@@ -70,6 +70,8 @@ public class IRecipeServiceImpl implements IRecipeService {
         KkfccCbook cbook = new KkfccCbook();
         cbook.setId(curId);
         cbook = cbookMapper.selectOne(cbook);
+        if(cbook == null)
+            return null;
         KkfccUser user = new KkfccUser();
         user.setId(cbook.getUserId());
         KkfccUser curUser = userMapper.selectOne(user);

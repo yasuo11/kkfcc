@@ -6,8 +6,6 @@ import com.xiuchu.kkfcc.pojo.KkfccMenu;
 import com.xiuchu.kkfcc.pojo.KkfccUser;
 import com.xiuchu.kkfcc.vo.MenuVO;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 public interface IMenuService {
 
@@ -19,8 +17,10 @@ public interface IMenuService {
 
     ServerResponse<String> createMenu(KkfccMenu menu);
 
-    ServerResponse<String> addRecipeToMenu(KkfccMenu menu, KkfccCbook recipe);
+    ServerResponse<String> addRecipeToMenu(Integer menuId, KkfccCbook recipe);
 
-    ServerResponse<MenuVO> queryMenu(String id, KkfccUser curUser, HttpSession session);
+    void deleteRecipeFromMenu(Integer menuId, Integer recipeId);
+
+    MenuVO queryDetailMenu(Integer id);
 
 }

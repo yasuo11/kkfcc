@@ -82,7 +82,7 @@
 <div class="conwidth content clearfix" th:object="${recipeDetailVO}">
     <h1 id="recipeName" th:text="*{recipe.name}"><i></i></h1>
     <div class="leftcon" >
-        <img th:src="*{recipe.image}" id="recipeImg"/>
+        <img th:src="*{recipe.image}" id="recipeImg" width="660"/>
         <div class="cookde">
             <span class="cooknum" id="cooknum" th:text="*{recipe.collectionSum}"></span><span>&nbsp;人做过这道菜</span>
             <div class="fr">
@@ -100,7 +100,7 @@
                 <tbody th:each="materialVO : ${recipeDetailVO.materials}">
                 <tr itemprop="recipeIngredient">
                     <td class="name">
-                        <span th:text="${materialVO.material.name}"></span>
+                        <span th:text="${materialVO.name}"></span>
                     </td>
                     <td class="unit">
                         <span th:text="${materialVO.usage}"></span>
@@ -115,7 +115,7 @@
             <ol id="steps" th:each="step,iterStat : ${recipeDetailVO.steps}">
                 <li> <span th:text="${step.sindex}"></span><div th:utext="${step.details}">
                 </div>
-                    <img th:src="${step.image}">
+                    <img th:src="${step.image}" width="300">
                 </li>
             </ol>
         </div>
