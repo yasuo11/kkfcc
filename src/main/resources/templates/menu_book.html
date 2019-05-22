@@ -5,6 +5,7 @@
     <title>个人菜谱 - 秀厨</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/menu_book.css">
+    <link rel="stylesheet" type="text/css" href="../css/amazeui.min.css">
 </head>
 
 <body>
@@ -96,16 +97,17 @@
         </div>
         <div class="title"><h2 class="fubiaoti">用料</h2></div>
         <div class="ings">
-            <table>
+            <table class="am-table">
                 <tbody th:each="materialVO : ${recipeDetailVO.materials}">
                 <tr itemprop="recipeIngredient">
-                    <td class="name">
-                        <span th:text="${materialVO.name}"></span>
+                    <td>
+                        <span th:text="${materialVO.name}">我是用料</span>
                     </td>
-                    <td class="unit">
-                        <span th:text="${materialVO.usage}"></span>
+                    <td>
+                        <span th:text="${materialVO.usage}">我是重量</span>
                     </td>
                 </tr>
+
                 </tbody></table>
         </div>
         <div class="kh30"></div>
