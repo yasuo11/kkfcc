@@ -80,6 +80,7 @@
     </div>
 </div>
 <div class="konghang"></div><!--因为头部固定而需要设置高度空行把内容撑下去-->
+<!--/*@thymesVar id="recipeDetailVO" type="entity"*/-->
 <div class="conwidth content clearfix" th:object="${recipeDetailVO}">
     <h1 id="recipeName" th:text="*{recipe.name}"><i></i></h1>
     <div class="leftcon" >
@@ -122,12 +123,8 @@
             </ol>
         </div>
         <div style="height: 250px;"><!--有个奇怪的bug，所以加个高度修复。-->
-
         </div>
-
-        <div class="upload">
-            上传你做的<span th:text="*{recipe.name}"></span>
-        </div>
+        <a class="am-btn am-btn-danger" th:href="'/work/jump?recipeId=' + *{recipe.id} + '&recipeName=' + *{recipe.name}" target="_blank">上传你做的<span th:text="*{recipe.name}"></span></a>
         <div class="kh30"></div>
         <div class="question" hidden="">
             <div class="title"><h2 class="fubiaoti"><span th:text="*{recipe.name}"></span>的答疑</h2></div>

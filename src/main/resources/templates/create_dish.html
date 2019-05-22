@@ -1,11 +1,12 @@
 <!DOCTYPE>
 <html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta charset="utf-8"/>
     <title>秀厨-唯爱与美食不可辜负</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css"/>
-    <link rel="stylesheet" type="text/css" href="css/c_dish.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/c_dish.css"/>
 </head>
 <body style="padding-top: 0px;">
 <div class="header"><!--------------头部---------------->
@@ -96,23 +97,12 @@
 
 
                 <h1 class="page-title">
-                    上传我做的XXXXX
+                    上传我做的<span th:text="${recipeName}"></span>
                 </h1>
 
                 <div class="block block-has-padding white-bg">
-                    <div class="title-bar">
-                        <div class="title">
-                            <ul class="list red-font">
-                            </ul>
-
-                        </div>
                     </div>
-
-                    <form enctype="multipart/form-data" method="POST" class="aligned-form"
-                          onsubmit="$('input[type=submit]', this).attr('disabled', true)">
-
-                        <input type="hidden" name="xf" value="oNU9U">
-
+                    <form enctype="multipart/form-data" method="POST" class="aligned-form" >
                         <div class="control-group">
                             <label for="img" class="label">在电脑里面查找</label>
                             <div class="control">
@@ -121,15 +111,12 @@
                             </div>
                         </div>
                         <div class="control-group"></div>
-
                         <div class="control-group">
                             <label for="desc" class="label">
                                 心得
                             </label>
                             <div class="control">
-                                <input type="hidden" id="sharpCandiates" value="[]">
-                                <input type="hidden" id="atCandiates" value="[]">
-                                <textarea name="desc" id="desc" rows="20" maxlength="1000"></textarea>
+                                <textarea name="desc" id="desc" rows="25" maxlength="200"></textarea>
                             </div>
                         </div>
 
@@ -138,26 +125,22 @@
                         <div class="control-group">
                             <div class="label">&nbsp;</div>
                             <div class="control">
-                                <input type="submit" value="上传作品" class="button">
+                                <input type="submit" value="上传作品" class="button" id="sssubmit">
                             </div>
                         </div>
                     </form>
 
                 </div>
-
-
                 <div id="main-panel-bottom"></div>
             </div>
-            <!-- end of main-panel -->
-
-            <!-- begin of right-panel -->
-
-            <!-- end of right-panel -->
         </div>
-
     </div>
-    <!-- end of page-container -->
 </div>
-
+<script>
+    //上传作品
+$("#sssubmit").click(function () {
+    
+});
+</script>
 </body>
 </html>
