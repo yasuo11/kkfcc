@@ -10,6 +10,7 @@ import com.xiuchu.kkfcc.util.CookieUtil;
 import com.xiuchu.kkfcc.util.JsonUtil;
 import com.xiuchu.kkfcc.util.PropertiesUtil;
 import com.xiuchu.kkfcc.util.RedisPoolUtil;
+import com.xiuchu.kkfcc.vo.ActivityVO;
 import com.xiuchu.kkfcc.vo.FormVO;
 import com.xiuchu.kkfcc.vo.WorkVO;
 import com.xiuchu.kkfcc.vo.otherWorkVO;
@@ -86,9 +87,21 @@ public class WorkController {
 
     //作品动态
     @RequestMapping("/activity")
-    public String showActivity(Model model, Integer Id){
+    public ServerResponse showActivity(HttpServletRequest request){
+        List<ActivityVO> activities = iWorkService.getActivityDetails();
 
-        return "forward:/activity";
+        String sessonId = CookieUtil.readLoginToken(request);
+        if(sessonId == null)
+            return ServerResponse.createByError();
+        String userString = RedisPoolUtil.get(sessonId);
+        KkfccUser user = JsonUtil.string2Obj(userString, KkfccUser.class);
+        if(user == null)
+            return ServerResponse.createByError();
+        for (int i=0; i<activities.size(); i++) {
+            activities.get(i).setUserId(user.getId());
+            activities.get(i).setUserName(user.getNickName());
+        }
+        return ServerResponse.createBySuccess(activities);
     }
     //作品详细
     @RequestMapping("/details")
@@ -103,7 +116,7 @@ public class WorkController {
     //菜谱界面其他用户的作品展示
     @RequestMapping("/showOtherWorks")
     @ResponseBody
-    public ServerResponse<List<otherWorkVO>> showOtherWorks(Integer recipeId, Model model){
+    public ServerResponse<List<otherWorkVO>> showOtherWorks(Integer recipeId){
         List<otherWorkVO> works = iWorkService.getOthersWork(recipeId);
         return ServerResponse.createBySuccess(works);
     }

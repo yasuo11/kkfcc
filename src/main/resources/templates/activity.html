@@ -117,32 +117,28 @@
             <!-- begin of main-panel -->
             <div class="pure-u-2-3 main-panel">
                 <div class="mb25">
-
-                    <div class="tab-bar pure-g" id="">
-
+                    <div class="tab-bar pure-g">
                         <ul class="plain pure-g">
                             <li class=" active">
-                                <span>我关注的更新</span>
+                                <span>其他用户的作品动态</span>
                             </li>
 
                         </ul>
                     </div>
                 </div>
-                <ul class="activity-feeds plain">
-                    <li class="feed dish-feed pure-g mb30 has-border" data-digged="false" data-dish-id="141076963"
-                        role="dish">
+                <ul class="activity-feeds plain" id="activitiesList">
+                    <li class="feed dish-feed pure-g mb30 has-border">
                         <div class="content">
                             <div class="brief pure-g">
                                 <div class="pure-u-7-8">
-                                    <a target="_blank" href="#" class="avatar">
+                                    <a target="_blank" href="#" class="avatar" id="workUserName">
                                         <img class="mr10 unveiled"
                                              src="" alt="用户名" width="48" height="48">
-                                        我亚索贼溜
+
                                     </a>
                                     <b>分享作品</b>
-                                    <a target="_blank" href="">2019年06月23日</a>
+                                    <a target="_blank" id="workCreateTime"></a>
                                 </div>
-                                <div class="pure-u-1-8 align-right font12 gray-font mt15">时间是</div>
                             </div>
 
                             <div class="content-body pure-g pos-r has-bottom-border">
@@ -152,24 +148,34 @@
                                     </a>
                                 </div>
                                 <div class="info">
-                                    <div class="desc">干炒牛河和凉皮，好久没做菜，样子看着不怎样，好在味道还可以😀</div>
+                                    <div class="desc" id="workInfo"></div>
                                     <div class="title font16 bold mt10">
-                                        <a target="_blank" href="#">2018年06月23日</a>
+                                        <a target="_blank" id="workCreateTime1"></a>
                                     </div>
                                 </div>
                                 <div class="stat font12 gray-font">
-                                    <span class="n-diggs">6 赞</span>
+                                    <span class="n-diggs">13 赞</span>
                                 </div>
                             </div>
 
                             <div class="plain comments pl20 pr20 pt15 pb15 font12 block-bg">
                                 <ul class="comments-list mb10 plain">
+                                    <li class="comment mb5 pure-g ">
+                                        <a target="_blank" href="" class="mr5 avatar">
+                                            <img src="" class="display-block unveiled" width="30" height="30">
+                                        </a>
+                                        <div class="comment-text mt5">
+                                            <a target="_blank" href="" id="commentUsername"></a>
+                                            <span class="ml5" id="commentInfo"></span>
+                                            <div class="float-right">
+                                                <a class="gray-link" id="commentTime">时间</a>
+                                            </div>
+                                        </div>
+                                    </li>
                                 </ul>
                                 <form action="" class="inline-comment-input pure-g">
                                     <input type="text" name="reply" placeholder="评论" class="w100">
-                                    <input type="submit" value="评论" class="button pl15 pr15 float-right hidden">
-                                    <input type="hidden" name="xf" value="30sNo">
-                                    <input type="hidden" name="id" value="141076963">
+                                    <input type="submit" value="评论" class="button pl15 pr15 float-right">
                                 </form>
                             </div>
                         </div>
@@ -179,9 +185,45 @@
                     <div>&gt; <a href="/index">返回首页</a></div>
                 </div>
             </div>
+            <!-- end of main-panel -->
         </div>
     </div>
     <!-- end of page-container -->
 </div>
 </body>
+<script>
+    $(document).ready(function(){
+        
+    });
+    var activityHtml="";
+
+    function loadInfo() {
+        $.ajax({
+            url: '/work/activity',
+            data:{
+            },
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            type: 'GET',
+            success: function(result) {
+                if(result.success) {
+                   for (var i=0; i<result.data.length; i++){
+                        $("#activitiesList").after(activityHtml);
+                        $("#workUserName").text(result.data[i].workUserName);
+                        $("#workCreateTime").text(result.data[i].workCreateTime);
+                        $("#workInfo").text(result.data[i].workInfo);
+                        $("#workCreateTime1").text(result.data[i].workCreateTime);
+                        $("#commentUsername").text(result.data[i].commentUsername);
+                        $("#commentInfo").text(result.data[i].commentInfo);
+                        $("#commentTime").text(result.data[i].commentTime);
+                   }
+                }
+            },
+            error: function () {
+                alert("异常错误！")
+            }
+        });
+    }
+
+
+</script>
 </html>

@@ -1,6 +1,7 @@
 package com.xiuchu.kkfcc.service;
 
 import com.xiuchu.kkfcc.pojo.KkfccWorks;
+import com.xiuchu.kkfcc.vo.ActivityVO;
 import com.xiuchu.kkfcc.vo.WorkVO;
 import com.xiuchu.kkfcc.vo.otherWorkVO;
 import org.elasticsearch.action.ingest.IngestActionForwarder;
@@ -13,4 +14,5 @@ public interface IWorkService {
     public void workUpload(WorkVO vo);
     public List<otherWorkVO> getOthersWork(Integer recipeId);
     public KkfccWorks getUserWorkDetail(Integer userId, Integer recipeId);
+    List<ActivityVO> getActivityDetails();
 }
