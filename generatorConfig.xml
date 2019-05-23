@@ -40,7 +40,7 @@
         <!--<table tableName="kkfcc_material"></table>-->
         <!--<table tableName="kkfcc_material_cbook"></table>-->
         <!--<table tableName="kkfcc_material_menu"></table>-->
-        <table tableName="kkfcc_menu"></table>
+        <table tableName="kkfcc_comment"></table>
         <!--<table tableName="kkfcc_menu_cbook"></table>-->
         <!--<table tableName="kkfcc_user"></table>-->
         <!--<table tableName="kkfcc_user_friends"></table>-->

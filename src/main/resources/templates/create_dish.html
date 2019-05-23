@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta charset="utf-8"/>
     <title>秀厨-唯爱与美食不可辜负</title>
+    <script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="../css/main.css"/>
     <link rel="stylesheet" type="text/css" href="../css/c_dish.css"/>
+
 </head>
 <body style="padding-top: 0px;">
 <div class="header"><!--------------头部---------------->
@@ -93,53 +95,92 @@
     <div class="page-container">
         <div class="pure-g">
             <!-- begin of main-panel -->
-            <div class="pure-u-2-3 main-panel">
+            <form enctype="multipart/form-data" method="POST" action="/work/upphoto">
+                <div class="pure-u-2-3 main-panel">
 
 
-                <h1 class="page-title">
-                    上传我做的<span th:text="${recipeName}"></span>
-                </h1>
+                    <h1 class="page-title">
+                        上传我做的<span th:text="${recipeName}"></span>
+                    </h1>
 
-                <div class="block block-has-padding white-bg">
+                    <div class="block block-has-padding white-bg">
+                        </div>
+                            <div class="control-group">
+                                <label for="img" class="label">在电脑里面查找</label>
+                                <div class="control">
+                                    <input type="file" name="img" id="img">
+                                    <p class="gray-font normal-font">请选择不超过4M的图片</p>
+                                </div>
+                            </div>
+                            <div class="control-group"></div>
+                            <div class="control-group">
+                                <label for="desc" class="label">
+                                    心得
+                                </label>
+                                <div class="control">
+                                    <textarea name="desc" id="desc" rows="15" maxlength="200"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="control-group">&nbsp;</div>
+
+                            <div class="control-group">
+                                <div class="label">&nbsp;</div>
+                                <div class="control">
+                                    <input  type="button" value="上传作品" class="button" id="sssubmit">
+                                </div>
+                            </div>
+                    <span hidden id="hid"></span>
+                    <span hidden id="hhid" th:text="${recipeId}"></span>
                     </div>
-                    <form enctype="multipart/form-data" method="POST" class="aligned-form" >
-                        <div class="control-group">
-                            <label for="img" class="label">在电脑里面查找</label>
-                            <div class="control">
-                                <input type="file" name="img" id="img">
-                                <p class="gray-font normal-font">请选择不超过4M的图片</p>
-                            </div>
-                        </div>
-                        <div class="control-group"></div>
-                        <div class="control-group">
-                            <label for="desc" class="label">
-                                心得
-                            </label>
-                            <div class="control">
-                                <textarea name="desc" id="desc" rows="25" maxlength="200"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="control-group">&nbsp;</div>
-
-                        <div class="control-group">
-                            <div class="label">&nbsp;</div>
-                            <div class="control">
-                                <input type="submit" value="上传作品" class="button" id="sssubmit">
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-                <div id="main-panel-bottom"></div>
+            </form>
+            <div id="main-panel-bottom"></div>
             </div>
         </div>
     </div>
 </div>
 <script>
     //上传作品
+$("#img").click(function () {
+    var picture=new FormData();
+    picture.append("file",this.files[0]);
+    $.ajax({
+        type:'POST',
+        url:"/work/upphoto",
+        data:picture,
+        contentType:false,
+        processData:false,//这个很有必要，不然不行
+        dataType:"json",
+        success:function(result){
+            if(result.success) {
+                var thisUrl = result.data.imgUrl ;//获取文件信息
+                $("#hid").text(result.data);
+            }
+        },
+        error:function(){
+            console.log("无事发生");
+        }
+
+    });
+});
 $("#sssubmit").click(function () {
-    
+    var imgURL=$("#hid").text();
+    //菜谱id 菜谱图片url
+    var formVO= {};
+    formVO.imgUrl = imgURL;
+    formVO.recipeId = $("#hhid").text();
+    formVO.workInfo = $("#desc").val();
+    console.log(formVO);
+    $.ajax({
+        type : 'POST',
+        dataType:"json",
+        contentType: 'application/json',
+        url : "/work/up",
+        data:JSON.stringify(formVO),
+        success : function(data) {
+            console.log("上传成功");
+        }});
+
 });
 </script>
 </body>
