@@ -62,7 +62,7 @@
                     </div>
                 </li>
                 <li><a href="/popular_menu">菜单</a></li>
-                <li><a href="">作品动态</a></li>
+                <li><a href="/work/activity">作品动态</a></li>
             </ul>
             <div id="login_change">
                 <div class="dengluzhuce fr">
@@ -74,8 +74,8 @@
     </div>
     <div class="suggest" id="sreach-suggest"><!---搜索智能提示suggest-->
         <ul>
-            <li>搜"  "相关用户</li>
-            <li>搜"  "相关菜单</li>
+            <li>搜" "相关用户</li>
+            <li>搜" "相关菜单</li>
         </ul>
     </div>
 </div>
@@ -83,7 +83,7 @@
 <!--/*@thymesVar id="recipeDetailVO" type="entity"*/-->
 <div class="conwidth content clearfix" th:object="${recipeDetailVO}">
     <h1 id="recipeName" th:text="*{recipe.name}"><i></i></h1>
-    <div class="leftcon" >
+    <div class="leftcon">
         <img th:src="*{recipe.image}" id="recipeImg" width="660"/>
         <div class="cookde">
             <span class="cooknum" id="cooknum" th:text="*{recipe.collectionSum}"></span><span>&nbsp;人做过这道菜</span>
@@ -109,22 +109,26 @@
                     </td>
                 </tr>
 
-                </tbody></table>
+                </tbody>
+            </table>
         </div>
         <div class="kh30"></div>
         <div class="zuofa">
             <div class="title"><h2 class="fubiaoti"><span id="titleName" th:text="*{recipe.name}"></span>的做法</h2>
             </div>
             <ol id="steps" th:each="step,iterStat : ${recipeDetailVO.steps}">
-                <li> <span th:text="${step.sindex}"></span><div th:utext="${step.details}">
-                </div>
+                <li><span th:text="${step.sindex}"></span>
+                    <div th:utext="${step.details}">
+                    </div>
                     <img th:src="${step.image}" width="300">
                 </li>
             </ol>
         </div>
         <div style="height: 250px;"><!--有个奇怪的bug，所以加个高度修复。-->
         </div>
-        <a class="am-btn am-btn-danger" th:href="'/work/jump?recipeId=' + *{recipe.id} + '&recipeName=' + *{recipe.name}" target="_blank">上传你做的<span th:text="*{recipe.name}"></span></a>
+        <a class="am-btn am-btn-danger"
+           th:href="'/work/jump?recipeId=' + *{recipe.id} + '&recipeName=' + *{recipe.name}" target="_blank">上传你做的<span
+                th:text="*{recipe.name}"></span></a>
         <div class="kh30"></div>
         <div class="question" hidden="">
             <div class="title"><h2 class="fubiaoti"><span th:text="*{recipe.name}"></span>的答疑</h2></div>
@@ -166,35 +170,9 @@
     <div class="conwidth">
         <div class="kh30"></div>
         <div class="alsolike">
-            <div class="title"><h2 class="fubiaoti">喜欢<span th:text="*{recipe.name}"></span>的也喜欢</h2></div>
-            <div class="likemenu">
-                <a href="#">
-                    <img src="../img/menubook/56f12d74883211e6b87c0242ac110003_2448w_3264h.jpg">
-                    <p class="title">超完美味道超正的蛋挞配方，比KFC的还要嫩还要香~做过最好吃的蛋挞配方</p>
-                    <p> FeEl &nbsp;&nbsp;&nbsp;&nbsp; 67778 做过</p>
-                </a>
+            <div class="title" id="otherWork"><h2 class="fubiaoti">喜欢<span th:text="*{recipe.name}"></span>的用户上传的作品</h2>
             </div>
-            <div class="likemenu">
-                <a href="#">
-                    <img src="../img/menubook/7ee9900086f211e6b87c0242ac110003_500w_752h.jpg">
-                    <p class="title">蔓越莓饼干</p>
-                    <p> 君之 &nbsp;&nbsp;&nbsp;&nbsp; 46737 做过</p>
-                </a>
-            </div>
-            <div class="likemenu">
-                <a href="#">
-                    <img src="../img/menubook/4daad8ea877a11e6a9a10242ac110002_469w_701h.jpg">
-                    <p class="title">懒人版糖醋排骨</p>
-                    <p> 小辞xiaoci &nbsp;&nbsp;&nbsp;&nbsp; 38657 做过</p>
-                </a>
-            </div>
-            <div class="likemenu">
-                <a href="#">
-                    <img src="../img/menubook/ed35e338873811e6b87c0242ac110003_450w_600h.jpg">
-                    <p class="title">可乐鸡翅</p>
-                    <p>  渍 &nbsp;&nbsp;&nbsp;&nbsp; 40401 做过</p>
-                </a>
-            </div>
+            <!-- ajax插入的其他用户作品 -->
         </div>
         <div class="kh30"></div>
         <div class="othercook clearfix">
@@ -269,12 +247,10 @@
         <li><a href="#">联系我们</a></li>
         <li><a href="#">意见反馈</a></li>
         <li><a href="#">隐私声明</a></li>
-    </ul><br>
+    </ul>
+    <br>
     <p>Zed,the Master of Shadows product "秀厨网" ,for commercial use.</p>
 </div>
-
-
-
 
 
 <script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>

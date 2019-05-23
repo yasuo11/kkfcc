@@ -2,6 +2,7 @@ package com.xiuchu.kkfcc.controller;
 
 import com.xiuchu.kkfcc.common.ServerResponse;
 import com.xiuchu.kkfcc.pojo.KkfccUser;
+import com.xiuchu.kkfcc.pojo.KkfccWorks;
 import com.xiuchu.kkfcc.service.IFileService;
 import com.xiuchu.kkfcc.service.IUserService;
 import com.xiuchu.kkfcc.service.IWorkService;
@@ -11,6 +12,7 @@ import com.xiuchu.kkfcc.util.PropertiesUtil;
 import com.xiuchu.kkfcc.util.RedisPoolUtil;
 import com.xiuchu.kkfcc.vo.FormVO;
 import com.xiuchu.kkfcc.vo.WorkVO;
+import com.xiuchu.kkfcc.vo.otherWorkVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -66,7 +69,7 @@ public class WorkController {
         vo.setRecipeInfo(formVO.getWorkInfo());
         vo.setUserId(user.getId());
         iWorkService.workUpload(vo);
-        return "";
+        return "forward:/activity";
     }
 
     //单张图片上传
@@ -80,4 +83,29 @@ public class WorkController {
         String imgUrl = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
         return ServerResponse.createBySuccess(imgUrl);
     }
+
+    //作品动态
+    @RequestMapping("/activity")
+    public String showActivity(Model model, Integer Id){
+
+        return "forward:/activity";
+    }
+    //作品详细
+    @RequestMapping("/details")
+    public String showWork(Integer workUserId, Integer recipeId, Model model){
+        KkfccWorks work = iWorkService.getUserWorkDetail(workUserId, recipeId);
+        KkfccUser user=new KkfccUser();
+        user.setId(workUserId); //通过用户id获取用户名
+        model.addAttribute("userName",iUserService.findUser(user).getNickName());
+        model.addAttribute("work",work );
+        return "forward:/work_show";
+    }
+    //菜谱界面其他用户的作品展示
+    @RequestMapping("/showOtherWorks")
+    @ResponseBody
+    public ServerResponse<List<otherWorkVO>> showOtherWorks(Integer recipeId, Model model){
+        List<otherWorkVO> works = iWorkService.getOthersWork(recipeId);
+        return ServerResponse.createBySuccess(works);
+    }
+
 }
