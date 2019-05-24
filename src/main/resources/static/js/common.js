@@ -43,7 +43,6 @@ userPart = "<div class=\"fr\">\n" +
 
 $(document).ready(function () {
     hasLogin();
-    showOtherWorks();
 });
 
 //获取url上的参数
@@ -54,46 +53,6 @@ function getUrlParam(name)
     if (r!=null) return unescape(r[2]); return null; //返回参数值
 }
 
-function showOtherWorks() {
-    var href=window.location.href;
-    var index = href.lastIndexOf("/");
-    var recipeId=href.substr(index+1,1);
-    $.ajax({
-            url: '/work/showOtherWorks?recipeId=' + recipeId,
-            data:{
-            },
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-            type: 'GET',
-            success: function(result) {
-                if(result.success) {
-                    for (var i=0; i<4; i++)
-                    {
-                        $("#otherWork").after("<div class=\"likemenu\" id=\"likeWork\">\n" +
-                            "                <a id=\"workUrl\">\n" +
-                            "                    <img src=\"\">\n" +
-                            "                    <p class=\"title\" id=\"worktitle\"></p>\n" +
-                            "<p>&nbsp;&nbsp;&nbsp;&nbsp;<span id=\"rand\"></span>浏览</p>" +
-                            "                </a>\n" +
-                            "            </div>");
-                        if (!result.data[i]) {
-                            $("#worktitle").text(result.data[i].workAuthor + "上传于" + result.data[i].workCreateTime.substring(0, 10));
-                            $("#rand").text(Math.ceil(Math.random() * 10));
-                            $("#workUrl").attr("href", "/work/details?workUserId=" + result.data[i].workUserId + "&recipeId=" + result.data[i].recipeId);
-                        }else{
-                            $("#worktitle").text(result.data[i-1].workAuthor + "上传于" + result.data[i-1].workCreateTime.substring(0, 10));
-                            $("#rand").text(Math.ceil(Math.random() * 10));
-                            $("#workUrl").attr("href", "/work/details?workUserId=" + result.data[i-1].workUserId + "&recipeId=" + result.data[i-1].recipeId);
-                        }
-                    }
-                }
-            },
-            error: function () {
-                alert("异常错误！")
-            }
-        }
-    )
-
-}
 
 function hasLogin() {
     $.ajax({
