@@ -39,10 +39,7 @@ public class IRecipeServiceImpl implements IRecipeService {
             recipeVo.setImageUrl(list.get(i).getImage());
             res.add(recipeVo);
         }
-
-
         return ServerResponse.createBySuccess(res);
-
     }
 
     // 得到新秀菜谱，因为数据少暂时先不筛选，后续需要改进
