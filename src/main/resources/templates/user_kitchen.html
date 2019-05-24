@@ -105,7 +105,7 @@
         				<p th:text="${user.selfIntroduction}"></p>
         		</div>
         		<div class="fr">
-					<a href="/user/userPhoto.do"><div class="guanzhu2">我的信息</div></a>
+					<a href="/user/user_photo"><div class="guanzhu2">我的信息</div></a>
 					<div class="guanzhuderen" style="background:white;">
 						<!--<div class="x y">-->
 							<!--<span>关注的人</span><br><a href="#"><span>256</span></a>-->
@@ -146,7 +146,7 @@
 
         <div class="conwidth survey">
         	<div class="navigation">
-        		<span class="teshu bqgaikuang"><a href="#">概况</a></span><span class="bqcaipu"><a href="#">菜谱</a></span><span class="bqzuopin"><a href="#">作品</a></span><span class="bqcaidan"><a href="#">菜单</a></span><span class="bqshoucang"><a href="#">收藏</a></span>
+        		<span class="teshu bqgaikuang"><a>概况</a></span><span class="bqcaipu"><a href="#">菜谱</a></span><span class="bqzuopin"><a href="#">作品</a></span><span class="bqcaidan"><a href="#">菜单</a></span><span class="bqshoucang"><a href="#">收藏</a></span>
             </div>
 
         	<div class="fubiaoti2 clearfix">
@@ -157,7 +157,7 @@
             	<div class="userproduction" th:each="work,infoStat : ${works}">
             		<div class="cover">
             			<img th:src="${work.image}"/>
-            			<a href="/work/details?workUserId=${work.userId}&recipeId=${work.cbookId}" class="active"></a>
+            			<a th:href="/work/details?workUserId=${work.userId}&recipeId=${work.cbookId}" class="active"></a>
             		</div>
                     <p class="name">优秀的作品</p>
         			<p th:text="${work.workInfo}"></p>
@@ -177,7 +177,7 @@
                         <img th:src="${recipe.image}"/>
                     </div>
                     <p class="name"><span th:text="${recipe.name}"></span></p>
-                    <div class="stars"><span th:text="${infoStat.size}"></span> 做过|<a href=""><span th:text="${user.nickName}"></span></a></div>
+                    <div class="stars"><span th:text="${infoStat.size}"></span> 做过|<a><span th:text="${user.nickName}"></span></a></div>
                 </div>
             </div>
         </div>
@@ -234,8 +234,8 @@
         		<a href="">
                 <span class="moren" th:text="${user.nickName}"></span>建的菜单
                 </a>
-                <a href="/menu/create_menu" class="fr">+ 创建一个菜单</a>
-                <a href="" th:each="menu,infoStat : ${menus}">
+                <a href="/create_menu" class="fr">+ 创建一个菜单</a>
+                <a th:href="/menu/${menu.id}" th:each="menu,infoStat : ${menus}">
                     <br/>
                     <span class="moren" th:text="${menu.title}"></span>
                     &nbsp;&nbsp;（<span class="moren" th:text="${menu.introduction}"></span>）
@@ -251,7 +251,7 @@
                 <a>
                     <span class="moren" th:text="${user.nickName}"></span>收藏的菜单
                 </a>
-                <a href="" th:each="mCollect,infoStat : ${mCollects}">
+                <a th:href="/menu/${menu.id}" th:each="mCollect,infoStat : ${mCollects}">
                     <br/>
                     <span class="moren" th:text="${mCollect.title}"></span>
                     &nbsp;&nbsp;（<span class="moren" th:text="${mCollect.introduction}"></span>）

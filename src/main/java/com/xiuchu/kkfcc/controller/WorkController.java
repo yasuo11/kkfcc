@@ -87,9 +87,9 @@ public class WorkController {
 
     //作品动态
     @RequestMapping("/activity")
+    @ResponseBody
     public ServerResponse showActivity(HttpServletRequest request){
         List<ActivityVO> activities = iWorkService.getActivityDetails();
-
         String sessonId = CookieUtil.readLoginToken(request);
         if(sessonId == null)
             return ServerResponse.createByError();
