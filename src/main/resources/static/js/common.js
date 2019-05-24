@@ -28,9 +28,9 @@ userPart = "<div class=\"fr\">\n" +
     "                            <img id=\"user_img\" src=\"\">\n" +
     "                        </a>\n" +
     "                        <ul class=\"afrloginlist\">\n" +
-    "                            <li class=\"cao\"><a href=\"#\">我的厨房</a></li>\n" +
-    "                            <li class=\"cao\"><a href=\"#\">账号设置</a></li>\n" +
-    "                            <li class=\"cao\"><a href=\"#\">我的菜单</a></li>\n" +
+    "                            <li class=\"cao\"><a id=\"chuf1\" href=\"\">我的厨房</a></li>\n" +
+    "                            <li class=\"cao\"><a id=\"chuf2\" href=\"\">账号设置</a></li>\n" +
+    "                            <li class=\"cao\"><a id=\"chuf3\" href=\"\">我的菜单</a></li>\n" +
     "                            <li class=\"cao\"><a href=\"/user/logout\">退出</a></li>\n" +
     "                        </ul>\n" +
     "                    </div>\n" +
@@ -66,6 +66,9 @@ function hasLogin() {
                 $("#login-info").html(infoHtml);
                 $("#login_change").html(userPart);
                 var url =  result.data.image;
+                $("#chuf1").attr("href","userkitchen/"+result.data.id);
+                $("#chuf2").attr("href","userkitchen/"+result.data.id);
+                $("#chuf3").attr("href","userkitchen/"+result.data.id);
                 $("#bphoto").attr("src", url);
                 $("#user_img").attr("src", url);
                 $("#userName").text(result.data.userName + "用户");

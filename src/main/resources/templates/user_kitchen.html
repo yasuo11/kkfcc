@@ -176,7 +176,7 @@
                     <div class="cover">
                         <img th:src="${recipe.image}" style="width: 215px;height: 136px"/>
                     </div>
-                    <p class="name"><a th:href="/recipe/${recipe.id}"><span th:text="${recipe.name}"></span></a></p>
+                    <p class="name"><a th:href="@{'/recipe/'+${recipe.id}}" ><span th:text="${recipe.name}"></span></a></p>
                     <div class="stars"><span th:text="${infoStat.size}"></span> 做过|<a><span th:text="${user.nickName}"></span></a></div>
                 </div>
             </div>
@@ -195,7 +195,7 @@
                     <div class="cover">
                         <img th:src="${recipe.image}" style="width: 215px;height: 136px"/>
                     </div>
-                    <p class="name"><a th:href="/recipe/${recipe.id}"><span th:text="${recipe.name}"></span></a></p>
+                    <p class="name"><a th:href="@{'/recipe/'+${recipe.id}}" ><span th:text="${recipe.name}"></span></a></p>
                     <div class="stars"><span th:text="${infoStat.size}"></span> 做过|<a href=""><span th:text="${user.nickName}"></span></a></div>
                 </div>
             </div>

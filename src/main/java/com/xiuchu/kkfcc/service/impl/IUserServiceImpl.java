@@ -65,12 +65,13 @@ public class IUserServiceImpl implements IUserService {
         int menu_collects = userMapper.selectMenuCollects(user);
         int recipes = userMapper.selectRecipes(user);
         int works = userMapper.selectWorks(user);
+        int id = userMapper.selectOne(user).getId();    //改
 
         userVO.setMenu_collects(recipe_collects);
         userVO.setRecipe_collects(menu_collects);
         userVO.setWorks(works);
         userVO.setRecipes(recipes);
-
+        userVO.setId(id);
         return ServerResponse.createBySuccess(userVO);
 
     }
