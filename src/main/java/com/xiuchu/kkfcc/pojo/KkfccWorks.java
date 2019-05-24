@@ -28,6 +28,12 @@ public class KkfccWorks {
     @Column(name = "update_time")
     private Date updateTime;
 
+    /*
+     *  作品的描述信息
+     */
+    @Column(name = "work_info")
+    private String workInfo;
+
     /**
      * 用户留言
      */
@@ -155,4 +161,14 @@ public class KkfccWorks {
     public void setImage(String image) {
         this.image = image;
     }
+
+
+    public String getWorkInfo() {
+        return workInfo;
+    }
+
+    public void setWorkInfo(String workInfo) {
+        this.workInfo = workInfo;
+    }
+
 }

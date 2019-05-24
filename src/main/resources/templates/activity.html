@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta charset="utf-8"/>
     <title>秀厨-唯爱与美食不可辜负</title>
-    <link rel="stylesheet" type="text/css" href="css/activity.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/activity.css"/>
 </head>
 <body>
 <div class="topbar-outer has-bottom-border">
@@ -79,7 +79,7 @@
                             </li>
                             <li class="pure-u"><a href="#" >菜单</a>
                             </li>
-                            <li class="pure-u"><a href="/activity/" rel="nofollow">作品动态</a></li>
+                            <li class="pure-u"><a href="#" rel="nofollow">作品动态</a></li>
                         </ul>
                     </div>
                     <div class="float-right clearfix">
@@ -117,68 +117,65 @@
             <!-- begin of main-panel -->
             <div class="pure-u-2-3 main-panel">
                 <div class="mb25">
-
-                    <div class="tab-bar pure-g" id="">
-
+                    <div class="tab-bar pure-g">
                         <ul class="plain pure-g">
                             <li class=" active">
-                                <span>我关注的更新</span>
+                                <span>其他用户的作品动态</span>
                             </li>
 
                         </ul>
                     </div>
                 </div>
-                <ul class="activity-feeds plain">
-                    <input type="hidden" name="at-candiates" id="atCandiates"
-                           value="[&quot;PPP\u5b9d&quot;,&quot;\u8c46\u8c46231&quot;]">
-                    <li class="feed dish-feed pure-g mb30 has-border" data-digged="false" data-dish-id="141076963"
-                        role="dish">
+                <ul class="activity-feeds plain" id="activitiesList">
+                    <li class="feed dish-feed pure-g mb30 has-border">
                         <div class="content">
                             <div class="brief pure-g">
                                 <div class="pure-u-7-8">
-                                    <a target="_blank" href="#" class="avatar">
+                                    <a target="_blank" href="#" class="avatar" id="workUserName">
                                         <img class="mr10 unveiled"
-                                             src="http://i1.chuimg.com/e54ff6ee19dd11e7bc9d0242ac110002_961w_960h.jpg@2o_50sh_1pr_1l_60w_60h_1c_1e_90q_1wh"
-                                             data-src="http://i1.chuimg.com/e54ff6ee19dd11e7bc9d0242ac110002_961w_960h.jpg@2o_50sh_1pr_1l_60w_60h_1c_1e_90q_1wh"
-                                             alt="我亚索贼溜" width="48" height="48">
-                                        我亚索贼溜
+                                             src="" alt="用户名" width="48" height="48">
+
                                     </a>
                                     <b>分享作品</b>
-                                    <a target="_blank" href="/dish/141076963/">2019年06月23日</a>
+                                    <a target="_blank" id="workCreateTime"></a>
                                 </div>
-                                <div class="pure-u-1-8 align-right font12 gray-font mt15">9个月前</div>
                             </div>
 
                             <div class="content-body pure-g pos-r has-bottom-border">
                                 <div class="cover">
                                     <a target="_blank" href="#" class="plain display-block pos-r">
-                                        <img src="http://i1.chuimg.com/96816c5a059748cc99adc15ad4f039df_1280w_1280h.jpg@2o_50sh_1pr_1l_280w_280h_1c_1e_90q_1wh"
-                                             data-src="http://i1.chuimg.com/96816c5a059748cc99adc15ad4f039df_1280w_1280h.jpg@2o_50sh_1pr_1l_280w_280h_1c_1e_90q_1wh"
-                                             alt="2018年06月23日" width="280" height="280" class="display-block unveiled">
+                                        <img src="" width="280" height="280" class="display-block unveiled">
                                     </a>
-                                    <a href="javascript:void(0);" rel="nofollow" class="plain digg-link"></a>
-                                    <a href="javascript:void(0);" rel="nofollow" class="plain undigg-link"></a>
                                 </div>
                                 <div class="info">
-                                    <div class="desc">干炒牛河和凉皮，好久没做菜，样子看着不怎样，好在味道还可以😀</div>
+                                    <div class="desc" id="workInfo"></div>
                                     <div class="title font16 bold mt10">
-                                        <a target="_blank" href="#">2018年06月23日</a>
+                                        <a target="_blank" id="workCreateTime1"></a>
                                     </div>
                                 </div>
                                 <div class="stat font12 gray-font">
-                                    <a href="javascript:void(0);" class="icon-digg mr5 not-digged"></a>
-                                    <span class="n-diggs">0 赞</span>
+                                    <span class="n-diggs">13 赞</span>
                                 </div>
                             </div>
 
                             <div class="plain comments pl20 pr20 pt15 pb15 font12 block-bg">
                                 <ul class="comments-list mb10 plain">
+                                    <li class="comment mb5 pure-g ">
+                                        <a target="_blank" href="" class="mr5 avatar">
+                                            <img src="" class="display-block unveiled" width="30" height="30">
+                                        </a>
+                                        <div class="comment-text mt5">
+                                            <a target="_blank" href="" id="commentUsername"></a>
+                                            <span class="ml5" id="commentInfo"></span>
+                                            <div class="float-right">
+                                                <a class="gray-link" id="commentTime">时间</a>
+                                            </div>
+                                        </div>
+                                    </li>
                                 </ul>
-                                <form action="/dish/141076963/" class="inline-comment-input pure-g">
+                                <form action="" class="inline-comment-input pure-g">
                                     <input type="text" name="reply" placeholder="评论" class="w100">
-                                    <input type="submit" value="评论" class="button pl15 pr15 float-right hidden">
-                                    <input type="hidden" name="xf" value="30sNo">
-                                    <input type="hidden" name="id" value="141076963">
+                                    <input type="submit" value="评论" class="button pl15 pr15 float-right">
                                 </form>
                             </div>
                         </div>
@@ -188,9 +185,45 @@
                     <div>&gt; <a href="/index">返回首页</a></div>
                 </div>
             </div>
+            <!-- end of main-panel -->
         </div>
     </div>
     <!-- end of page-container -->
 </div>
 </body>
+<script>
+    $(document).ready(function(){
+        
+    });
+    var activityHtml="";
+
+    function loadInfo() {
+        $.ajax({
+            url: '/work/activity',
+            data:{
+            },
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            type: 'GET',
+            success: function(result) {
+                if(result.success) {
+                   for (var i=0; i<result.data.length; i++){
+                        $("#activitiesList").after(activityHtml);
+                        $("#workUserName").text(result.data[i].workUserName);
+                        $("#workCreateTime").text(result.data[i].workCreateTime);
+                        $("#workInfo").text(result.data[i].workInfo);
+                        $("#workCreateTime1").text(result.data[i].workCreateTime);
+                        $("#commentUsername").text(result.data[i].commentUsername);
+                        $("#commentInfo").text(result.data[i].commentInfo);
+                        $("#commentTime").text(result.data[i].commentTime);
+                   }
+                }
+            },
+            error: function () {
+                alert("异常错误！")
+            }
+        });
+    }
+
+
+</script>
 </html>
