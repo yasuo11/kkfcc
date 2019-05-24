@@ -12,6 +12,7 @@ import com.xiuchu.kkfcc.vo.MenuVO;
 import com.xiuchu.kkfcc.vo.RecipeDetailVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import java.util.regex.Pattern;
 
 @Controller
+@EnableAutoConfiguration
 @RequestMapping("/menu")
 public class MenuController {
 

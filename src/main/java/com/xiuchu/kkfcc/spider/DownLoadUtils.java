@@ -1,17 +1,16 @@
-package com.xiuchu.kkfcc.util;
+package com.xiuchu.kkfcc.spider;
 
+import com.xiuchu.kkfcc.util.FTPUtil;
+import com.xiuchu.kkfcc.util.PropertiesUtil;
 import lombok.extern.slf4j.Slf4j;
-import us.codecraft.webmagic.Page;
-import us.codecraft.webmagic.ResultItems;
-import us.codecraft.webmagic.selector.PlainText;
+import org.apache.commons.net.ftp.FTPClient;
+import sun.net.ftp.FtpClient;
 
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -32,7 +31,7 @@ public class DownLoadUtils {
      * @throws Exception
      */
     private static ExecutorService executorService = Executors.newFixedThreadPool(5);
-    private static void download(String urlString, String savePath) throws Exception {
+    private static File download(String urlString, String savePath) throws Exception {
         // 构造URL
         URL url = new URL(urlString);
         // 打开连接
@@ -49,11 +48,11 @@ public class DownLoadUtils {
         // 读取到的数据长度
         int len;
         // 输出的文件流
-        File sf = new File(savePath);
+        File sf = new File(savePath, filename);
         if (!sf.exists()) {
-            sf.mkdirs();
+            sf.createNewFile();
         }
-        OutputStream os = new FileOutputStream(sf.getPath() + "/" + filename);
+        OutputStream os = new FileOutputStream(sf.getPath());
         // 开始读取
         while ((len = is.read(bs)) != -1) {
             os.write(bs, 0, len);
@@ -61,6 +60,7 @@ public class DownLoadUtils {
         // 完毕，关闭所有链接
         os.close();
         is.close();
+        return sf;
     }
 
 
@@ -78,49 +78,45 @@ public class DownLoadUtils {
     }
 
 
-    public static void download(ResultItems resultItems) {
-        String authorUrl = resultItems.get("authorImg").toString();
-        String recipeUrl = resultItems.get("recipeImg").toString();
-        List<String> stepUrls = resultItems.get("stepImage");
-
-        executorService.submit(() -> {
-            try {
-                download(authorUrl, "/Users/apple/img/author");
-            } catch (Exception e) {
-                log.warn(authorUrl + "的图片下载出现错误！" );
-                e.printStackTrace();
+    public static List<String> download(List<String> urlList) {
+        List<File> fileList = new ArrayList<>();
+        List<String> imgUrl = new ArrayList<>();
+        for(int i = 0; i < urlList.size(); i++) {
+            if(urlList.get(i) == null || urlList.get(i).equals("")) {
+                imgUrl.add("");
+                continue;
             }
-
-            log.info(authorUrl + "下载成功, 路径为:" + "/Users/apple/img/step/" + authorUrl);
-
-        });
-
-        executorService.submit(() -> {
+            String url = urlList.get(i);
+            File file;
             try {
-                download(recipeUrl, "/Users/apple/img/recipe");
+                file = download(url, "/Users/apple/img/");
             } catch (Exception e) {
-                log.warn(recipeUrl + "的图片下载出现错误！" );
+                log.warn(url + "的图片下载出现错误！" );
                 e.printStackTrace();
+                return null;
             }
-
-            log.info(recipeUrl + "下载成功, 保存路径为:" + "/Users/apple/img/step/" + recipeUrl);
-
-        });
-
-        for(String stepUrl : stepUrls) {
-            executorService.submit(() -> {
-                try {
-                    download(stepUrl, "/Users/apple/img/step");
-                } catch (Exception e) {
-                    log.warn(stepUrl + "的图片下载出现错误！" );
-                    e.printStackTrace();
-                }
-
-                log.info(stepUrl + "下载成功,保存 路径为:" + "/Users/apple/img/step/" + stepUrl);
-
-            });
+            log.info(url + "下载成功, 路径为:" + file.getAbsolutePath());
+            fileList.add(file);
+        }
+        try {
+            if(!FTPUtil.uploadFile(fileList))
+                log.error("上传ftp失败");
+        } catch (IOException e) {
+            log.error("上传ftp失败");
+            e.printStackTrace();
+            return null;
+        }
+        for(File file : fileList) {
+            String ftpUrl = PropertiesUtil.getProperty("ftp.server.http.prefix") + file.getName();
+            imgUrl.add(ftpUrl);
+            log.info("上传ftp成功，路径为：" + ftpUrl);
+            if(file.delete())
+                log.info("成功删除本地文件");
+            else
+                log.info("删除本地文件失败");
         }
 
+        return imgUrl;
     }
 
 

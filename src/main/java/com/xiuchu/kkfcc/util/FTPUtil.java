@@ -1,13 +1,17 @@
 package com.xiuchu.kkfcc.util;
 
+import com.xiuchu.kkfcc.mapper.KkfccUserMapper;
 import org.apache.commons.net.ftp.FTPClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
+
 
 
 public class FTPUtil {
@@ -17,7 +21,6 @@ public class FTPUtil {
     private static String ftpIp = PropertiesUtil.getProperty("ftp.server.ip");
     private static String ftpUser = PropertiesUtil.getProperty("ftp.user");
     private static String ftpPass = PropertiesUtil.getProperty("ftp.pass");
-
     public FTPUtil(String ip, int port, String user, String pwd) {
         this.ip = ip;
         this.port = port;
@@ -38,7 +41,7 @@ public class FTPUtil {
         boolean uploaded = true;
         FileInputStream fis = null;
         //连接FTP服务器
-        if (connectServer(this.ip, this.port, this.user, this.pwd)) {
+        if (connectServer()) {
             try {
                 ftpClient.changeWorkingDirectory(remotePath);
                 ftpClient.setBufferSize(1024);
@@ -63,13 +66,12 @@ public class FTPUtil {
     }
 
 
-    private boolean connectServer(String ip, int port, String user, String pwd) {
-
+    public static boolean connectServer() {
         boolean isSuccess = false;
         ftpClient = new FTPClient();
         try {
-            ftpClient.connect(ip);
-            isSuccess = ftpClient.login(user, pwd);
+            ftpClient.connect(ftpIp);
+            isSuccess = ftpClient.login(ftpUser, ftpPass);
         } catch (IOException e) {
             logger.error("连接FTP服务器异常", e);
         }
@@ -81,7 +83,7 @@ public class FTPUtil {
     private int port;
     private String user;
     private String pwd;
-    private FTPClient ftpClient;
+    public static FTPClient ftpClient;
 
     public String getIp() {
         return ip;

@@ -1,6 +1,9 @@
-package com.xiuchu.kkfcc.util;
+package com.xiuchu.kkfcc.spider;
 
+import com.xiuchu.kkfcc.KkfccApplication;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -62,25 +65,25 @@ public class XiuchuProcessor implements PageProcessor {
 
         else if(page.getUrl().regex(URL_RECIPE).match()) {
 
-            page.putField("authorName", page.getHtml().xpath("//span[@itemprop=\"name\"]/text()"));
-            page.putField("authorImg", page.getHtml().xpath("//a[@class=\"avatar-link avatar\"]//img/@src"));
-            page.putField("recipeImg", page.getHtml().xpath("//div[@class=\"cover image expandable block-negative-margin\"]//img/@src"));
-            page.putField("description", page.getHtml().xpath("//div[@itemprop=\"description\"]/text()"));
+            page.putField("authorName", page.getHtml().xpath("//span[@itemprop=\"name\"]/text()").toString());
+            page.putField("authorImg", page.getHtml().xpath("//a[@class=\"avatar-link avatar\"]//img/@src").toString());
+            page.putField("recipeImg", page.getHtml().xpath("//div[@class=\"cover image expandable block-negative-margin\"]//img/@src").toString());
+            page.putField("description", page.getHtml().xpath("//div[@itemprop=\"description\"]/text()").toString());
             page.putField("ingredient", page.getHtml().xpath("//td[@class=\"name\"]/a/text()").all());
             page.putField("unit", page.getHtml().xpath("//td[@class=\"unit\"]/text()").all());
             page.putField("stepIntroduction", page.getHtml().xpath("//li[@class=\"container\"]/p/text()").all());
             page.putField("stepImage", page.getHtml().xpath("//li[@class=\"container\"]/img/@src").all());
-            page.putField("tip", page.getHtml().xpath("//div[@class=\"tip\"]/text()"));
+            page.putField("tip", page.getHtml().xpath("//div[@class=\"tip\"]/text()").toString());
 
 
             String[] ids = pattern.split(page.getUrl().toString());
             if(ids.length > 1) {
                 String recipeName = page.getHtml().xpath("//h1[@class=\"page-title\"]/text()").toString();
+                page.putField("recipeName", recipeName);
                 if(!recipeMap.containsKey(ids[1])) {
                     recipeMap.put(ids[1], recipeName.trim());
-//                    DownLoadUtils.download(page.getResultItems());
                     // TODO
-                    // MysqlUtil.story(page);
+                     DBUtil.story(page.getResultItems());
                 }
             }
 
@@ -113,6 +116,8 @@ public class XiuchuProcessor implements PageProcessor {
     }
 
     public static void main(String[] args) {
+        ApplicationContext run = SpringApplication.run(KkfccApplication.class, args);
+        SpringApplicationContextUtil.setApplicationContext(run);
 
         XiuchuProcessor xiuchuSipder = new XiuchuProcessor();
         Spider.create(xiuchuSipder).addUrl("http://www.xiachufang.com/category/")

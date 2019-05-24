@@ -15,6 +15,7 @@ import com.xiuchu.kkfcc.vo.RecipeDetailVO;
 import com.xiuchu.kkfcc.vo.RecipeSimpleVO;
 import com.xiuchu.kkfcc.vo.RecipeVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
+@EnableAutoConfiguration
 @RequestMapping("/recipe")
 public class RecipeController {
 

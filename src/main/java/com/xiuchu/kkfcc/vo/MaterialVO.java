@@ -3,7 +3,7 @@ package com.xiuchu.kkfcc.vo;
 import com.xiuchu.kkfcc.pojo.KkfccMaterial;
 
 
-public class MaterialVO {
+public class MaterialVO implements java.io.Serializable{
 
     private String name;
 

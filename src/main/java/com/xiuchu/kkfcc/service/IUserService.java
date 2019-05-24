@@ -26,4 +26,5 @@ public interface IUserService {
     ServerResponse<UserVO> basic(HttpServletRequest request, KkfccUser user);
 
     KkfccUser getCurUser(HttpServletRequest request);
+
 }

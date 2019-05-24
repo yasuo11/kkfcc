@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +79,8 @@ public class IRecipeServiceImpl implements IRecipeService {
         user.setId(cbook.getUserId());
         KkfccUser curUser = userMapper.selectOne(user);
         cbook.setImage(cbook.getImage());
-
+        cbook.setName(cbook.getName());
+        cbook.setIntroduction(cbook.getIntroduction());
         RecipeDetailVO recipeDetailVO = new RecipeDetailVO();
         recipeDetailVO.setRecipe(cbook);
         if(curUser.getNickName() == null)
