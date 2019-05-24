@@ -1,6 +1,6 @@
 infoHtml = "<div class=\"user-info\">\n" +
     "                    <div class=\"avatar\">\n" +
-    "                    <a href=\"#\" class=\"image-link\"><img src=\"\" alt=\"测试_001的厨房\" width=\"100\" height=\"60\" id='bphoto'></a>\n" +
+    "                    <a class=\"image-link\"><img src=\"\" width=\"100\" height=\"60\" id='bphoto'></a>\n" +
     "                    </div>\n" +
     "                    <div class=\"name\">\n" +
     "                    <a href=\"/user_pur\" id='userName'>/a>\n" +
@@ -18,7 +18,7 @@ infoHtml = "<div class=\"user-info\">\n" +
     "                    <a href=\"/create_recipe\" class=\"button\">创建菜谱</a>\n" +
     "                    </div>\n" +
     "                    <div class=\"report-link\">\n" +
-    "                    <a href=\"#\" rel=\"nofollow\" target=\"_blank\">网上不良信息举报专区</a>\n" +
+    "                    <a rel=\"nofollow\" target=\"_blank\">网上不良信息举报专区</a>\n" +
     "                    </div>\n" +
     "                    </div>";
 
