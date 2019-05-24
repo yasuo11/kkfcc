@@ -15,7 +15,7 @@ public class Userkitchen {
     IUserService iUserService;
 
     @RequestMapping("/{id}")
-    public String showKitchen(@PathVariable("id") String id, Model model){
+    public String showKitchen(@PathVariable("id") Integer id, Model model){
         KkfccUser user=new KkfccUser();
         user.setId(id);
         user = iUserService.findUser(user);
