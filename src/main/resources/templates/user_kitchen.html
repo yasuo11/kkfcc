@@ -4,8 +4,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>用户厨房 - 秀厨</title>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/amazeui.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="../css/main.css"/>
-		<link rel="stylesheet" type="text/css" href="../css/user_kitchen.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/user_kitchen.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/amazeui.min.css"/>
         <style>
             .moren{
 
@@ -103,13 +106,38 @@
         		</div>
         		<div class="fr">
 					<a href="/user/userPhoto.do"><div class="guanzhu2">我的信息</div></a>
-					<div class="guanzhuderen">
-						<div class="x y">
-							<span>关注的人</span><br><a href="#"><span>256</span></a>
-						</div>
-						<div class="x">
-							<span>被关注</span><br><a href="#"><span>775</span></a>
-						</div>
+					<div class="guanzhuderen" style="background:white;">
+						<!--<div class="x y">-->
+							<!--<span>关注的人</span><br><a href="#"><span>256</span></a>-->
+						<!--</div>-->
+						<!--<div class="x">-->
+							<!--<span>被关注</span><br><a href="#"><span>775</span></a>-->
+						<!--</div>-->
+                        <button
+                                type="button"
+                                class="am-btn am-btn-primary"
+                                data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 400, height: 225}">
+                            好友
+                        </button>
+                        <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+                            <div class="am-modal-dialog">
+                                <div class="am-modal-hd">好友列表</div>
+                                <div class="am-modal-bd">
+                                    <table class="am-table am-table-striped am-table-hover">
+                                        <tr>
+                                            <td>开心的麻花</td>
+                                        </tr>
+                                        <tr>
+                                            <td>疾风剑豪</td>
+                                        </tr>
+                                        <tr>
+                                            <td>秋天不回来</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--弹出窗口结束-->
 					</div>
         		</div>
         	</div>
