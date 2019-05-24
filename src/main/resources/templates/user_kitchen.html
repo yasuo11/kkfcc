@@ -125,13 +125,13 @@
                                 <div class="am-modal-bd">
                                     <table class="am-table am-table-striped am-table-hover">
                                         <tr>
-                                            <td>开心的麻花</td>
+                                            <td><a href="/userkitchen/314">开心的麻花</a></td>
                                         </tr>
                                         <tr>
-                                            <td>疾风剑豪</td>
+                                            <td><a href="/userkitchen/316">疾风剑豪</a></td>
                                         </tr>
                                         <tr>
-                                            <td>秋天不回来</td>
+                                            <td><a href="/userkitchen/318">秋天不回来</a></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -156,10 +156,10 @@
             <div class="userprod clearfix">
             	<div class="userproduction" th:each="work,infoStat : ${works}">
             		<div class="cover">
-            			<img th:src="${work.image}"/>
+            			<img th:src="${work.image}" style="width: 215px;height: 136px"/>
             			<a th:href="/work/details?workUserId=${work.userId}&recipeId=${work.cbookId}" class="active"></a>
             		</div>
-                    <p class="name">优秀的作品</p>
+                    <p class="name"><a th:href="/work/details/workUserId=${work.userId}&recipeId=${work.cbookId}">优秀的作品</a></p>
         			<p th:text="${work.workInfo}"></p>
         			<div class="stars">
         				<span th:text="${work.createTime}"></span>
@@ -174,9 +174,9 @@
             <div class="userprod clearfix">
                 <div class="userproduction" th:each="recipe,infoStat : ${recipes}">
                     <div class="cover">
-                        <img th:src="${recipe.image}"/>
+                        <img th:src="${recipe.image}" style="width: 215px;height: 136px"/>
                     </div>
-                    <p class="name"><span th:text="${recipe.name}"></span></p>
+                    <p class="name"><a th:href="/recipe/${recipe.id}"><span th:text="${recipe.name}"></span></a></p>
                     <div class="stars"><span th:text="${infoStat.size}"></span> 做过|<a><span th:text="${user.nickName}"></span></a></div>
                 </div>
             </div>
@@ -193,9 +193,9 @@
             <div class="userprod clearfix" >
                 <div class="userproduction" th:each="recipe,infoStat : ${recipes}">
                     <div class="cover">
-                        <img th:src="${recipe.image}"/>
+                        <img th:src="${recipe.image}" style="width: 215px;height: 136px"/>
                     </div>
-                    <p class="name"><span th:text="${recipe.name}"></span></p>
+                    <p class="name"><a th:href="/recipe/${recipe.id}"><span th:text="${recipe.name}"></span></a></p>
                     <div class="stars"><span th:text="${infoStat.size}"></span> 做过|<a href=""><span th:text="${user.nickName}"></span></a></div>
                 </div>
             </div>
@@ -214,10 +214,10 @@
             <div class="userprod clearfix" >
                 <div class="userproduction" th:each="work,infoStat : ${works}">
                     <div class="cover">
-                        <img th:src="${work.image}"/>
+                        <img th:src="${work.image}" style="width: 215px;height: 136px"/>
                         <a href="/work/details?workUserId=${work.userId}&recipeId=${work.cbookId}" class="active"></a>
                     </div>
-                    <p class="name">优秀的作品</p>
+                    <p class="name"><a th:href="/work/details/workUserId=${work.userId}&recipeId=${work.cbookId}">优秀的作品</a></p>
                     <p th:text="${work.workInfo}"></p>
                     <div class="stars">
                         <span th:text="${work.createTime}"></span>
@@ -234,6 +234,7 @@
         		<a href="">
                 <span class="moren" th:text="${user.nickName}"></span>建的菜单
                 </a>
+
                 <a href="/create_menu" class="fr">+ 创建一个菜单</a>
                 <a th:href="/menu/${menu.id}" th:each="menu,infoStat : ${menus}">
                     <br/>

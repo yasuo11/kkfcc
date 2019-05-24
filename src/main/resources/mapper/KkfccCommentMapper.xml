@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiuchu.kkfcc.mapper.KkfccCommentMapper">
+  <resultMap id="BaseResultMap" type="com.xiuchu.kkfcc.pojo.KkfccComment">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="work_id" jdbcType="INTEGER" property="workId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="message" jdbcType="LONGVARCHAR" property="message" />
+  </resultMap>
+</mapper>
