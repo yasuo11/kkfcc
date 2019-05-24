@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/userkitchen")
-public class Userkitchen {
+public class UserkitchenController {
     @Autowired
     IUserService iUserService;
 

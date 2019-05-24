@@ -24,8 +24,7 @@ public class IWorkServiceImpl implements IWorkService {
     KkfccCommentMapper kkfccCommentMapper;
     @Autowired
     KkfccUserMapper kkfccUserMapper;
-    @Autowired
-    KkfccCommentMapper kkfccCommentMapper;
+
     @Override
     public void workUpload(WorkVO vo) {
         KkfccWorks works=new KkfccWorks();
