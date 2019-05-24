@@ -3,7 +3,7 @@ infoHtml = "<div class=\"user-info\">\n" +
     "                    <a class=\"image-link\"><img src=\"\" width=\"100\" height=\"60\" id='bphoto'></a>\n" +
     "                    </div>\n" +
     "                    <div class=\"name\">\n" +
-    "                    <a href=\"/user_pur\" id='userName'>/a>\n" +
+    "                    <a  id='userName'>/a>\n" +
     "                    </div>\n" +
     "                    <div class=\"stats\">\n" +
     "                    <span id='recipe_collects'>0</span> 菜谱收藏\n" +
