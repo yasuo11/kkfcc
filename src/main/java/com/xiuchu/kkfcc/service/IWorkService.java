@@ -15,4 +15,5 @@ public interface IWorkService {
     public List<otherWorkVO> getOthersWork(Integer recipeId);
     public KkfccWorks getUserWorkDetail(Integer userId, Integer recipeId);
     List<ActivityVO> getActivityDetails();
+    List<KkfccWorks> getAllWorks(Integer userId);
 }

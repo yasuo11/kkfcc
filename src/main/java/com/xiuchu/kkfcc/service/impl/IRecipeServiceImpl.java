@@ -132,5 +132,10 @@ public class IRecipeServiceImpl implements IRecipeService {
         return ServerResponse.createBySuccess();
     }
 
-
+    @Override
+    public List<KkfccCbook> getAllRecipes(Integer userId) {
+        KkfccCbook temp = new KkfccCbook();
+        temp.setUserId(userId);
+        return cbookMapper.select(temp);
+    }
 }

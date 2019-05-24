@@ -6,6 +6,8 @@ import com.xiuchu.kkfcc.pojo.KkfccMenu;
 import com.xiuchu.kkfcc.pojo.KkfccUser;
 import com.xiuchu.kkfcc.vo.MenuVO;
 
+import java.util.List;
+
 
 public interface IMenuService {
 
@@ -23,4 +25,7 @@ public interface IMenuService {
 
     MenuVO queryDetailMenu(Integer id);
 
+    List<KkfccMenu> getAllMenus(Integer UserId);
+
+    KkfccMenu getOneMenu(Integer UseId);
 }

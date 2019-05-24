@@ -6,6 +6,18 @@
 		<title>用户厨房 - 秀厨</title>
 		<link rel="stylesheet" type="text/css" href="../css/main.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/user_kitchen.css"/>
+        <style>
+            .moren{
+
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font-size: 100%;
+                font: inherit;
+                vertical-align: baseline;
+
+            }
+        </style>
 	</head>
 	<body>
 		<div class="header">
@@ -81,7 +93,7 @@
 
 		<div class="conwidth">
         	<div class="jianjie">
-        		<img src="img/userkitchen/23eb09780a1d11e7947d0242ac110002_720w_720h_002.jpg" class="img"/>
+        		<img th:src="${user.image}" class="img"/>
         		<div class="fl">
                     <h2><span th:text="${user.nickName}"></span>的厨房</h2>
                         <span th:text="${user.sex}?'女':'男'"></span>
@@ -106,105 +118,118 @@
 
         <div class="conwidth survey">
         	<div class="navigation">
-        		<span class="teshu bqgaikuang"><a href="#">概况</a></span><span class="bqcaipu"><a href="#">菜谱 2</a></span><span class="bqzuopin"><a href="#">作品 1564</a></span><span class="bqcaidan"><a href="#">菜单</a></span><span class="bqshoucang"><a href="#">收藏</a></span><span class="bqliuyanban"><a href="#">留言板</a></span>
-        	</div>
+        		<span class="teshu bqgaikuang"><a href="#">概况</a></span><span class="bqcaipu"><a href="#">菜谱</a></span><span class="bqzuopin"><a href="#">作品</a></span><span class="bqcaidan"><a href="#">菜单</a></span><span class="bqshoucang"><a href="#">收藏</a></span>
+            </div>
 
         	<div class="fubiaoti2 clearfix">
-        		<h2>hasaki的作品</h2><span>（<a href="#">查看全部 1564 作品</a>）</span>
+        		<h2><span class="moren" th:text="${user.nickName}"></span>的作品</h2>
         	</div>
         	<div class="kh20"></div>
             <div class="userprod clearfix">
-            	<div class="userproduction">
+            	<div class="userproduction" th:each="work,infoStat : ${works}">
             		<div class="cover">
-            			<img src="img/userkitchen/userproduction/ahahah.jpg"/>
-            			<a href="#" class="active" title="那些美丽的食材"></a>
+            			<img th:src="${work.image}"/>
+            			<a href="/work/details?workUserId=${work.userId}&recipeId=${work.cbookId}" class="active"></a>
             		</div>
-                    <p class="name">“只要E的足够的快”</p>
-        			<p>#午餐•2017年4月13日##春天就酱吃# 亲爱的@魏氏黄小芽 3张图！可喜欢？ 图3是今天终于买到我心心念念
-        				的生咸鸭蛋啦！ 话说这... </p>
+                    <p class="name">优秀的作品</p>
+        			<p th:text="${work.workInfo}"></p>
         			<div class="stars">
-        				<span class="a">1小时前</span>
-                    	<span class="b">62</span>
-                    	<span class="c">9</span>
+        				<span th:text="${work.createTime}"></span>
         			</div>
             	</div>
 			</div>
             <div class="kh30"></div>
 
 			<div class="fubiaoti2 clearfix">
-        		<h2>秦了了的菜谱</h2><span>（<a href="#">查看全部25菜谱</a>）</span>
+        		<h2><span class="moren" th:text="${user.nickName}"></span>的菜谱</h2><span>
         	</div>
-			<div class="userproduction">
-                <div class="cover">
-                    <img src="img/userkitchen/7718a1062ad811e7bc9d0242ac110002_1280w_1024h.jpg"/>
+            <div class="userprod clearfix">
+                <div class="userproduction" th:each="recipe,infoStat : ${recipes}">
+                    <div class="cover">
+                        <img th:src="${recipe.image}"/>
+                    </div>
+                    <p class="name"><span th:text="${recipe.name}"></span></p>
+                    <div class="stars"><span th:text="${infoStat.size}"></span> 做过|<a href=""><span th:text="${user.nickName}"></span></a></div>
                 </div>
-                <p class="name"><span>粥煲蛋</span></p>
-                <div class="stars">34 做过 93 收藏 | <a href="">Sunrise太阳</a></div>
             </div>
         </div>
         <!--===================================================================================================-->
 		<div class="conwidth bigmenu clearfix">
 			<div class="navigation">
-        		<span class="bqgaikuang"><a href="#">概况</a></span><span class="teshu bqcaipu"><a href="#">菜谱 2</a></span><span class="bqzuopin"><a href="#">作品 1564</a></span><span class="bqcaidan"><a href="#">菜单</a></span><span class="bqshoucang"><a href="#">收藏</a></span><span class="bqliuyanban"><a href="#">留言板</a></span>
+        		<span class="bqgaikuang"><a href="#">概况</a></span><span class="teshu bqcaipu"><a href="#">菜谱</a></span><span class="bqzuopin"><a href="#">作品</a></span><span class="bqcaidan"><a href="#">菜单</a></span><span class="bqshoucang"><a href="#">收藏</a></span>
         	</div>
 
-			<div class="fubiaoti2 clearfix">
-        		<h2>秦了了的菜谱</h2><span>（<a href="#">查看全部25菜谱</a>）</span>
-        	</div>
-			<div class="userproduction">
-                <div class="cover">
-                    <img src="img/userkitchen/7718a1062ad811e7bc9d0242ac110002_1280w_1024h.jpg"/>
+            <div class="fubiaoti2 clearfix">
+                <h2><span th:text="${user.nickName}"></span>的菜谱</h2><span>
+            </div>
+            <div class="userprod clearfix" >
+                <div class="userproduction" th:each="recipe,infoStat : ${recipes}">
+                    <div class="cover">
+                        <img th:src="${recipe.image}"/>
+                    </div>
+                    <p class="name"><span th:text="${recipe.name}"></span></p>
+                    <div class="stars"><span th:text="${infoStat.size}"></span> 做过|<a href=""><span th:text="${user.nickName}"></span></a></div>
                 </div>
-                <p class="name"><span>粥煲蛋</span></p>
-                <div class="stars">34 做过 93 收藏 | <a href="">Sunrise太阳</a></div>
             </div>
        </div>
 
         <!--===================================================================================================-->
         <div class="conwidth works clearfix">
         	<div class="navigation">
-        		<span class="bqgaikuang"><a href="#">概况</a></span><span class="bqcaipu"><a href="#">菜谱 2</a></span><span class="teshu bqzuopin"><a href="#">作品 1564</a></span><span class="bqcaidan"><a href="#">菜单</a></span><span class="bqshoucang"><a href="#">收藏</a></span><span class="bqliuyanban"><a href="#">留言板</a></span>
+        		<span class="bqgaikuang"><a href="#">概况</a></span><span class="bqcaipu"><a href="#">菜谱</a></span><span class="teshu bqzuopin"><a href="#">作品</a></span><span class="bqcaidan"><a href="#">菜单</a></span><span class="bqshoucang"><a href="#">收藏</a></span>
         	</div>
 
-        	<div class="fubiaoti2 clearfix">
-        		<h2>秦了了的作品</h2><span>（<a href="#">查看全部 1564 作品</a>）</span>
-        	</div>
-        	<div class="kh20"></div>
-            <div class="userprod clearfix">
-            	<div class="userproduction">
-            		<div class="cover">
-            			<img src="img/userkitchen/userproduction/9f0ee468201f11e7bc9d0242ac110002_2000w_2000h.jpg"/>
-            			<a href="#" class="active" title="那些美丽的食材"></a>
-            		</div>
-                    <p class="name">那些美丽的食材</p>
-        			<p>#午餐•2017年4月13日##春天就酱吃# 亲爱的@魏氏黄小芽 3张图！可喜欢？ 图3是今天终于买到我心心念念
-        				的生咸鸭蛋啦！ 话说这... </p>
-        			<div class="stars">
-        				<span class="a">1小时前</span>
-                    	<span class="b">62</span>
-                    	<span class="c">9</span>
-        			</div>
-            	</div>
-			</div>
+            <div class="fubiaoti2 clearfix">
+                <h2><span th:text="${user.nickName}"></span>的作品</h2>
+            </div>
+            <div class="kh20"></div>
+            <div class="userprod clearfix" >
+                <div class="userproduction" th:each="work,infoStat : ${works}">
+                    <div class="cover">
+                        <img th:src="${work.image}"/>
+                        <a href="/work/details?workUserId=${work.userId}&recipeId=${work.cbookId}" class="active"></a>
+                    </div>
+                    <p class="name">优秀的作品</p>
+                    <p th:text="${work.workInfo}"></p>
+                    <div class="stars">
+                        <span th:text="${work.createTime}"></span>
+                    </div>
+                </div>
+            </div>
         </div>
         <!--===================================================================================================-->
         <div class="conwidth bigmenus clearfix">
         	<div class="navigation">
-        		<span class="bqgaikuang"><a href="#">概况</a></span><span class="bqcaipu"><a href="#">菜谱 2</a></span><span class="bqzuopin"><a href="#">作品 1564</a></span><span class="teshu bqcaidan"><a href="#">菜单</a></span><span class="bqshoucang"><a href="#">收藏</a></span>
+        		<span class="bqgaikuang"><a href="#">概况</a></span><span class="bqcaipu"><a href="#">菜谱</a></span><span class="bqzuopin"><a href="#">作品</a></span><span class="teshu bqcaidan"><a href="#">菜单</a></span><span class="bqshoucang"><a href="#">收藏</a></span>
         	</div>
         	<div class="messager">
-        		<a href=""> Sunrise太阳创建的菜单</a><span> | </span><a href="">Sunrise太阳收藏的菜单</a><a href="" class="fr">+ 创建一个菜单</a>
+        		<a href="">
+                <span class="moren" th:text="${user.nickName}"></span>建的菜单
+                </a>
+                <a href="/menu/create_menu" class="fr">+ 创建一个菜单</a>
+                <a href="" th:each="menu,infoStat : ${menus}">
+                    <br/>
+                    <span class="moren" th:text="${menu.title}"></span>
+                    &nbsp;&nbsp;（<span class="moren" th:text="${menu.introduction}"></span>）
+                </a>
         	</div>
         </div>
         <!--===================================================================================================-->
-        <!--<div class="conwidth collect clearfix">-->
-        	<!--<div class="navigation">-->
-        		<!--<span class="bqgaikuang"><a href="#">概况</a></span><span class="bqcaipu"><a href="#">菜谱 2</a></span><span class="bqzuopin"><a href="#">作品 1564</a></span><span class="bqcaidan"><a href="#">菜单</a></span><span class="teshu bqshoucang"><a href="#">收藏</a></span>&lt;!&ndash;<span class="bqliuyanban"><a href="#">留言板</a></span>&ndash;&gt;-->
-        	<!--</div>-->
-        	<!--<div class="messager">-->
-        		<!--<a href=""> Sunrise太阳创建的菜单</a><span> | </span><a href="">Sunrise太阳收藏的菜单</a><a href="" class="fr">+ 创建一个菜单</a>-->
-        	<!--</div>-->
-        <!--</div>-->
+        <div class="conwidth collect clearfix">
+        	<div class="navigation">
+        		<span class="bqgaikuang"><a href="#">概况</a></span><span class="bqcaipu"><a href="#">菜谱</a></span><span class="bqzuopin"><a href="#">作品</a></span><span class="bqcaidan"><a href="#">菜单</a></span><span class="teshu bqshoucang"><a href="#">收藏</a></span><!--<span class="bqliuyanban"><a href="#">留言板</a></span>-->
+        	</div>
+        	<div class="messager">
+                <a>
+                    <span class="moren" th:text="${user.nickName}"></span>收藏的菜单
+                </a>
+                <a href="" th:each="mCollect,infoStat : ${mCollects}">
+                    <br/>
+                    <span class="moren" th:text="${mCollect.title}"></span>
+                    &nbsp;&nbsp;（<span class="moren" th:text="${mCollect.introduction}"></span>）
+                </a>
+        	</div>
+        </div>
         <!--===================================================================================================-->
 		<!--<div class="conwidth message_board clearfix">-->
 			<!--<div class="navigation">-->

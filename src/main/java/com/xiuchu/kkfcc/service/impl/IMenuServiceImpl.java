@@ -115,6 +115,20 @@ public class IMenuServiceImpl implements IMenuService {
         return menuVO;
     }
 
+    @Override
+    public List<KkfccMenu> getAllMenus(Integer UserId) {
+        KkfccMenu temp = new KkfccMenu();
+        temp.setUserId(UserId);
+        return menuMapper.select(temp);
+    }
+
+    @Override
+    public KkfccMenu getOneMenu(Integer UseId) {
+        KkfccMenu temp = new KkfccMenu();
+        temp.setUserId(UseId);
+        return menuMapper.selectOne(temp);
+    }
+
     public void deleteRecipeFromMenu(Integer menuId, Integer recipeId) {
         KkfccMenuCbook menuCbook = new KkfccMenuCbook();
         menuCbook.setMenuId(menuId);

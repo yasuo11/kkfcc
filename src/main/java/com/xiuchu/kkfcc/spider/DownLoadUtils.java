@@ -89,7 +89,7 @@ public class DownLoadUtils {
             String url = urlList.get(i);
             File file;
             try {
-                file = download(url, "/Users/apple/img/");
+                file = download(url, "D://picture");
             } catch (Exception e) {
                 log.warn(url + "的图片下载出现错误！" );
                 e.printStackTrace();
