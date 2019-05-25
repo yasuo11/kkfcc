@@ -77,7 +77,7 @@
                         </div>
                     </li>
                     <li><a href="/popular_menu">菜单</a></li>
-                    <li><a href="">作品动态</a></li>
+                    <li><a href="/activity">作品动态</a></li>
                 </ul>
 				<div class="dengluzhuce fr">
 
@@ -232,7 +232,7 @@
                 <div class="userproduction" th:each="work,infoStat : ${works}">
                     <div class="cover">
                         <img th:src="${work.image}" style="width: 215px;height: 136px"/>
-                        <a th:href="'/work/details?workUserId='+${work.userId}+'&recipeId='${work.cbookId}" class="active"></a>
+                        <a th:href="'/work/details?workUserId='+${work.userId}+'&recipeId='+${work.cbookId}" class="active"></a>
                     </div>
                     <p class="name"><a th:href="'/work/details?workUserId='+${work.userId}+'&recipeId=${work.cbookId}'">优秀的作品</a></p>
                     <p th:text="${work.workInfo}"></p>
@@ -253,7 +253,7 @@
                 </a>
 
                 <a href="/create_menu" class="fr">+ 创建一个菜单</a>
-                <a th:href="/menu/${menu.id}" th:each="menu,infoStat : ${menus}">
+                <a th:href="'/menu/'+${menu.id}" th:each="menu,infoStat : ${menus}">
                     <br/>
                     <span class="moren" th:text="${menu.title}"></span>
                     &nbsp;&nbsp;（<span class="moren" th:text="${menu.introduction}"></span>）
@@ -269,7 +269,7 @@
                 <a>
                     <span class="moren" th:text="${user.nickName}"></span>收藏的菜单
                 </a>
-                <a th:href="/menu/${menu.id}" th:each="mCollect,infoStat : ${mCollects}">
+                <a th:href="'/menu/'+${menu.id}" th:each="mCollect,infoStat : ${mCollects}">
                     <br/>
                     <span class="moren" th:text="${mCollect.title}"></span>
                     &nbsp;&nbsp;（<span class="moren" th:text="${mCollect.introduction}"></span>）
@@ -311,7 +311,7 @@
             <li><a href="#">美食生活杂志</a></li>
             <li><a href="#">厨房工作</a></li>
             <li><a href="#">社区指导原则</a></li>
-            <li><a href="#">美拾出版的书</a></li>
+            <li><a href="#">秀厨出版的书</a></li>
             <li><a href="#">帮助中心</a></li>
             <li><a href="#">联系我们</a></li>
             <li><a href="#">意见反馈</a></li>

@@ -39,13 +39,7 @@ public class WorkController {
     @Autowired
     IWorkService iWorkService;
 
-    /**
-     * @Author wangxu
-     * @Description 
-     * @Date 15:33 2019/5/22
-     * @Param [recipeId, recipeName, model]
-     * @return java.lang.String
-     **/
+
     @RequestMapping("/jump")
     public String uploadWork(Integer recipeId, String recipeName, Model model){
         model.addAttribute("recipeId", recipeId);
@@ -56,7 +50,6 @@ public class WorkController {
 
     //
     @RequestMapping("/up")
-    @ResponseBody
     public String uploadWork(@RequestBody FormVO formVO, HttpServletRequest request){
         String sessonId = CookieUtil.readLoginToken(request);
         String userString = RedisPoolUtil.get(sessonId);
@@ -70,19 +63,30 @@ public class WorkController {
         vo.setRecipeInfo(formVO.getWorkInfo());
         vo.setUserId(user.getId());
         iWorkService.workUpload(vo);
-        return "forward:/activity";
+        return "redirect:/index";
     }
 
     //单张图片上传
-    @ResponseBody
     @RequestMapping("/upphoto")
-    public ServerResponse<String> uploadImg(HttpServletRequest request, @RequestParam(value = "file",required = true)MultipartFile file){
+    public String uploadImg(HttpServletRequest request, @RequestParam(value = "file",required = false)MultipartFile file, @RequestParam(value = "desc")String desc, @RequestParam(value = "recipeId")Integer recipeId){
         if(file == null)
-            return ServerResponse.createBySuccess();
+            return "redirect:/index";
         String path = request.getSession().getServletContext().getRealPath("upload");
         String targetFileName = iFileService.upload(file, path);
         String imgUrl = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
-        return ServerResponse.createBySuccess(imgUrl);
+        String sessonId = CookieUtil.readLoginToken(request);
+        String userString = RedisPoolUtil.get(sessonId);
+        KkfccUser user = JsonUtil.string2Obj(userString, KkfccUser.class);
+        WorkVO vo=new WorkVO();
+        Date date=new Date();
+        Timestamp timestamp = new Timestamp(date.getTime());    //获取创建时间
+        vo.setImageUrl(imgUrl);
+        vo.setRecipeId(recipeId);
+        vo.setRecipeInfo(desc);
+        vo.setUserId(user.getId());
+        vo.setCreateTime(timestamp);
+        iWorkService.workUpload(vo);
+        return "redirect:/index";
     }
 
     //作品动态
