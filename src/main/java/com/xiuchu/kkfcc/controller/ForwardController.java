@@ -29,6 +29,26 @@ public class ForwardController {
         return "popular_menu";
     }
 
+    @RequestMapping("popular_menu1")
+    public String popularMenu1() {
+        return "popular_menu1";
+    }
+
+    @RequestMapping("popular_menu2")
+    public String popularMenu2() {
+        return "popular_menu2";
+    }
+
+    @RequestMapping("popular_menu3")
+    public String popularMenu3() {
+        return "popular_menu3";
+    }
+
+    @RequestMapping("popular_menu4")
+    public String popularMenu4() {
+        return "popular_menu4";
+    }
+
     @RequestMapping("menu_book")
     public String menuBook(){return "menu_book";}
 
