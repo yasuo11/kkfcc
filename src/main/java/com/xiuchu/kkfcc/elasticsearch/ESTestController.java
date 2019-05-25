@@ -1,6 +1,10 @@
 package com.xiuchu.kkfcc.elasticsearch;
 
 import com.alibaba.fastjson.JSONObject;
+import com.xiuchu.kkfcc.mapper.KkfccCbookMapper;
+import com.xiuchu.kkfcc.mapper.KkfccUserMapper;
+import com.xiuchu.kkfcc.pojo.KkfccCbook;
+import com.xiuchu.kkfcc.pojo.KkfccUser;
 import com.xiuchu.kkfcc.util.JsonUtil;
 import com.xiuchu.kkfcc.vo.MaterialVO;
 import org.apache.commons.lang3.StringUtils;
@@ -8,6 +12,7 @@ import org.apache.http.client.utils.DateUtils;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +35,12 @@ public class ESTestController {
      * 类型
      */
     private String esType="info";
+
+    @Autowired
+    KkfccUserMapper userMapper;
+
+    @Autowired
+    KkfccCbookMapper cbookMapper;
 
     /**
      * http://127.0.0.1:8080/es/createIndex
@@ -56,24 +67,15 @@ public class ESTestController {
      */
     @RequestMapping("/insertJson")
     @ResponseBody
-    public String insertJson() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", UUID.randomUUID());
-        jsonObject.put("authorName", "zed");
-        jsonObject.put("recipeName", "小炒牛肉");
-        jsonObject.put("createTime", new Date());
-        List<MaterialVO> materialVOList = new ArrayList<>();
-        MaterialVO materialVO1 = new MaterialVO();
-        MaterialVO materialVO2 = new MaterialVO();
-        materialVO1.setName("牛肉");
-        materialVO1.setUsage("10克");
-        materialVO2.setName("鸡肉");
-        materialVO2.setUsage("20克");
-        materialVOList.add(materialVO1);
-        materialVOList.add(materialVO2);
-        jsonObject.put("material", JsonUtil.obj2String(materialVOList));
-        String id = ElasticsearchUtil.addData(jsonObject, indexName, esType, jsonObject.getString("id"));
-        return id;
+    public List<KkfccCbook> insertJson() {
+        List<KkfccCbook> cbooks = cbookMapper.selectAll();
+        for(KkfccCbook cbook : cbooks) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("id", cbook.getId());
+            jsonObject.put("recipeName", cbook.getName());
+            System.out.println(ElasticsearchUtil.addData(jsonObject, indexName, esType, jsonObject.getString("id")));
+        }
+        return cbooks;
     }
 
 //    /**
@@ -193,19 +195,19 @@ public class ESTestController {
         return JSONObject.toJSONString(list);
     }
 
-    /**
-     * 查询数字范围数据
-     * @return
-     */
-    @RequestMapping("/queryIntRangeData")
-    @ResponseBody
-    public EsPage queryIntRangeData() {
-        BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
-        boolQuery.must(QueryBuilders.rangeQuery("age").from(21)
-                .to(40));
-        QueryBuilder queryBuilder = QueryBuilders.multiMatchQuery("牛肉", "recipeName", "material");
-        return ElasticsearchUtil.search(queryBuilder, indexName, esType, 0, 10, "recipeName");
-    }
+//    /**
+//     * 查询数字范围数据
+//     * @return
+//     */
+//    @RequestMapping("/queryIntRangeData")
+//    @ResponseBody
+//    public EsPage queryIntRangeData() {
+//        BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+//        boolQuery.must(QueryBuilders.rangeQuery("age").from(21)
+//                .to(40));
+//        QueryBuilder queryBuilder = QueryBuilders.multiMatchQuery("牛肉", "recipeName", "material");
+//        return ElasticsearchUtil.search(queryBuilder, indexName, esType, 0, 10, "recipeName");
+//    }
 
     /**
      * 查询日期范围数据

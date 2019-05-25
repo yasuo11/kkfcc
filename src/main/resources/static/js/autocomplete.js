@@ -18,9 +18,11 @@
             width: 200,
             height: 16,
             showButton: true,
-            buttonText: '搜索',
+            buttonText: '搜菜谱',
             onSubmit: function(text){},
-            onBlur: function(){}
+            onBlur: function(){
+                window.location.href = "/search/searchRecipe?keyWord=" + $("#search-text").val();
+            }
         }, params);
 
         //Build messagess
@@ -31,7 +33,7 @@
                 .css('height', params.height * 2);
 
             //Text input
-            var input = $('<input type="text" autocomplete="off" name="query">')
+            var input = $('<input type="text" autocomplete="off" name="query" id="search-text">')
                 .attr('placeholder', params.placeholder)
                 .addClass('autocomplete-input')
                 .css({
@@ -99,28 +101,39 @@
                     currentSelection = -1;
                     proposalList.empty();
                     if(input.val() != ''){
-                        var word = "^" + input.val() + ".*";
-                        proposalList.empty();
-                        for(var test in params.hints){
-                            // if(params.hints[test].match(word)){
-                                currentProposals.push(params.hints[test]);
-                                var element = $('<li></li>')
-                                    .html(params.hints[test])
-                                    .addClass('proposal')
-                                    .click(function(){
-                                        input.val($(this).html());
-                                        proposalList.empty();
-                                        params.onSubmit(input.val());
-                                    })
-                                    .mouseenter(function() {
-                                        $(this).addClass('selected');
-                                    })
-                                    .mouseleave(function() {
-                                        $(this).removeClass('selected');
-                                    });
-                                proposalList.append(element);
-                            // }
-                        }
+                        $.ajax({
+                            url: '/search/hint.do',
+                            data: {
+                                keyWord: input.val()
+                            },
+                            type: 'get',
+                            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                            success: function(result) {
+                                proposalList.empty();
+                                for(var i = 0; i < result.length; i++){
+                                    currentProposals.push(result[i]);
+                                    var element = $('<li></li>')
+                                        .html(result[i])
+                                        .addClass('proposal')
+                                        .click(function(){
+                                            input.val($(this).html());
+                                            proposalList.empty();
+                                            params.onSubmit(input.val());
+                                        })
+                                        .mouseenter(function() {
+                                            $(this).addClass('selected');
+                                        })
+                                        .mouseleave(function() {
+                                            $(this).removeClass('selected');
+                                        });
+                                    proposalList.append(element);
+                                }
+                            },
+                            error: function () {
+                                alert("异常错误！")
+                            }
+                        });
+
                     }
                 }
             });

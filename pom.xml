@@ -149,7 +149,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.apdplat</groupId>
+            <artifactId>word</artifactId>
+            <version>1.2</version>
+        </dependency>
         <!--spider-->
         <dependency>
             <groupId>us.codecraft</groupId>
@@ -161,6 +165,9 @@
             <artifactId>webmagic-extension</artifactId>
             <version>0.7.3</version>
         </dependency>
+
+
+
 
 
 

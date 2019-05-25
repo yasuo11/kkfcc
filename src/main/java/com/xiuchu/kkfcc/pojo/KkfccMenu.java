@@ -1,5 +1,6 @@
 package com.xiuchu.kkfcc.pojo;
 
+import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "kkfcc_menu")
@@ -13,6 +14,9 @@ public class KkfccMenu {
 
     @Column(name = "collect_sum")
     private Integer collectSum;
+
+    @Column(name = "create_time")
+    private Date createTime;
 
     /**
      * 菜单描述
@@ -73,6 +77,20 @@ public class KkfccMenu {
      */
     public void setCollectSum(Integer collectSum) {
         this.collectSum = collectSum;
+    }
+
+    /**
+     * @return create_time
+     */
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    /**
+     * @param createTime
+     */
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     /**

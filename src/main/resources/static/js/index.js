@@ -10,7 +10,7 @@ $(document).ready(function () {
         width: 300,
         height: 30,
         onSubmit: function(text){
-            $('#message').html('Selected: <b>' + text + '</b>');
+
         }
     });
 });

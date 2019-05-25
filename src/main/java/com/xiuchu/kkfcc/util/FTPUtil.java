@@ -4,8 +4,7 @@ import com.xiuchu.kkfcc.mapper.KkfccUserMapper;
 import org.apache.commons.net.ftp.FTPClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,11 +27,54 @@ public class FTPUtil {
         this.pwd = pwd;
     }
 
+    private static FTPClient getFtpClient() {
+        FTPClient ftpClient = new FTPClient();
+        boolean isSuccess = true;
+        try {
+            ftpClient.connect(ftpIp);
+            isSuccess = ftpClient.login(ftpUser, ftpPass);
+        } catch (IOException e) {
+            logger.error("连接FTP服务器异常", e);
+        }
+        if(!isSuccess)
+            return null;
+        return ftpClient;
+    }
+
+    public static boolean uploadFtpFile(List<File> List) throws IOException {
+        FTPClient client = getFtpClient();
+        boolean uploaded = true;
+        FileInputStream fis = null;
+        //连接FTP服务器
+        try {
+            ftpClient.changeWorkingDirectory("/img");
+            ftpClient.setBufferSize(1024);
+            ftpClient.setControlEncoding("UTF-8");
+            ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
+            ftpClient.enterLocalPassiveMode();      //以被动模式连接
+            for (File fileItem : List) {
+                logger.info("正在上传文件名为：" + fileItem.getName() + "的文件");
+                fis = new FileInputStream(fileItem);
+                ftpClient.storeFile(fileItem.getName(), fis);
+                logger.info("文件名为：" + fileItem.getName() + "的文件上传成功");
+            }
+
+        } catch (IOException e) {
+            logger.error("上传文件异常", e);
+            uploaded = false;
+            e.printStackTrace();
+        } finally {
+            fis.close();
+            ftpClient.disconnect();
+        }
+        return uploaded;
+    }
+
     public static boolean uploadFile(List<File> fileList) throws IOException {
         FTPUtil ftpUtil = new FTPUtil(ftpIp, 21, ftpUser, ftpPass);
         logger.info("开始连接ftp服务器");
         boolean result = ftpUtil.uploadFile("/img", fileList);
-        logger.info("开始连接ftp服务器,结束上传,上传结果:{}");
+        logger.info("开始连接ftp服务器,结束上传,上传结果:{}", result);
         return result;
     }
 
@@ -41,17 +83,25 @@ public class FTPUtil {
         boolean uploaded = true;
         FileInputStream fis = null;
         //连接FTP服务器
-        if (connectServer()) {
+        while(!connectServer()) {
             try {
-                ftpClient.changeWorkingDirectory(remotePath);
-                ftpClient.setBufferSize(1024);
-                ftpClient.setControlEncoding("UTF-8");
-                ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
-                ftpClient.enterLocalPassiveMode();      //以被动模式连接
-                for (File fileItem : fileList) {
-                    fis = new FileInputStream(fileItem);
-                    ftpClient.storeFile(fileItem.getName(), fis);
-                }
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            ftpClient.changeWorkingDirectory(remotePath);
+            ftpClient.setBufferSize(1024);
+            ftpClient.setControlEncoding("UTF-8");
+            ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
+            ftpClient.enterLocalPassiveMode();      //以被动模式连接
+            for (File fileItem : fileList) {
+                logger.info("正在上传文件名为：" + fileItem.getName() + "的文件");
+                fis = new FileInputStream(fileItem);
+                ftpClient.storeFile(fileItem.getName(), fis);
+                logger.info("文件名为：" + fileItem.getName() + "的文件上传成功");
+            }
 
             } catch (IOException e) {
                 logger.error("上传文件异常", e);
@@ -61,7 +111,6 @@ public class FTPUtil {
                 fis.close();
                 ftpClient.disconnect();
             }
-        }
         return uploaded;
     }
 
@@ -72,6 +121,7 @@ public class FTPUtil {
         try {
             ftpClient.connect(ftpIp);
             isSuccess = ftpClient.login(ftpUser, ftpPass);
+            logger.info("连接成功");
         } catch (IOException e) {
             logger.error("连接FTP服务器异常", e);
         }
@@ -117,11 +167,5 @@ public class FTPUtil {
         this.pwd = pwd;
     }
 
-    public FTPClient getFtpClient() {
-        return ftpClient;
-    }
 
-    public void setFtpClient(FTPClient ftpClient) {
-        this.ftpClient = ftpClient;
-    }
 }

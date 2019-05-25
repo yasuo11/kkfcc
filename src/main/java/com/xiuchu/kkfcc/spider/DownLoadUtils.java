@@ -82,7 +82,7 @@ public class DownLoadUtils {
         List<File> fileList = new ArrayList<>();
         List<String> imgUrl = new ArrayList<>();
         for(int i = 0; i < urlList.size(); i++) {
-            if(urlList.get(i) == null || urlList.get(i).equals("")) {
+            if(urlList.get(i) == null || urlList.equals("")) {
                 imgUrl.add("");
                 continue;
             }

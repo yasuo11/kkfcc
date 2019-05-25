@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Spider;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;

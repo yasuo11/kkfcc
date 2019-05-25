@@ -3,6 +3,7 @@ package com.xiuchu.kkfcc.controller;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @EnableAutoConfiguration
@@ -86,5 +87,8 @@ public class ForwardController {
 
     @RequestMapping("work_show")
     public String workshow(){return "work_show";}
+
+    @RequestMapping("search_recipe")
+    public String searchRecipe(){return "search_recipe";}
 
 }

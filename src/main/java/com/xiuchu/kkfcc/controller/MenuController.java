@@ -9,6 +9,7 @@ import com.xiuchu.kkfcc.service.IMenuService;
 import com.xiuchu.kkfcc.service.IRecipeService;
 import com.xiuchu.kkfcc.service.IUserService;
 import com.xiuchu.kkfcc.vo.MenuVO;
+import com.xiuchu.kkfcc.vo.QMenuVO;
 import com.xiuchu.kkfcc.vo.RecipeDetailVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.regex.Pattern;
 
 @Controller
@@ -96,6 +98,19 @@ public class MenuController {
         return ServerResponse.createBySuccess(menuVO);
     }
 
+    @RequestMapping("/listMenu")
+    public String listMenu(@RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "sortNum", defaultValue = "1") int sortNum, Model model, HttpServletRequest request) {
+        List<QMenuVO> qMenuVOList = iMenuService.selectMenu(pageNum, sortNum);
+        KkfccUser curUser = iUserService.getCurUser(request);
+        for(QMenuVO qMenuVO : qMenuVOList) {
+            qMenuVO.setUserId(curUser.getId());
+            qMenuVO.setUserName(curUser.getNickName());
+        }
+        model.addAttribute("menuVOList", qMenuVOList);
+        return "popular_menu";
+    }
+
+
     @RequestMapping("/addRecipe.do")
     @ResponseBody
     public ServerResponse<String> addRecipeToMenu(String recipeUrl, Integer menuId, HttpServletRequest request) {
@@ -114,9 +129,4 @@ public class MenuController {
         return iMenuService.addRecipeToMenu(menuId, recipe);
     }
 
-//    @RequestMapping("/collect")
-//    @ResponseBody
-//    public ServerResponse<String> collectMenu(HttpServletRequest request, HttpSession session) {
-//
-//    }
 }

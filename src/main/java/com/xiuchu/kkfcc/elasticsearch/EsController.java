@@ -51,6 +51,7 @@ public class EsController {
                     .field("publish_date", publishDate.getTime())
                     .endObject();
 
+
             IndexResponse result = this.client.prepareIndex("book", "novel").setSource(content).get();
             return new ResponseEntity(result.getId(), HttpStatus.OK);
         } catch (IOException e) {

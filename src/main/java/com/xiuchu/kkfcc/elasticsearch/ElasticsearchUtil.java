@@ -174,7 +174,20 @@ public class ElasticsearchUtil {
         return getResponse.getSource();
     }
 
-    public static EsPage search(QueryBuilder query, String index,String type,int startPage,int pageSize, String highlightField){
+    /**
+     * 使用分词查询,并分页
+     *
+     * @param index          索引名称
+     * @param type           类型名称,可传入多个type逗号分隔
+     * @param startPage      当前页
+     * @param pageSize       每页显示条数
+     * @param query          查询条件
+     * @param fields         需要显示的字段，逗号分隔（缺省为全部字段）
+     * @param sortField      排序字段
+     * @param highlightField 高亮字段
+     * @return
+     */
+    public static EsPage search(QueryBuilder query, String index,String type,int startPage,int pageSize, String fields, String sortField, String highlightField){
 
 //创建查询索引,要查询的索引库为index
         SearchRequestBuilder builder = client.prepareSearch(index);
@@ -184,10 +197,21 @@ public class ElasticsearchUtil {
         builder.setQuery(query);
 //设置是否按查询匹配度排序
         builder.setExplain(true);
+        if (StringUtils.isNotEmpty(type)) {
+            builder.setTypes(type.split(","));
+        }
+        // 需要显示的字段，逗号分隔（缺省为全部字段）
+        if (StringUtils.isNotEmpty(fields)) {
+            builder.setFetchSource(fields.split(","), null);
+        }
 
+        //排序字段
+        if (StringUtils.isNotEmpty(sortField)) {
+            builder.addSort(sortField, SortOrder.DESC);
+        }
 //设置高亮显示
         HighlightBuilder highlightBuilder = new HighlightBuilder().field("*").requireFieldMatch(false);
-        highlightBuilder.preTags("<span style='color:red' >");
+        highlightBuilder.preTags("<span style='color:red;margin-right: 0px' >");
         highlightBuilder.postTags("</span>");
         builder.highlighter(highlightBuilder);
 
