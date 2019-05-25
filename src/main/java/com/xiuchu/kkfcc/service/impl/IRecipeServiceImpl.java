@@ -138,4 +138,13 @@ public class IRecipeServiceImpl implements IRecipeService {
         temp.setUserId(userId);
         return cbookMapper.select(temp);
     }
+
+    @Override
+    public KkfccCbook selectRecipe(Integer recipeId) {
+        KkfccCbook cbook = new KkfccCbook();
+        cbook.setId(recipeId);
+        return cbookMapper.selectOne(cbook);
+    }
+
+
 }

@@ -5,6 +5,9 @@ import com.xiuchu.kkfcc.pojo.KkfccCbook;
 import com.xiuchu.kkfcc.pojo.KkfccMenu;
 import com.xiuchu.kkfcc.pojo.KkfccUser;
 import com.xiuchu.kkfcc.vo.MenuVO;
+import com.xiuchu.kkfcc.vo.QMenuVO;
+
+import java.util.List;
 
 
 public interface IMenuService {
