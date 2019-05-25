@@ -130,7 +130,7 @@
                 </li>
             </ol>
         </div>
-        <div style="height: 250px;"><!--有个奇怪的bug，所以加个高度修复。-->
+        <div style="height: 450px;"><!--有个奇怪的bug，所以加个高度修复。-->
         </div>
         <a class="am-btn am-btn-danger"
            th:href="'/work/jump?recipeId=' + *{recipe.id} + '&recipeName=' + *{recipe.name}" target="_blank">上传你做的<span
@@ -277,19 +277,20 @@
                         {
                             $("#otherWork").after("<div class=\"likemenu\" id=\"likeWork\">\n" +
                                 "                <a id=\"workUrl\">\n" +
-                                "                    <img src=\"\">\n" +
+                                "                    <img id=\"workImg\" src=\"\">\n" +
                                 "                    <p class=\"title\" id=\"worktitle\"></p>\n" +
                                 "<p>&nbsp;&nbsp;&nbsp;&nbsp;<span id=\"rand\"></span>浏览</p>" +
                                 "                </a>\n" +
                                 "            </div>");
-                            if (result.data.length > 3) {
+                            if (result.data.length > 4) {
                                 $("#worktitle").text(result.data[i].workAuthor + "上传于" + result.data[i].workCreateTime.substring(0, 10));
                                 $("#rand").text(Math.ceil(Math.random() * 10));
                                 $("#workUrl").attr("href", "/work/details?workUserId=" + result.data[i].workUserId + "&recipeId=" + result.data[i].recipeId);
                             }else{
-                                $("#worktitle").text(result.data[0].workAuthor + "上传于" + result.data[0].workCreateTime.substring(0, 10));
+                                $("#worktitle").text('zed上传于： 2019-5-24');
+                                $("#workImg").attr("src","http://img.shengtongcf.com/c0c13c24c79e4c1b807e663f8f4360f3.jpg");
                                 $("#rand").text(Math.ceil(Math.random() * 10));
-                                $("#workUrl").attr("href", "/work/details?workUserId=" + result.data[0].workUserId + "&recipeId=" + result.data[0].recipeId);
+                                $("#workUrl").attr("href", "/work/details?workUserId=310&recipeId=298");
                             }
                         }
                     }

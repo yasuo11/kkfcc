@@ -35,7 +35,7 @@
 				</div>
 				<div class="nav fr">
 				<ul>
-                    <li><a href="index">首页</a></li>
+                    <li><a href="/index">首页</a></li>
                     <li class="menu-class"><a href="/menu_class">菜谱分类</a>
                         <div class="topbar-menu">
                             <ul class="plain">
@@ -80,8 +80,7 @@
                     <li><a href="">作品动态</a></li>
                 </ul>
 				<div class="dengluzhuce fr">
-					<a href="/login">登录</a>
-					<a href="/register">注册</a>
+
 				</div>
 				</div>
 			</div>
@@ -125,13 +124,13 @@
                                 <div class="am-modal-bd">
                                     <table class="am-table am-table-striped am-table-hover">
                                         <tr>
-                                            <td><a href="/userkitchen/314">开心的麻花</a></td>
+                                            <td><a href="/userkitchen/314">姜姜碎碎念</a></td>
                                         </tr>
                                         <tr>
-                                            <td><a href="/userkitchen/316">疾风剑豪</a></td>
+                                            <td><a href="/userkitchen/316">apple爱自己</a></td>
                                         </tr>
                                         <tr>
-                                            <td><a href="/userkitchen/318">秋天不回来</a></td>
+                                            <td><a href="/userkitchen/318">Bella-Swan</a></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -169,7 +168,7 @@
             <div class="kh30"></div>
 
 			<div class="fubiaoti2 clearfix">
-        		<h2><span class="moren" th:text="${user.nickName}"></span>的菜谱</h2><span>
+        		<h2><span class="moren" th:text="${user.nickName}"></span>的菜谱</h2>
         	</div>
             <div class="userprod clearfix">
                 <div class="userproduction" th:each="recipe,infoStat : ${recipes}">
@@ -180,6 +179,24 @@
                     <div class="stars"><span th:text="${infoStat.size}"></span> 做过|<a><span th:text="${user.nickName}"></span></a></div>
                 </div>
             </div>
+
+        <div class="fubiaoti2 clearfix">
+            <h2><span class="moren" th:text="${user.nickName}"></span>的菜单</h2></div>
+        <div class="messager">
+            <a href="">
+                <span class="moren" th:text="${user.nickName}"></span>建的菜单
+            </a>
+
+            <a href="/create_menu" class="fr">+ 创建一个菜单</a>
+            <div th:each="menu,infoStat : ${menus}">
+                <a th:href="'/menu/'+${menu.id}" >
+                    <br/>
+                    <span class="moren" th:text="${menu.title}"></span>
+                    &nbsp;&nbsp;（<span class="moren" th:text="${menu.introduction}"></span>）
+                </a>
+            </div>
+
+        </div>
         </div>
         <!--===================================================================================================-->
 		<div class="conwidth bigmenu clearfix">
