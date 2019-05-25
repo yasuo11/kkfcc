@@ -98,4 +98,11 @@ public class IWorkServiceImpl implements IWorkService {
         }
         return activities;
     }
+
+    @Override
+    public List<KkfccWorks> getAllWorks(Integer userId) {
+        KkfccWorks temp = new KkfccWorks();
+        temp.setUserId(userId);
+        return kkfccWorksMapper.select(temp);
+    }
 }

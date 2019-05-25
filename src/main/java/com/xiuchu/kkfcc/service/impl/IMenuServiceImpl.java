@@ -12,7 +12,6 @@ import com.xiuchu.kkfcc.pojo.KkfccMenuCbook;
 import com.xiuchu.kkfcc.pojo.KkfccUser;
 import com.xiuchu.kkfcc.service.IMenuService;
 import com.xiuchu.kkfcc.vo.MenuVO;
-import com.xiuchu.kkfcc.vo.QMenuVO;
 import com.xiuchu.kkfcc.vo.RecipeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -138,6 +137,20 @@ public class IMenuServiceImpl implements IMenuService {
             qMenuVOList.add(qMenuVO);
         }
         return qMenuVOList;
+    }
+
+    @Override
+    public List<KkfccMenu> getAllMenus(Integer UserId) {
+        KkfccMenu temp = new KkfccMenu();
+        temp.setUserId(UserId);
+        return menuMapper.select(temp);
+    }
+
+    @Override
+    public KkfccMenu getOneMenu(Integer UseId) {
+        KkfccMenu temp = new KkfccMenu();
+        temp.setUserId(UseId);
+        return menuMapper.selectOne(temp);
     }
 
     public void deleteRecipeFromMenu(Integer menuId, Integer recipeId) {

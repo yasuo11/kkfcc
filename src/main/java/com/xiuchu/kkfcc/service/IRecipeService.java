@@ -21,6 +21,5 @@ public interface IRecipeService {
 
     ServerResponse<String> createRecipe(RecipeSimpleVO recipeSimpleVO);
 
-    KkfccCbook selectRecipe(Integer id);
-
+    List<KkfccCbook> getAllRecipes(Integer userId);
 }

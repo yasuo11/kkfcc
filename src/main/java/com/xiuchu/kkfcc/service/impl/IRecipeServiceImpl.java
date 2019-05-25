@@ -133,11 +133,9 @@ public class IRecipeServiceImpl implements IRecipeService {
     }
 
     @Override
-    public KkfccCbook selectRecipe(Integer id) {
-        KkfccCbook cbook = new KkfccCbook();
-        cbook.setId(id);
-        return cbookMapper.selectOne(cbook);
+    public List<KkfccCbook> getAllRecipes(Integer userId) {
+        KkfccCbook temp = new KkfccCbook();
+        temp.setUserId(userId);
+        return cbookMapper.select(temp);
     }
-
-
 }

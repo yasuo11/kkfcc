@@ -7,6 +7,15 @@ public class UserVO {
     private int menu_collects;
     private int works;
     private int recipes;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getImage() {
         return image;

@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta charset="utf-8"/>
     <title>秀厨-唯爱与美食不可辜负</title>
+    <script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="../css/activity.css"/>
 </head>
 <body>
@@ -79,15 +80,14 @@
                             </li>
                             <li class="pure-u"><a href="#" >菜单</a>
                             </li>
-                            <li class="pure-u"><a href="#" rel="nofollow">作品动态</a></li>
+                            <li class="pure-u"><a href="/activity" rel="nofollow">作品动态</a></li>
                         </ul>
                     </div>
                     <div class="float-right clearfix">
 
                         <div class="user-action">
                             <div class="user-nav">
-                                <a class="user-avatar avatar" href="#"
-                                    ><img
+                                <a class="user-avatar avatar"><img
                                         src="http://i2.chuimg.com/a3db29e405ff4d119cd215735ce35b3e_321w_321h.jpg?imageView2/1/w/30/h/30/interlace/1/q/90"
                                         alt="测试_001的厨房" width="30" height="30"></a>
                                 <div class="user-nav-submenu hidden">
@@ -126,14 +126,13 @@
                         </ul>
                     </div>
                 </div>
-                <ul class="activity-feeds plain" id="activitiesList">
-                    <li class="feed dish-feed pure-g mb30 has-border">
+                <ul class="activity-feeds plain" id="activitiesListttt">
+                    <li class="feed dish-feed pure-g mb30 has-border" id="activitiesList">
                         <div class="content">
                             <div class="brief pure-g">
                                 <div class="pure-u-7-8">
                                     <a target="_blank" href="#" class="avatar" id="workUserName">
-                                        <img class="mr10 unveiled"
-                                             src="" alt="用户名" width="48" height="48">
+                                        <img class="mr10 unveiled" src="" alt="用户名" width="48" height="48">
 
                                     </a>
                                     <b>分享作品</b>
@@ -193,9 +192,60 @@
 </body>
 <script>
     $(document).ready(function(){
-        
+        loadInfo();
     });
-    var activityHtml="";
+    var activityHtml="<li class=\"feed dish-feed pure-g mb30 has-border\">\n" +
+        "                        <div class=\"content\">\n" +
+        "                            <div class=\"brief pure-g\">\n" +
+        "                                <div class=\"pure-u-7-8\">\n" +
+        "                                    <a target=\"_blank\" href=\"#\" class=\"avatar\" id=\"workUserName\">\n" +
+        "                                        <img class=\"mr10 unveiled\" src=\"\" alt=\"用户名\" width=\"48\" height=\"48\">\n" +
+        "\n" +
+        "                                    </a>\n" +
+        "                                    <b>分享作品</b>\n" +
+        "                                    <a target=\"_blank\" id=\"workCreateTime\"></a>\n" +
+        "                                </div>\n" +
+        "                            </div>\n" +
+        "\n" +
+        "                            <div class=\"content-body pure-g pos-r has-bottom-border\">\n" +
+        "                                <div class=\"cover\">\n" +
+        "                                    <a target=\"_blank\" href=\"#\" class=\"plain display-block pos-r\">\n" +
+        "                                        <img src=\"\" width=\"280\" height=\"280\" class=\"display-block unveiled\">\n" +
+        "                                    </a>\n" +
+        "                                </div>\n" +
+        "                                <div class=\"info\">\n" +
+        "                                    <div class=\"desc\" id=\"workInfo\"></div>\n" +
+        "                                    <div class=\"title font16 bold mt10\">\n" +
+        "                                        <a target=\"_blank\" id=\"workCreateTime1\"></a>\n" +
+        "                                    </div>\n" +
+        "                                </div>\n" +
+        "                                <div class=\"stat font12 gray-font\">\n" +
+        "                                    <span class=\"n-diggs\">13 赞</span>\n" +
+        "                                </div>\n" +
+        "                            </div>\n" +
+        "\n" +
+        "                            <div class=\"plain comments pl20 pr20 pt15 pb15 font12 block-bg\">\n" +
+        "                                <ul class=\"comments-list mb10 plain\">\n" +
+        "                                    <li class=\"comment mb5 pure-g \">\n" +
+        "                                        <a target=\"_blank\" href=\"\" class=\"mr5 avatar\">\n" +
+        "                                            <img src=\"\" class=\"display-block unveiled\" width=\"30\" height=\"30\">\n" +
+        "                                        </a>\n" +
+        "                                        <div class=\"comment-text mt5\">\n" +
+        "                                            <a target=\"_blank\" href=\"\" id=\"commentUsername\"></a>\n" +
+        "                                            <span class=\"ml5\" id=\"commentInfo\"></span>\n" +
+        "                                            <div class=\"float-right\">\n" +
+        "                                                <a class=\"gray-link\" id=\"commentTime\">时间</a>\n" +
+        "                                            </div>\n" +
+        "                                        </div>\n" +
+        "                                    </li>\n" +
+        "                                </ul>\n" +
+        "                                <form action=\"\" class=\"inline-comment-input pure-g\">\n" +
+        "                                    <input type=\"text\" name=\"reply\" placeholder=\"评论\" class=\"w100\">\n" +
+        "                                    <input type=\"submit\" value=\"评论\" class=\"button pl15 pr15 float-right\">\n" +
+        "                                </form>\n" +
+        "                            </div>\n" +
+        "                        </div>\n" +
+        "                    </li>";
 
     function loadInfo() {
         $.ajax({
@@ -207,7 +257,6 @@
             success: function(result) {
                 if(result.success) {
                    for (var i=0; i<result.data.length; i++){
-                        $("#activitiesList").after(activityHtml);
                         $("#workUserName").text(result.data[i].workUserName);
                         $("#workCreateTime").text(result.data[i].workCreateTime);
                         $("#workInfo").text(result.data[i].workInfo);
@@ -215,6 +264,7 @@
                         $("#commentUsername").text(result.data[i].commentUsername);
                         $("#commentInfo").text(result.data[i].commentInfo);
                         $("#commentTime").text(result.data[i].commentTime);
+                        $("#activitiesList").after($("#activitiesListttt").html());
                    }
                 }
             },
