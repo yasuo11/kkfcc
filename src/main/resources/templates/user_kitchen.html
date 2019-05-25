@@ -159,7 +159,7 @@
             			<img th:src="${work.image}" style="width: 215px;height: 136px"/>
             			<a th:href="/work/details?workUserId=${work.userId}&recipeId=${work.cbookId}" class="active"></a>
             		</div>
-                    <p class="name"><a th:href="/work/details/workUserId=${work.userId}&recipeId=${work.cbookId}">优秀的作品</a></p>
+                    <p class="name"><a th:href="@{'/work/details?workUserId='+${recipe.id}+'&recipeId='+${work.cbookId}}">优秀的作品</a></p>
         			<p th:text="${work.workInfo}"></p>
         			<div class="stars">
         				<span th:text="${work.createTime}"></span>
@@ -215,7 +215,7 @@
                 <div class="userproduction" th:each="work,infoStat : ${works}">
                     <div class="cover">
                         <img th:src="${work.image}" style="width: 215px;height: 136px"/>
-                        <a href="/work/details?workUserId=${work.userId}&recipeId=${work.cbookId}" class="active"></a>
+                        <a th:href="@{'/work/details?workUserId='+${recipe.id}+'&recipeId='+${work.cbookId}}" class="active"></a>
                     </div>
                     <p class="name"><a th:href="/work/details/workUserId=${work.userId}&recipeId=${work.cbookId}">优秀的作品</a></p>
                     <p th:text="${work.workInfo}"></p>
