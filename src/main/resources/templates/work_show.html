@@ -63,10 +63,6 @@
                 <li><a href="/popular_menu">菜单</a></li>
                 <li><a href="">作品动态</a></li>
             </ul>
-            <div class="dengluzhuce fr">
-                <a href="/login">登录</a>
-                <a href="/register">注册</a>
-            </div>
         </div>
     </div>
     <div class="suggest" id="sreach-suggest"><!---搜索智能提示suggest-->
@@ -85,7 +81,7 @@
         <h1>用户:<span th:text="${userName}"></span>的作品</h1>
         <p class="questionnum">创建作品时间:<span th:text="${work.createTime}"></span></p>
         <div class="questionimg">
-            <img id="workImg" th:src="${image}"/>
+            <img id="workImg" th:src="${work.image}"/>
         </div>
     </div>
     <div class="rightcon">
