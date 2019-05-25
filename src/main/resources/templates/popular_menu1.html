@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>菜谱搜索 - 秀厨</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/popular_menu.css"/>
+</head>
+<body>
+<div class="header"><!--------------头部---------------->
+    <div class="conwidth">
+        <h1 class="fl"><a href="/index">秀<span>厨</span></a></h1>
+        <div class="search fl" id="search-box">
+            <form action="#" method="get" target="_blank" >
+                <input type="text" placeholder="搜索菜谱、食材"
+                       id="sreach-input" class="search-text fl"/>
+                <input type="button" value="搜菜谱" class="search-btn fl"/>
+            </form>
+        </div>
+        <div class="nav fr">
+            <ul>
+                <li><a href="/index">首页</a></li>
+                <li class="menu-class"><a href="/menu_class">菜谱分类</a>
+                    <div class="topbar-menu">
+                        <ul class="plain">
+                            <li class='topbar-menu-head'>常用主题</li>
+                            <li><a href="/menu_class" >家常菜</a></li>
+                            <li><a href="/menu_class" >快手菜</a></li>
+                            <li><a href="/menu_class" >下饭菜</a></li>
+                            <li><a href="/menu_class" >早餐</a></li>
+                            <li><a href="/menu_class" >减肥</a></li>
+                            <li><a href="/menu_class" >汤羹</a></li>
+                            <li><a href="/menu_class" >烘焙</a></li>
+                            <li><a href="/menu_class" >小吃</a></li>
+                        </ul>
+                        <ul class="plain">
+                            <li class='topbar-menu-head'>常见食材</li>
+                            <li><a href="/menu_class" >猪肉</a></li>
+                            <li><a href="/menu_class" >鸡肉</a></li>
+                            <li><a href="/menu_class" >牛肉</a></li>
+                            <li><a href="/menu_class" >鱼</a></li>
+                            <li><a href="/menu_class" >鸡蛋</a></li>
+                            <li><a href="/menu_class" >土豆</a></li>
+                            <li><a href="/menu_class" >茄子</a></li>
+                            <li><a href="/menu_class" >豆腐</a></li>
+                        </ul>
+                        <ul class="plain">
+                            <li class='topbar-menu-head'>时令食材</li>
+                            <li><a href="/menu_class" >春笋</a></li>
+                            <li><a href="/menu_class" >笋</a></li>
+                            <li><a href="/menu_class" >豌豆</a></li>
+                            <li><a href="/menu_class" >草莓</a></li>
+                            <li><a href="/menu_class" >金桔</a></li>
+                            <li><a href="/menu_class" >菠菜</a></li>
+                            <li><a href="/menu_class" >冬笋</a></li>
+                            <li><a href="/menu_class" >韭菜</a></li>
+                        </ul>
+                        <div class="span">
+                            <span><a href="/menu_class">查看全部分类</a></span>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="/popular_menu">菜单</a></li>
+                <li><a href="/activity">作品动态</a></li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="suggest" id="sreach-suggest"><!---搜索智能提示suggest-->
+        <ul>
+            <li>搜"  "相关用户</li>
+            <li>搜"  "相关菜单</li>
+        </ul>
+    </div>
+</div>
+<div class="konghang"></div><!--因为头部固定而需要设置高度空行把内容撑下去-->
+
+<div class="conwidth content">
+    <div class="leftcon">
+        <ul class="allclass">
+            <li><a href="/menu_class">全部分类</a></li>
+            <li><a href="/popular_menu1">往期头条</a></li>
+            <li><a href="/popular_menu2">厨房101</a></li>
+            <li><a href="/popular_menu3">月度最佳</a></li>
+            <li><a href="/popular_menu4">最新创建</a></li>
+
+        </ul>
+        <ul class="popular-search">
+            <li><a class="first-li">流行搜索</a></li>
+            <li><a href="/search_hint">烘焙</a></li>
+            <li><a href="/search_hint">素菜</a></li>
+            <li><a href="/search_hint">下饭菜</a></li>
+            <li><a href="/search_hint">快手菜</a></li>
+            <li><a href="/search_hint">蔬菜</a></li>
+            <li><a href="/search_hint">早餐</a></li>
+            <li><a href="/search_hint">蚕豆</a></li>
+            <li><a href="/search_hint">红烧肉</a></li>
+            <li><a href="/search_hint">鱼虾水产</a></li>
+        </ul>
+    </div>
+    <div class="centercon">
+        <h1>菜单</h1>
+        <div class="kywz">
+            最近流行&nbsp;    |&nbsp;    <a href="">最新创建</a>
+        </div>
+        <div class="menublock clearfix">
+            <div class="cover">
+                <img src="http://img.shengtongcf.com/98e223fe0f24432b8ff5a75242fb21d1.jpg" class="menuimg"/>
+            </div>
+
+            <div class="title">
+                <a href="/recipe/313"><p>凉拌手撕鸡丝（香辣版&麻油版）</p></a>
+                <p><a href="/user_kitchen/313">减脂增肌芥末酱</a><span>创建</span><span>1收藏</span></p>
+            </div>
+        </div>
+        <div class="menublock clearfix">
+            <div class="cover">
+                <img src="http://img.shengtongcf.com/1f62b4d5d2bb4ffab59c8c5c3fdd2ec7.jpg" class="menuimg"/>
+            </div>
+
+            <div class="title">
+                <a href="/recipe/314"><p>凉拌海带丝</p></a>
+                <p><a href="/user_kitchen/314">小美的美食</a><span>创建</span><span>1收藏</span></p>
+            </div>
+        </div>
+        <div class="menublock clearfix">
+            <div class="cover">
+                <img src="http://img.shengtongcf.com/34f84fbb9ece47d29251cb77b8807123.jpg" class="menuimg"/>
+            </div>
+
+            <div class="title">
+                <a href="/recipe/317"><p>凉拌海带丝&拍青瓜</p></a>
+                <p><a href="/user_kitchen/317">Lynn纯妹子</a><span>创建</span><span>4收藏</span></p>
+            </div>
+        </div>
+        <div class="menublock clearfix">
+            <div class="cover">
+                <img src="http://img.shengtongcf.com/81134c0355c54f71b80ac06b4a486911.jpg" class="menuimg"/>
+            </div>
+
+            <div class="title">
+                <a href="/recipe/299"><p>自制凉皮</p></a>
+                <p><a href="/user_kitchen/299">咖啡（sleepingcoffee）</a><span>创建</span><span>12收藏</span></p>
+            </div>
+        </div>
+        <div class="menublock clearfix">
+            <div class="cover">
+                <img src="http://img.shengtongcf.com/e5ba759db3ce49a5a0e3c5eff1de281c.jpg" class="menuimg"/>
+            </div>
+
+            <div class="title">
+                <a href="/recipe/315"><p>快手凉菜之<span style='color:red;margin-right: 0px' >凉</span>拌韭菜</p></a>
+                <p><a href="/user_kitchen/315">Meravigliawz</a><span>创建</span><span>2收藏</span></p>
+            </div>
+        </div>
+        <div class="menublock clearfix">
+            <div class="cover">
+                <img src="http://img.shengtongcf.com/7572bc8685174405935ecb95f0944883.jpg" class="menuimg"/>
+            </div>
+
+            <div class="title">
+                <a href="/recipe/323"><p>自制凉皮儿</p></a>
+                <p><a href="/user_kitchen/323">不tiao食</a><span>创建</span><span>1收藏</span></p>
+            </div>
+        </div>
+
+        <div class="pager">
+            <span class="prev">上一页</span>
+            <span class="now">1</span>
+            <a href="">2</a>
+            <a href="">3</a>
+            <a href="">4</a>
+            <a href="">5</a>
+            ...
+            <a href="">下一页</a>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="rightcon">
+        <div class="liuxingcaidan">
+            <div class="title"><h2 class="fubiaoti">流行菜单</h2><a href="#" class="quanbu">全部</a></div>
+            <ul>
+                <li><a href="#">多看书多看报，少吃零食多睡觉</a></li>
+                <li><a href="#">你看这个碗，他又大又圆</a></li>
+                <li><a href="#">你看这个面，他又长又宽</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="conwidth footer"><!----------------页脚---------------->
+    <ul>
+        <li><a href="#">美食生活杂志</a></li>
+        <li><a href="#">厨房工作</a></li>
+        <li><a href="#">社区指导原则</a></li>
+        <li><a href="#">秀厨出版的书</a></li>
+        <li><a href="#">帮助中心</a></li>
+        <li><a href="#">联系我们</a></li>
+        <li><a href="#">意见反馈</a></li>
+        <li><a href="#">隐私声明</a></li>
+    </ul><br />
+    <p>Zed,the Master of Shadows product "秀厨网" ,for commercial use.</p>
+</div>
+<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>
