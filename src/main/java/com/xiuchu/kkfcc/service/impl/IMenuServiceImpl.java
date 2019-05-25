@@ -12,6 +12,7 @@ import com.xiuchu.kkfcc.pojo.KkfccMenuCbook;
 import com.xiuchu.kkfcc.pojo.KkfccUser;
 import com.xiuchu.kkfcc.service.IMenuService;
 import com.xiuchu.kkfcc.vo.MenuVO;
+import com.xiuchu.kkfcc.vo.QMenuVO;
 import com.xiuchu.kkfcc.vo.RecipeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

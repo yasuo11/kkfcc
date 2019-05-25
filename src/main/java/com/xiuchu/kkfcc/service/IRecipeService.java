@@ -22,4 +22,7 @@ public interface IRecipeService {
     ServerResponse<String> createRecipe(RecipeSimpleVO recipeSimpleVO);
 
     List<KkfccCbook> getAllRecipes(Integer userId);
+
+    KkfccCbook selectRecipe(Integer recipeId);
+
 }
