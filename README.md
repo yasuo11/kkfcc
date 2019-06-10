@@ -1,4 +1,4 @@
 # kkfcc
 毕设----秀厨网
-RUA RUA RUA
+70分的毕设结束。
 tanziyuetest
